@@ -1,1182 +1,387 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<title>Le Touareg | Kebab · French tacos · Burgers — Montereau-Fault-Yonne (77130)</title>
-<meta name="description" content="Le Touareg à Montereau-Fault-Yonne : kebab, french tacos, sandwichs, burgers, pizzas, paninis. Commandez à emporter sur WhatsApp, payez sur place. Livraison via Uber Eats. Ouvert 7j/7, de 11h à 22h45."/>
-<meta name="keywords" content="Le Touareg Montereau,kebab Montereau-Fault-Yonne,french tacos Montereau 77,sandwich Montereau,burger Montereau 77130,pizza Montereau,commander WhatsApp Montereau"/>
-<meta name="robots" content="index,follow"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="Le Touareg | Kebab · French tacos · Burgers — Montereau (77130)"/>
-<meta property="og:description" content="Kebab, tacos, burgers, pizzas. Commandez sur WhatsApp, payez sur place. Ouvert 7j/7, de 11h à 22h45."/>
-<meta property="og:site_name" content="Le Touareg"/>
-<meta property="og:locale" content="fr_FR"/>
-<meta property="og:image" content="og-image.jpg"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="Le Touareg : kebab, french tacos, burgers et pizzas à Montereau-Fault-Yonne"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="theme-color" content="#14110F"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxNDExMEYiLz48cGF0aCBkPSJNMTYgMTZoMzJ2MTBIMzd2MjJIMjdWMjZIMTZ6IiBmaWxsPSIjQzk4QTJFIi8+PC9zdmc+"/>
-<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-<link rel="preload" as="image" href="plateau-840.webp" type="image/webp"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400..800&display=swap" rel="stylesheet"/>
-<style>
-/* LE TOUAREG — nuit chaude, braise et ambre. Sobre : la photo et la typo
-   portent le site, pas les effets. */
-:root {
-  --ink:#14110F; --ink-2:#1E1915; --ink-3:#2C251F;
-  --paper:#FAF6EE; --paper-2:#F3ECDF; --paper-3:#E9DFCB;
-  --border:rgba(255,255,255,.09); --border-h:rgba(255,255,255,.2);
-  --border-lt:rgba(20,17,15,.09); --border-lt-h:rgba(20,17,15,.2);
-  --white:#FAF6EE; --off:#1F1A15; --muted:#A39A8B; --muted-lt:#6F6555; --muted2:#7C7364;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Touareg · Kebab, tacos, burgers & pizzas à Montereau-Fault-Yonne</title>
+<meta name="description" content="Le Touareg, place Diderot à Montereau-Fault-Yonne : sandwichs kebab, French tacos, burgers, pizzas et assiettes. Ouvert 7j/7 de 11h à 22h45. Commande à emporter en ligne, livraison Uber Eats, titres-restaurant acceptés.">
+<meta name="theme-color" content="#1f2b66">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 
-  --flame:#C6421E; --flame-d:#9A3216;
-  --gold:#C98A2E; --gold-d:#A16D22;
-  --lime:#8FA84A;
-  --wa:#25D366; --wa-d:#1DA851;
-  --uber:#06C167;
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Le Touareg">
+<meta property="og:title" content="Le Touareg · Le kebab de la place Diderot">
+<meta property="og:description" content="Sandwichs, tacos, burgers et pizzas à Montereau-Fault-Yonne. 7j/7 de 11h à 22h45. Commandez à emporter en 2 minutes.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
-  --announce-h:36px; --nav-h:64px; --header-h:calc(var(--announce-h) + var(--nav-h));
-  --font-d:'Anton',Impact,sans-serif; --font-b:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:22px; --r-f:9999px;
-  --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.25rem; --s6:1.5rem;
-  --s8:2rem; --s10:2.5rem; --s12:3rem; --s16:4rem; --s20:5.5rem;
-  --ease-o:cubic-bezier(0,.55,.45,1); --ease:cubic-bezier(.22,.68,0,1.2);
-  --t:.26s var(--ease-o); --tf:.2s var(--ease-o);
-  --max-w:1200px; --cart-w:420px;
-  --shadow-1:0 1px 2px rgba(20,17,15,.05),0 4px 14px rgba(20,17,15,.06);
-  --shadow-2:0 2px 4px rgba(20,17,15,.06),0 14px 34px rgba(20,17,15,.12);
-}
-.no-announce, .is-scrolled { --announce-h:0px; }
+<link rel="preload" href="assets/fonts/bigshoulders-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-900.webp" imagesrcset="assets/img/hero-900.webp 900w, assets/img/hero-1600.webp 1600w" imagesizes="(max-width: 860px) 100vw, 50vw" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/site.css">
 
-*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-[hidden] { display:none !important; }
-html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:clip; scroll-padding-top:calc(var(--nav-h) + 1rem); }
-body { font-family:var(--font-b); color:var(--off); background:var(--paper); line-height:1.55; overflow-x:clip; -webkit-font-smoothing:antialiased; font-optical-sizing:auto; }
-body.cart-open, body.menu-open { overflow:hidden; }
-img { display:block; max-width:100%; height:auto; }
-a { color:inherit; text-decoration:none; }
-button { background:none; border:none; cursor:pointer; font:inherit; color:inherit; }
-input { font:inherit; }
-ul, ol { list-style:none; }
-address { font-style:normal; }
-.container { width:100%; max-width:var(--max-w); margin-inline:auto; padding-inline:var(--s6); }
-.price, .product-price, .pop-price, .classique-price, .cart-item-price, .cart-total-price, #cfgAddPrice, .cfg-header-price { font-variant-numeric:tabular-nums; }
-
-/* REVEAL — simple fondu, sans flou */
-.reveal { opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-o),transform .6s var(--ease-o); }
-.reveal.visible { opacity:1; transform:none; }
-@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } html { scroll-behavior:auto; } }
-
-/* ICÔNES */
-.icon { width:1em; height:1em; display:inline-block; vertical-align:-0.14em; flex-shrink:0; }
-.icon-lg { width:1.4em; height:1.4em; }
-.icon-xl { width:2.2em; height:2.2em; }
-.brand-icon { flex-shrink:0; display:inline-flex; }
-
-/* BOUTONS */
-.btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:var(--r-f); font-weight:700; font-size:.9rem; letter-spacing:.005em; white-space:nowrap; transition:background var(--tf),border-color var(--tf),color var(--tf),box-shadow var(--tf),transform var(--tf); cursor:pointer; border:1.5px solid transparent; text-decoration:none; }
-.btn:active { transform:scale(.97); }
-a:focus-visible, button:focus-visible, .product-card:focus-visible, .pop-card:focus-visible, .classique-card:focus-visible, .cfg-opt:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
-.btn-primary { background:var(--flame); color:#fff; border-color:var(--flame); }
-.btn-primary:hover, .btn-primary.mobile-hover { background:var(--flame-d); border-color:var(--flame-d); box-shadow:0 8px 22px rgba(198,66,30,.3); }
-.btn-wa { background:var(--wa); color:#0B2614; border-color:var(--wa); font-weight:800; }
-.btn-wa:hover, .btn-wa.mobile-hover { background:var(--wa-d); border-color:var(--wa-d); }
-.btn-outline { border-color:var(--border-lt-h); color:var(--off); background:transparent; }
-.btn-outline:hover, .btn-outline.mobile-hover { border-color:var(--off); }
-.btn-light { border-color:var(--border-h); color:var(--white); background:rgba(255,255,255,.04); }
-.btn-light:hover, .btn-light.mobile-hover { border-color:var(--white); background:rgba(255,255,255,.08); }
-.btn-uber { background:#000; color:#fff; border-color:#000; }
-.btn-uber:hover, .btn-uber.mobile-hover { background:#1a1a1a; }
-.btn-uber .uber-dot { width:8px; height:8px; border-radius:50%; background:var(--uber); }
-.btn-lg { padding:.95rem 1.75rem; font-size:.98rem; }
-.btn-sm { padding:.45rem 1rem; font-size:.78rem; }
-.btn-full { width:100%; }
-.btn-reorder { border-color:var(--gold); color:var(--gold); background:transparent; white-space:normal; text-align:center; }
-.btn-reorder:hover, .btn-reorder.mobile-hover { background:var(--gold); color:var(--ink); }
-
-/* HEADER */
-.header { position:fixed; top:0; left:0; right:0; z-index:900; color:var(--white); }
-.header::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:rgba(20,17,15,0); transition:background var(--t); }
-.header.scrolled::before { background:rgba(20,17,15,.92); -webkit-backdrop-filter:blur(18px) saturate(140%); backdrop-filter:blur(18px) saturate(140%); box-shadow:0 1px 0 var(--border); }
-.announce-bar { background:var(--flame-d); height:var(--announce-h); overflow:hidden; transition:height var(--t); }
-.announce-inner { height:100%; display:flex; align-items:center; justify-content:center; gap:1rem; position:relative; }
-.announce-content { display:flex; align-items:center; gap:.6rem; font-size:.75rem; font-weight:600; color:rgba(255,255,255,.95); white-space:nowrap; overflow:hidden; }
-.a-text { overflow:hidden; text-overflow:ellipsis; }
-.a-sep { opacity:.45; }
-.a-close { position:absolute; right:var(--s6); display:flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:4px; color:rgba(255,255,255,.75); }
-.a-close:hover { color:#fff; background:rgba(255,255,255,.15); }
-.header-inner { display:flex; align-items:center; height:var(--nav-h); gap:2rem; }
-.logo { display:flex; align-items:baseline; gap:.2em; line-height:1; flex-shrink:0; }
-.logo-le { font-family:var(--font-d); font-size:1rem; color:var(--gold); letter-spacing:.08em; }
-.logo-name { font-family:var(--font-d); font-size:1.6rem; color:var(--white); letter-spacing:.03em; }
-.nav-d { display:flex; align-items:center; gap:1.75rem; flex:1; justify-content:center; }
-.nav-link { font-size:.88rem; font-weight:600; color:rgba(250,246,238,.75); transition:color var(--tf); }
-.nav-link:hover, .nav-link.mobile-hover { color:var(--white); }
-.header-actions { display:flex; align-items:center; gap:.5rem; margin-left:auto; }
-.btn-phone { display:inline-flex; align-items:center; gap:.45rem; font-size:.85rem; font-weight:600; color:rgba(250,246,238,.8); padding:.5rem .6rem; white-space:nowrap; }
-.btn-phone:hover { color:var(--white); }
-.btn-phone-txt { display:none; }
-@media (min-width:1080px) { .btn-phone-txt { display:inline; } }
-.btn-wa-nav { padding:.55rem 1.05rem; font-size:.82rem; }
-.cart-badge { display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; background:#0B2614; color:#fff; font-size:.7rem; font-weight:800; border-radius:var(--r-f); padding:0 5px; }
-.hamburger { position:relative; z-index:960; display:none; flex-direction:column; justify-content:center; align-items:center; width:42px; height:42px; gap:5px; border-radius:var(--r-f); border:1.5px solid rgba(250,246,238,.22); }
-.hamburger span { display:block; width:16px; height:2px; background:var(--white); border-radius:2px; transition:transform var(--t),opacity var(--t); }
-.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity:0; }
-.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-.mobile-nav { position:fixed; inset:0; z-index:950; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--s3); opacity:0; visibility:hidden; transition:opacity .28s var(--ease-o), visibility 0s linear .28s; padding:2rem; }
-.mobile-nav.open { opacity:1; visibility:visible; transition:opacity .28s var(--ease-o), visibility 0s linear 0s; }
-.mobile-nav nav { display:flex; flex-direction:column; align-items:center; gap:.35rem; width:100%; max-width:360px; }
-.mobile-nav-link { font-family:var(--font-d); font-size:2rem; text-transform:uppercase; color:var(--white); padding:.45rem 1rem; text-align:center; letter-spacing:.01em; }
-.mobile-nav-link:hover, .mobile-nav-link.mobile-hover { color:var(--gold); }
-.mobile-phone-link { display:flex; align-items:center; gap:.5rem; font-size:1rem; font-weight:600; color:var(--muted); padding:1.5rem .5rem .5rem; border-top:1px solid var(--border); margin-top:1rem; width:100%; max-width:360px; justify-content:center; }
-@media (max-width:899px) { .nav-d { display:none; } .hamburger { display:flex; } .header-inner { gap:.75rem; } .a-close { right:.75rem; } .announce-content { font-size:.7rem; } .a-hide-m { display:none; } }
-@media (min-width:900px) { .mobile-nav { display:none; } }
-@media (max-width:420px) { .btn-phone { display:none; } .logo-name { font-size:1.45rem; } .btn-wa-nav { padding:.5rem .8rem; } }
-
-/* HERO */
-.hero { position:relative; background:var(--ink); color:var(--white); padding-top:calc(36px + var(--nav-h)); overflow:clip; }
-.hero-photo-layer { position:absolute; inset:0; z-index:0; background:url(plateau-840.webp) center 30%/cover no-repeat; }
-.hero-photo-scrim { position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg, rgba(20,17,15,.82) 0%, rgba(20,17,15,.66) 40%, rgba(20,17,15,.86) 78%, var(--ink) 100%); }
-.hero-inner { position:relative; z-index:2; }
-.hero-content { display:grid; grid-template-columns:1fr; gap:3rem; align-items:center; padding-block:var(--s12) var(--s16); min-height:calc(88svh - 100px); }
-.hero-status-row { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin-bottom:var(--s6); }
-.hero-pill { display:inline-flex; align-items:center; gap:.45rem; padding:.4rem .85rem; border-radius:var(--r-f); font-size:.75rem; font-weight:600; border:1px solid var(--border-h); background:rgba(20,17,15,.35); color:rgba(250,246,238,.85); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
-.hero-pill.status-open { border-color:rgba(143,168,74,.5); color:#B9D07A; }
-.hero-pill.status-closed { border-color:rgba(198,66,30,.5); color:#F4957B; }
-.status-dot { width:7px; height:7px; border-radius:50%; background:currentColor; flex-shrink:0; }
-.status-dot.pulse { animation:statusPulse 2s ease-in-out infinite; }
-@keyframes statusPulse { 0% { box-shadow:0 0 0 0 rgba(143,168,74,.55); } 70% { box-shadow:0 0 0 7px rgba(143,168,74,0); } 100% { box-shadow:0 0 0 0 rgba(143,168,74,0); } }
-.hero-eyebrow { display:block; font-size:.8rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; }
-.hero-title { font-family:var(--font-d); font-weight:400; line-height:.88; font-size:clamp(3.6rem,15vw,8.2rem); text-transform:uppercase; letter-spacing:.005em; }
-.hero-title .line { display:block; overflow:hidden; padding-bottom:.02em; }
-.hero-title .line span { display:block; transform:translateY(105%); transition:transform .8s var(--ease-o); animation:heroIn .01s linear 1.2s forwards; }
-.hero-title .line:nth-child(2) span { transition-delay:.08s; }
-.hero-title .le { font-size:.42em; color:var(--gold); letter-spacing:.06em; }
-.hero-loaded .hero-title .line span { transform:none; }
-@keyframes heroIn { to { transform:none; opacity:1; } }
-.hero-tagline { font-size:clamp(1.02rem,2.2vw,1.2rem); color:rgba(250,246,238,.78); max-width:40ch; margin-top:var(--s5); line-height:1.55; }
-.hero-tagline strong { color:var(--white); font-weight:700; }
-.hero-cta-row { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:var(--s8); }
-.hero-meta-row { display:flex; flex-wrap:wrap; gap:2rem; margin-top:var(--s10); padding-top:var(--s6); border-top:1px solid var(--border); }
-.hero-meta-item { display:flex; flex-direction:column; gap:.2rem; }
-.hero-meta-num { font-family:var(--font-d); font-size:1.7rem; color:var(--white); line-height:1; }
-.hero-meta-lbl { font-size:.78rem; color:var(--muted); font-weight:500; }
-.hero-status-row, .hero-eyebrow, .hero-tagline, .hero-cta-row, .hero-meta-row { opacity:0; transform:translateY(12px); transition:opacity .8s var(--ease-o), transform .8s var(--ease-o); animation:heroIn .01s linear 1.2s forwards; }
-.hero-loaded .hero-status-row { opacity:1; transform:none; transition-delay:.05s; }
-.hero-loaded .hero-eyebrow { opacity:1; transform:none; transition-delay:.12s; }
-.hero-loaded .hero-tagline { opacity:1; transform:none; transition-delay:.4s; }
-.hero-loaded .hero-cta-row { opacity:1; transform:none; transition-delay:.5s; }
-.hero-loaded .hero-meta-row { opacity:1; transform:none; transition-delay:.6s; }
-@media (prefers-reduced-motion:reduce) { .hero-title .line span, .hero-status-row, .hero-eyebrow, .hero-tagline, .hero-cta-row, .hero-meta-row { opacity:1; transform:none; transition:none; animation:none; } .status-dot.pulse { animation:none; } }
-.hero-visual { display:none; position:relative; }
-.hero-visual-frame { position:relative; border-radius:28px; overflow:hidden; aspect-ratio:4/3.4; box-shadow:0 30px 80px rgba(0,0,0,.55); border:1px solid var(--border); }
-.hero-visual-frame img { width:100%; height:100%; object-fit:cover; object-position:center 40%; }
-.hero-float { position:absolute; display:flex; align-items:center; gap:.85rem; padding:.8rem 1.1rem .8rem .8rem; border-radius:18px; background:rgba(250,246,238,.97); color:var(--off); box-shadow:0 18px 40px rgba(0,0,0,.35); }
-.hero-float-1 { left:-1.75rem; bottom:2rem; }
-.hero-float-2 { right:-1rem; top:1.5rem; padding:.65rem 1rem; }
-.hero-float-thumb { width:52px; height:52px; border-radius:12px; background-size:cover; background-position:center; flex-shrink:0; }
-.hero-float-k { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--flame); }
-.hero-float-t { font-weight:800; font-size:.95rem; line-height:1.2; }
-.hero-float-p { font-weight:700; font-size:.9rem; color:var(--muted-lt); }
-.hero-float-stars { color:var(--gold); letter-spacing:.06em; font-size:.85rem; }
-@media (min-width:960px) {
-  .hero-photo-layer { display:none; }
-  .hero-photo-scrim { background:radial-gradient(ellipse 60% 70% at 78% 45%, rgba(201,138,46,.16), transparent 70%), radial-gradient(ellipse 50% 60% at 10% 100%, rgba(198,66,30,.12), transparent 70%); }
-  .hero-content { grid-template-columns:1.05fr .95fr; gap:4rem; min-height:auto; padding-block:var(--s16) var(--s20); }
-  .hero-visual { display:block; }
-}
-@media (max-width:640px) {
-  .container { padding-inline:1.1rem; }
-  :root { --s20:3.5rem; --s16:2.75rem; }
-  .hero-content { padding-block:var(--s10) var(--s12); }
-  .hero-cta-row { flex-direction:column; }
-  .hero-cta-row .btn { width:100%; }
-  .hero-meta-row { gap:1.4rem; }
-  .hero-pill { font-size:.7rem; padding:.35rem .7rem; }
-  .hero-title { font-size:clamp(3.6rem,25vw,7rem); }
-  .hero-eyebrow { letter-spacing:.1em; font-size:.74rem; }
-}
-
-/* BANDEAU CONFIANCE */
-.trust-strip { background:var(--ink); color:var(--white); border-top:1px solid var(--border); }
-.trust-grid { display:grid; grid-template-columns:repeat(2,1fr); }
-.trust-item { display:flex; align-items:center; gap:.85rem; padding:1.35rem .5rem; }
-.trust-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:rgba(201,138,46,.12); color:var(--gold); }
-.trust-title { font-size:.88rem; font-weight:700; color:var(--white); line-height:1.25; }
-.trust-sub { font-size:.76rem; color:var(--muted); }
-@media (min-width:860px) { .trust-grid { grid-template-columns:repeat(4,1fr); } .trust-item + .trust-item { border-left:1px solid var(--border); padding-left:1.5rem; } }
-
-/* SECTIONS */
-.section { padding-block:var(--s20); }
-.section-paper { background:var(--paper); }
-.section-cream { background:var(--paper-2); }
-.section-ink { background:var(--ink); color:var(--white); }
-.section-head { max-width:680px; margin-bottom:var(--s10); }
-.section-head.center { text-align:center; margin-inline:auto; }
-.section-eyebrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--flame); margin-bottom:var(--s3); }
-.section-ink .section-eyebrow { color:var(--gold); }
-.section-title { font-family:var(--font-d); font-weight:400; font-size:clamp(2.3rem,5vw,3.6rem); line-height:.95; text-transform:uppercase; color:var(--off); letter-spacing:.005em; }
-.section-ink .section-title { color:var(--white); }
-.section-title .hl { color:var(--flame); }
-.section-sub { font-size:1.05rem; color:var(--muted-lt); margin-top:var(--s4); line-height:1.55; max-width:52ch; }
-.section-head.center .section-sub { margin-inline:auto; }
-.section-ink .section-sub { color:var(--muted); }
-@media (max-width:640px) { .section-title { font-size:clamp(2.1rem,10vw,2.7rem); } }
-
-/* INCONTOURNABLES — 3 grandes cartes photo + carrousel */
-.classiques-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
-.classique-card { position:relative; border-radius:var(--r-xl); overflow:hidden; min-height:340px; display:flex; flex-direction:column; justify-content:flex-end; cursor:pointer; padding:1.6rem; color:#fff; isolation:isolate; box-shadow:var(--shadow-1); }
-.classique-img { position:absolute; inset:0; z-index:-2; background-size:cover; background-position:center; transition:transform .8s var(--ease-o); }
-.classique-card-overlay { position:absolute; inset:0; z-index:-1; background:linear-gradient(to top,rgba(14,11,9,.94) 0%,rgba(14,11,9,.55) 42%,rgba(14,11,9,0) 72%); }
-.classique-card:hover .classique-img, .classique-card.mobile-hover .classique-img { transform:scale(1.05); }
-.classique-badge { display:inline-block; align-self:flex-start; padding:.3rem .7rem; border-radius:var(--r-f); font-size:.68rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; background:var(--gold); color:var(--ink); margin-bottom:.7rem; }
-.classique-badge.badge-flame { background:var(--flame); color:#fff; }
-.classique-name { font-family:var(--font-d); font-size:2rem; line-height:1; text-transform:uppercase; letter-spacing:.01em; }
-.classique-desc { font-size:.88rem; opacity:.82; line-height:1.5; max-width:34ch; margin-top:.4rem; }
-.classique-foot { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,.16); }
-.classique-price { font-size:1.35rem; font-weight:800; }
-.classique-cta { display:inline-flex; align-items:center; gap:.4rem; font-size:.82rem; font-weight:700; padding:.5rem .95rem; border-radius:var(--r-f); background:#fff; color:var(--ink); }
-@media (min-width:860px) { .classiques-grid { grid-template-columns:1.25fr 1fr 1fr; } .classique-card { min-height:440px; } .classique-card:first-child .classique-name { font-size:2.6rem; } }
-
-.pop-wrap { margin-top:var(--s12); }
-.pop-head { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:var(--s5); }
-.pop-head h3 { font-family:var(--font-d); font-weight:400; font-size:1.6rem; text-transform:uppercase; letter-spacing:.01em; }
-.pop-nav { display:flex; gap:.5rem; }
-.pop-nav button { width:40px; height:40px; border-radius:50%; border:1.5px solid var(--border-lt-h); display:flex; align-items:center; justify-content:center; transition:background var(--tf),color var(--tf),border-color var(--tf); }
-.pop-nav button:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
-@media (max-width:899px) { .pop-nav { display:none; } }
-.pop-scroller { display:flex; gap:1rem; overflow-x:auto; padding:.25rem 0 1rem; scroll-snap-type:x mandatory; scrollbar-width:none; margin-inline:calc(-1 * var(--s6)); padding-inline:var(--s6); scroll-padding-inline:var(--s6); }
-.pop-scroller::-webkit-scrollbar { display:none; }
-.pop-scroller::after { content:""; flex:0 0 1px; }
-.pop-card { scroll-snap-align:start; flex:0 0 auto; width:260px; background:#fff; border-radius:var(--r-lg); border:1px solid var(--border-lt); overflow:hidden; cursor:pointer; display:flex; flex-direction:column; transition:transform var(--t),box-shadow var(--t); }
-.pop-card:hover, .pop-card.mobile-hover { transform:translateY(-4px); box-shadow:var(--shadow-2); }
-.pop-card-vis { height:170px; position:relative; background-size:cover; background-position:center; }
-.pop-body { padding:1rem 1.1rem 1.1rem; display:flex; flex-direction:column; gap:.35rem; flex:1; }
-.pop-name { font-size:1rem; font-weight:800; color:var(--off); line-height:1.25; }
-.pop-desc { font-size:.82rem; color:var(--muted-lt); line-height:1.45; flex:1; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.pop-foot { display:flex; align-items:center; justify-content:space-between; margin-top:.45rem; }
-.pop-price { font-size:1.1rem; font-weight:800; color:var(--off); }
-@media (max-width:640px) { .pop-scroller { margin-inline:-1.1rem; padding-inline:1.1rem; scroll-padding-inline:1.1rem; } .pop-card { width:230px; } }
-
-/* BOUTON + (cartes) */
-.pop-add, .product-add { position:relative; width:36px; height:36px; border-radius:50%; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.15rem; font-weight:700; line-height:1; transition:background var(--tf),transform var(--tf); flex-shrink:0; }
-.pop-add::before, .product-add::before { content:''; position:absolute; inset:-5px; }
-.pop-add:hover, .product-add:hover, .pop-add.mobile-hover, .product-add.mobile-hover { background:var(--flame); }
-.pop-add.added, .product-add.added { background:var(--wa-d); }
-
-/* Boutons favori / partage sur les photos */
-.vis-fav-btn, .vis-share-btn { position:absolute; width:32px; height:32px; border-radius:50%; background:rgba(20,17,15,.55); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:3; color:#fff; transition:background var(--tf),color var(--tf); }
-.vis-fav-btn::before, .vis-share-btn::before { content:''; position:absolute; inset:-6px; }
-.vis-fav-btn { top:.6rem; right:.6rem; }
-.vis-share-btn { top:.6rem; right:3.1rem; }
-.vis-fav-btn .icon, .vis-share-btn .icon { width:15px; height:15px; }
-.vis-fav-btn.is-fav { color:var(--flame); background:#fff; }
-.vis-fav-btn.is-fav .icon { fill:var(--flame); }
-.vis-fav-btn.pulse { animation:favPulse .4s var(--ease-o); }
-@keyframes favPulse { 0% { transform:scale(1); } 45% { transform:scale(1.25); } 100% { transform:scale(1); } }
-.vis-share-btn:hover { background:var(--gold-d); }
-
-/* BADGES produits */
-.product-badge { display:inline-flex; align-items:center; font-size:.64rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:.2rem .5rem; border-radius:var(--r-f); background:rgba(198,66,30,.1); color:var(--flame-d); white-space:nowrap; }
-.product-badge.menu-badge { background:rgba(201,138,46,.14); color:var(--gold-d); }
-.pop-card-vis .product-badge { position:absolute; left:.6rem; top:.6rem; background:var(--flame); color:#fff; z-index:2; }
-.product-badge.badge-unavailable { background:var(--paper-3); color:var(--muted-lt); }
-.pop-card-vis .product-badge.badge-unavailable { background:var(--ink-3); color:var(--muted); }
-
-/* LA CARTE */
-.menu-layout { display:block; }
-.menu-toolbar { position:sticky; top:var(--header-h); z-index:80; background:rgba(243,236,223,.96); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); padding-block:.8rem .7rem; margin-inline:calc(-1 * var(--s6)); padding-inline:var(--s6); border-bottom:1px solid transparent; transition:border-color var(--tf),box-shadow var(--tf),top var(--t); display:flex; flex-direction:column; gap:.7rem; }
-.menu-toolbar.stuck { border-color:var(--border-lt); box-shadow:0 10px 24px rgba(20,17,15,.06); }
-.search-box { position:relative; width:100%; max-width:520px; }
-.search-box input { width:100%; padding:.8rem 2.6rem .8rem 2.7rem; border-radius:var(--r-f); border:1.5px solid var(--border-lt-h); background:#fff; font-size:.95rem; color:var(--off); transition:border-color var(--tf),box-shadow var(--tf); }
-.search-box input::placeholder { color:var(--muted2); }
-.search-box input:focus { outline:none; border-color:var(--off); box-shadow:0 0 0 4px rgba(20,17,15,.06); }
-.search-icon { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--muted2); pointer-events:none; display:flex; }
-.search-clear { position:absolute; right:.6rem; top:50%; transform:translateY(-50%); width:28px; height:28px; border-radius:50%; background:var(--paper-3); color:var(--muted-lt); display:none; align-items:center; justify-content:center; font-size:.8rem; }
-.search-box.has-val .search-clear { display:flex; }
-.cat-filters { display:flex; gap:.45rem; overflow-x:auto; scrollbar-width:none; margin-inline:calc(-1 * var(--s6)); padding-inline:var(--s6); }
-.cat-filters::-webkit-scrollbar { display:none; }
-.cat-chip { flex:0 0 auto; display:flex; align-items:center; gap:.4rem; padding:.48rem .95rem; border-radius:var(--r-f); border:1.5px solid var(--border-lt); background:#fff; font-size:.82rem; font-weight:600; color:var(--muted-lt); white-space:nowrap; transition:border-color var(--tf),background var(--tf),color var(--tf); }
-.cat-chip:hover, .cat-chip.mobile-hover { border-color:var(--border-lt-h); color:var(--off); }
-.cat-chip.active { background:var(--ink); border-color:var(--ink); color:var(--white); }
-.cat-chip-fav .icon { width:14px; height:14px; }
-.cat-chip-fav.active { background:var(--flame); border-color:var(--flame); }
-.fav-count { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; padding:0 5px; border-radius:var(--r-f); background:rgba(198,66,30,.12); color:var(--flame-d); font-size:.66rem; font-weight:800; }
-.cat-chip-fav.active .fav-count { background:rgba(255,255,255,.25); color:#fff; }
-.cat-chip-fav:not(.has-items) .fav-count { display:none; }
-.budget-filters { display:flex; align-items:center; gap:.45rem; flex-wrap:wrap; margin-top:1.1rem; }
-.budget-label { font-size:.78rem; font-weight:600; color:var(--muted2); margin-right:.2rem; }
-.budget-chip { padding:.32rem .75rem; border-radius:var(--r-f); border:1.5px solid var(--border-lt); background:transparent; font-size:.76rem; font-weight:600; color:var(--muted-lt); white-space:nowrap; transition:all var(--tf); }
-.budget-chip:hover, .budget-chip.mobile-hover { border-color:var(--gold); color:var(--off); }
-.budget-chip.active { background:var(--gold); border-color:var(--gold); color:#fff; }
-.menu-results-info { font-size:.82rem; color:var(--muted2); margin:1.2rem 0 0; min-height:1px; }
-#menuGrid { margin-top:var(--s8); }
-.menu-cat-group { margin-bottom:var(--s12); }
-.menu-cat-title { display:flex; align-items:center; gap:.85rem; font-family:var(--font-d); font-weight:400; font-size:1.65rem; line-height:1; color:var(--off); text-transform:uppercase; letter-spacing:.01em; margin-bottom:var(--s5); padding-bottom:.85rem; border-bottom:1px solid var(--border-lt-h); }
-.mct-thumb { width:52px; height:52px; border-radius:14px; background-size:cover; background-position:center; flex-shrink:0; box-shadow:var(--shadow-1); }
-.mct-count { font-family:var(--font-b); font-size:.74rem; font-weight:700; color:var(--muted-lt); background:var(--paper-3); padding:.2rem .6rem; border-radius:var(--r-f); letter-spacing:0; }
-.mct-note { margin-left:auto; font-family:var(--font-b); font-size:.76rem; font-weight:600; color:var(--gold-d); text-transform:none; letter-spacing:0; }
-.product-grid { display:grid; grid-template-columns:1fr; gap:.7rem; }
-@media (min-width:760px) { .product-grid { grid-template-columns:1fr 1fr; gap:.85rem; } }
-.product-card { position:relative; display:flex; gap:1rem; background:#fff; border-radius:var(--r-lg); border:1px solid var(--border-lt); padding:1rem 1rem 1rem 1.15rem; cursor:pointer; transition:border-color var(--tf),box-shadow var(--tf); scroll-margin-top:calc(var(--header-h) + 160px); }
-.product-card:hover, .product-card.mobile-hover { border-color:var(--border-lt-h); box-shadow:var(--shadow-1); }
-.product-card.is-target { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,138,46,.25); }
-.pc-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:.3rem; }
-.pc-top { display:flex; align-items:center; flex-wrap:wrap; gap:.4rem .5rem; }
-.product-name { font-size:1rem; font-weight:700; color:var(--off); line-height:1.3; }
-.product-desc { font-size:.84rem; color:var(--muted-lt); line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.pc-foot { display:flex; align-items:center; gap:.6rem; margin-top:auto; padding-top:.35rem; }
-.product-price { font-size:1.02rem; font-weight:800; color:var(--off); }
-.pc-side { display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; gap:.5rem; flex-shrink:0; }
-.pc-icons { display:flex; gap:.15rem; }
-.pc-icon-btn { position:relative; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--muted2); transition:color var(--tf),background var(--tf); }
-.pc-icon-btn::before { content:''; position:absolute; inset:-4px; }
-.pc-icon-btn .icon { width:16px; height:16px; }
-.pc-icon-btn:hover { background:var(--paper-2); color:var(--off); }
-.pc-icon-btn.is-fav { color:var(--flame); }
-.pc-icon-btn.is-fav .icon { fill:var(--flame); }
-.pc-icon-btn.pulse { animation:favPulse .4s var(--ease-o); }
-.is-unavailable { cursor:default; }
-.is-unavailable .product-name, .is-unavailable .pop-name, .is-unavailable .product-price, .is-unavailable .pop-price { color:var(--muted2); }
-.is-unavailable .pop-card-vis { filter:grayscale(.7) brightness(.7); }
-.is-unavailable .product-add, .is-unavailable .pop-add { background:var(--paper-3); color:var(--muted2); cursor:not-allowed; }
-.is-unavailable:hover, .is-unavailable.mobile-hover { transform:none !important; box-shadow:none !important; border-color:var(--border-lt) !important; }
-.is-unavailable .vis-share-btn, .is-unavailable .vis-fav-btn, .is-unavailable .pc-icons { display:none; }
-.no-results { text-align:center; padding:var(--s16) var(--s6); color:var(--muted-lt); }
-.no-results-emoji { font-size:2.4rem; margin-bottom:1rem; color:var(--muted2); }
-@media (max-width:640px) { .menu-toolbar, .cat-filters { margin-inline:-1.1rem; padding-inline:1.1rem; } .menu-cat-title { font-size:1.4rem; } .mct-thumb { width:44px; height:44px; } .mct-note { display:none; } }
-
-/* PHOTOS — une image par famille, jamais une photo hors-sujet */
-.vis-kebab { background-image:url(food-kebab-480.jpg); }
-.vis-burger { background-image:url(food-burger-480.jpg); }
-.vis-wrap { background-image:url(food-wrap-480.jpg); }
-.vis-drink { background-image:url(boissons-480.webp); }
-.vis-pizza { background-image:url(food-pizza-480.jpg); }
-.vis-texmex { background-image:url(food-texmex-480.jpg); }
-.vis-kebab-lg { background-image:url(food-kebab-840.jpg); }
-.vis-burger-lg { background-image:url(food-burger-840.jpg); }
-.vis-wrap-lg { background-image:url(food-wrap-840.jpg); }
-.vis-plateau-lg { background-image:url(plateau-840.webp); }
-.vis-pizza-lg { background-image:url(plateau-840.webp); background-size:auto 118% !important; background-position:100% 0% !important; background-repeat:no-repeat; background-color:var(--ink); }
-[class*="vis-"] { background-size:cover; background-position:center; }
-/* Plat sans photo : tuile typographique sobre plutôt qu'une photo trompeuse */
-.vis-none { background:var(--ink-2); display:flex; align-items:center; justify-content:center; }
-.vis-none-label { font-family:var(--font-d); font-size:1.5rem; text-transform:uppercase; color:transparent; -webkit-text-stroke:1px rgba(201,138,46,.55); letter-spacing:.02em; text-align:center; padding:0 1rem; line-height:1; }
-
-/* COMMENT COMMANDER */
-.steps-grid { display:grid; grid-template-columns:1fr; gap:1rem; counter-reset:step; }
-.step-card { position:relative; background:#fff; border:1px solid var(--border-lt); border-radius:var(--r-xl); padding:1.6rem 1.5rem; }
-.step-num { font-family:var(--font-d); font-size:3rem; line-height:1; color:var(--paper-3); position:absolute; top:1.1rem; right:1.3rem; }
-.step-icon { width:46px; height:46px; border-radius:14px; background:var(--ink); color:var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
-.step-title { font-size:1.1rem; font-weight:800; margin-bottom:.35rem; }
-.step-text { font-size:.9rem; color:var(--muted-lt); line-height:1.55; }
-.delivery-card { margin-top:1rem; display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; justify-content:space-between; padding:1.6rem 1.5rem; border-radius:var(--r-xl); background:var(--ink); color:var(--white); position:relative; overflow:hidden; }
-.delivery-card::after { content:''; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(6,193,103,.18), transparent 70%); pointer-events:none; }
-.delivery-k { font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--uber); }
-.delivery-t { font-family:var(--font-d); font-size:1.8rem; line-height:1; text-transform:uppercase; margin-top:.35rem; }
-.delivery-s { font-size:.9rem; color:var(--muted); margin-top:.45rem; max-width:48ch; }
-@media (min-width:860px) { .steps-grid { grid-template-columns:repeat(3,1fr); } .delivery-card { flex-direction:row; align-items:center; padding:1.8rem 2rem; } }
-
-/* AVIS */
-.reviews-band { display:grid; grid-template-columns:1fr; gap:2rem; align-items:center; }
-.reviews-score { display:flex; align-items:center; gap:1.25rem; }
-.reviews-score-num { font-family:var(--font-d); font-size:clamp(4.5rem,12vw,6.5rem); line-height:.85; color:var(--white); }
-.reviews-score-side { display:flex; flex-direction:column; gap:.35rem; }
-.reviews-stars { color:var(--gold); font-size:1.2rem; letter-spacing:.08em; }
-.reviews-score-lbl { display:flex; align-items:center; gap:.45rem; font-size:.88rem; color:var(--muted); font-weight:500; }
-.reviews-actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.5rem; }
-@media (min-width:860px) { .reviews-band { grid-template-columns:1.1fr .9fr; gap:4rem; } }
-[data-rating-block][hidden] { display:none !important; }
-
-/* INFOS & ACCÈS */
-.loc-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; align-items:stretch; }
-.loc-card { background:#fff; border:1px solid var(--border-lt); border-radius:var(--r-xl); padding:1.75rem; display:flex; flex-direction:column; gap:1.35rem; }
-.loc-row { display:flex; gap:1rem; align-items:flex-start; }
-.loc-icon { width:42px; height:42px; border-radius:12px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--flame); }
-.loc-row-title { font-size:.92rem; font-weight:800; color:var(--off); margin-bottom:.15rem; }
-.loc-row-sub { font-size:.9rem; color:var(--muted-lt); line-height:1.5; }
-.loc-row-sub a { color:var(--off); font-weight:600; }
-.hours-table { display:flex; flex-direction:column; width:100%; }
-.hours-row { display:flex; justify-content:space-between; font-size:.88rem; padding:.42rem 0; border-bottom:1px solid var(--border-lt); }
-.hours-row:last-child { border-bottom:0; }
-.hours-row.today { font-weight:800; color:var(--flame); }
-.hours-day { color:var(--muted-lt); }
-.hours-row.today .hours-day { color:var(--flame); }
-.hours-time { font-weight:600; color:var(--off); font-variant-numeric:tabular-nums; }
-.map-embed { width:100%; min-height:340px; border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--border-lt); }
-.map-embed iframe { width:100%; height:100%; min-height:340px; border:0; display:block; }
-.map-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.9rem; text-align:center; min-height:340px; height:100%; padding:1.5rem; background:var(--ink-2); color:#f5efe4; }
-.map-placeholder p { max-width:34ch; font-size:.9rem; opacity:.85; }
-@media (min-width:960px) { .loc-grid { grid-template-columns:.9fr 1.1fr; } }
-
-/* FAQ */
-.faq-list { max-width:760px; margin-inline:auto; display:flex; flex-direction:column; border-top:1px solid var(--border-lt-h); }
-.faq-item { border-bottom:1px solid var(--border-lt-h); }
-.faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; width:100%; padding:1.2rem .25rem; font-size:1rem; font-weight:700; color:var(--off); text-align:left; }
-.faq-q-icon { width:28px; height:28px; border-radius:50%; border:1.5px solid var(--border-lt-h); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:transform var(--t),background var(--tf),color var(--tf),border-color var(--tf); font-size:1rem; font-weight:500; }
-.faq-item.open .faq-q-icon { transform:rotate(45deg); background:var(--ink); color:#fff; border-color:var(--ink); }
-.faq-a { max-height:0; overflow:hidden; transition:max-height .35s var(--ease-o); }
-.faq-a-inner { padding:0 .25rem 1.3rem; font-size:.93rem; color:var(--muted-lt); line-height:1.65; max-width:64ch; }
-
-/* FOOTER */
-.footer { background:var(--ink); color:var(--muted); padding-block:var(--s16) var(--s8); }
-.footer-cta { display:flex; flex-direction:column; gap:1.25rem; align-items:flex-start; justify-content:space-between; padding-bottom:var(--s10); margin-bottom:var(--s10); border-bottom:1px solid var(--border); }
-.footer-cta-title { font-family:var(--font-d); font-size:clamp(2rem,5vw,3.2rem); line-height:.95; text-transform:uppercase; color:var(--white); }
-.footer-cta-title span { color:var(--gold); }
-.footer-cta-actions { display:flex; flex-wrap:wrap; gap:.75rem; }
-@media (min-width:860px) { .footer-cta { flex-direction:row; align-items:center; } }
-.footer-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:var(--s10); }
-.footer-grid > :first-child { grid-column:1 / -1; }
-.footer-brand-logo { display:flex; align-items:baseline; gap:.2em; margin-bottom:.85rem; }
-.footer-brand-logo .logo-name { font-size:1.5rem; }
-.footer-brand-desc { font-size:.88rem; line-height:1.6; max-width:34ch; color:var(--muted2); }
-.footer-col-title { font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--white); margin-bottom:1rem; }
-.footer-links { display:flex; flex-direction:column; gap:.6rem; font-size:.88rem; }
-.footer-links a { color:var(--muted); transition:color var(--tf); }
-.footer-links a:hover, .footer-links a.mobile-hover { color:var(--white); }
-.footer-bottom { border-top:1px solid var(--border); padding-top:var(--s6); display:flex; flex-direction:column; gap:.75rem; align-items:center; text-align:center; font-size:.78rem; color:var(--muted2); }
-.footer-legal-links { display:flex; flex-wrap:wrap; justify-content:center; gap:.4rem 1.1rem; }
-.footer-legal-links a { color:inherit; text-decoration:underline; text-underline-offset:3px; opacity:.85; }
-.footer-legal-links a:hover { opacity:1; color:var(--gold); }
-.icon-inline { width:12px; height:12px; vertical-align:-1px; margin-right:2px; }
-#demoNotice { opacity:.7; font-style:italic; }
-body.has-cart .footer { padding-bottom:calc(var(--s8) + 84px); }
-@media (min-width:860px) { .footer-grid { grid-template-columns:1.4fr .8fr .9fr .9fr; } .footer-grid > :first-child { grid-column:auto; } .footer-bottom { flex-direction:row; justify-content:space-between; text-align:left; } }
-
-/* BARRE PANIER — apparaît dès qu'un plat est ajouté */
-.cart-bar { opacity:0; pointer-events:none; position:fixed; left:50%; bottom:calc(.9rem + env(safe-area-inset-bottom)); transform:translate(-50%,140%); z-index:850; display:flex; align-items:center; gap:.9rem; width:min(560px, calc(100vw - 1.5rem)); padding:.65rem .7rem .65rem 1.1rem; border-radius:var(--r-f); background:var(--ink); color:#fff; box-shadow:0 14px 36px rgba(20,17,15,.35); transition:transform .4s var(--ease-o),opacity .3s var(--ease-o); font-weight:700; }
-body.has-cart .cart-bar { transform:translate(-50%,0); opacity:1; pointer-events:auto; }
-.cart-bar-count { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; padding:0 7px; border-radius:var(--r-f); background:var(--flame); font-size:.85rem; font-weight:800; }
-.cart-bar-label { flex:1; text-align:left; font-size:.95rem; }
-.cart-bar-total { padding:.55rem 1rem; border-radius:var(--r-f); background:var(--wa); color:#0B2614; font-weight:800; font-variant-numeric:tabular-nums; }
-.cart-bar.bump .cart-bar-count { animation:badgeBump .35s var(--ease-o); }
-@keyframes badgeBump { 0%,100% { transform:scale(1); } 40% { transform:scale(1.25); } }
-@media (min-width:900px) { .cart-bar { left:auto; right:1.5rem; transform:translateY(160%); width:380px; } body.has-cart .cart-bar { transform:none; } }
-
-/* CART PANEL */
-.cart-overlay { position:fixed; inset:0; background:rgba(10,8,6,.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); z-index:1000; opacity:0; pointer-events:none; transition:opacity var(--t); }
-.cart-overlay.visible { opacity:1; pointer-events:all; }
-.cart-panel { position:fixed; top:0; right:0; bottom:0; width:min(var(--cart-w),100vw); background:var(--paper); box-shadow:-12px 0 40px rgba(0,0,0,.25); z-index:1001; display:flex; flex-direction:column; transform:translateX(100%); visibility:hidden; transition:transform .45s var(--ease-o), visibility 0s linear .45s; color:var(--off); }
-.cart-panel.open { transform:none; visibility:visible; transition:transform .45s var(--ease-o), visibility 0s linear 0s; }
-.cart-panel-header { display:flex; align-items:center; justify-content:space-between; padding:1.2rem 1.5rem; border-bottom:1px solid var(--border-lt); flex-shrink:0; }
-.cart-panel-title { display:flex; align-items:center; gap:.6rem; font-family:var(--font-d); font-size:1.5rem; font-weight:400; text-transform:uppercase; letter-spacing:.01em; }
-.cart-close, .cfg-close { width:36px; height:36px; border-radius:50%; background:var(--paper-3); color:var(--off); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background var(--tf),color var(--tf); }
-.cart-close:hover, .cfg-close:hover, .cart-close.mobile-hover, .cfg-close.mobile-hover { background:var(--ink); color:#fff; }
-.cart-body { flex:1; overflow-y:auto; padding:1rem 1.5rem; }
-.cart-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem; padding:4rem 1rem; text-align:center; color:var(--muted-lt); }
-.cart-empty-icon { font-size:2.4rem; color:var(--muted2); }
-.cart-empty-title { font-size:1.05rem; font-weight:800; color:var(--off); }
-.cart-empty-sub { font-size:.88rem; }
-.cart-items { display:flex; flex-direction:column; }
-.cart-item { display:flex; align-items:center; gap:.85rem; padding:.85rem 0; border-bottom:1px solid var(--border-lt); animation:slideIn .22s var(--ease-o); }
-@keyframes slideIn { from { opacity:0; transform:translateX(12px); } to { opacity:1; transform:none; } }
-.cart-item-emoji { width:52px; height:52px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background-color:var(--ink-2); color:var(--gold); }
-.cart-item-info { flex:1; min-width:0; }
-.cart-item-name { font-size:.9rem; font-weight:700; color:var(--off); line-height:1.3; }
-.cart-item-config { display:block; font-size:.78rem; font-weight:500; color:var(--muted-lt); margin-top:.15rem; }
-.cart-item-price { font-size:.9rem; font-weight:800; color:var(--off); margin-top:.2rem; }
-.cart-item-controls { display:flex; align-items:center; gap:.35rem; flex-shrink:0; border:1px solid var(--border-lt-h); border-radius:var(--r-f); padding:.2rem; }
-.qty-btn { position:relative; width:28px; height:28px; border-radius:50%; color:var(--off); font-size:1rem; font-weight:700; display:flex; align-items:center; justify-content:center; transition:background var(--tf),color var(--tf); }
-.qty-btn::before { content:''; position:absolute; inset:-6px; }
-.qty-btn:hover, .qty-btn.mobile-hover { background:var(--ink); color:#fff; }
-.qty-btn.remove:hover, .qty-btn.remove.mobile-hover { background:var(--flame); }
-.qty-value { min-width:18px; text-align:center; font-size:.88rem; font-weight:800; }
-.cart-footer { border-top:1px solid var(--border-lt); padding:1.1rem 1.5rem calc(1.25rem + env(safe-area-inset-bottom)); flex-shrink:0; display:flex; flex-direction:column; gap:.9rem; background:#fff; }
-.cart-total-row { display:flex; justify-content:space-between; align-items:baseline; }
-.cart-total-label { font-size:.9rem; font-weight:700; color:var(--muted-lt); }
-.cart-total-price { font-size:1.6rem; font-weight:800; color:var(--off); }
-.cart-form { display:flex; flex-direction:column; gap:.7rem; }
-.cart-form-label { font-size:.72rem; font-weight:700; color:var(--muted-lt); letter-spacing:.08em; text-transform:uppercase; }
-.cart-input { width:100%; padding:.72rem 1rem; background:var(--paper); border:1.5px solid var(--border-lt-h); border-radius:var(--r-md); color:var(--off); font-size:.92rem; transition:border-color var(--tf),box-shadow var(--tf); }
-.cart-input::placeholder { color:var(--muted2); }
-.cart-input:focus { outline:none; border-color:var(--off); box-shadow:0 0 0 3px rgba(20,17,15,.06); }
-.order-mode-group { display:grid; grid-template-columns:1fr; }
-.order-mode-label { display:flex; align-items:center; gap:.5rem; padding:.65rem .85rem; border-radius:var(--r-md); font-size:.84rem; font-weight:600; color:var(--off); background:var(--paper-2); }
-.cart-disclaimer { font-size:.76rem; color:var(--muted-lt); text-align:center; line-height:1.5; }
-.cart-delivery-note { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.4rem; font-size:.8rem; color:var(--muted-lt); text-align:center; padding-top:.7rem; border-top:1px solid var(--border-lt); }
-.cart-delivery-note a { color:var(--off); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
-
-/* CONFIGURATEUR */
-.cfg-overlay { position:fixed; inset:0; background:rgba(10,8,6,.6); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); z-index:1100; opacity:0; pointer-events:none; transition:opacity var(--t); }
-.cfg-overlay.visible { opacity:1; pointer-events:all; }
-.cfg-sheet { position:fixed; left:0; right:0; bottom:0; max-height:90vh; background:var(--paper); border-radius:24px 24px 0 0; z-index:1101; transform:translateY(100%); visibility:hidden; transition:transform .42s var(--ease-o), visibility 0s linear .42s; display:flex; flex-direction:column; box-shadow:0 -12px 40px rgba(0,0,0,.25); overflow:hidden; }
-.cfg-sheet.open { transform:none; visibility:visible; transition:transform .42s var(--ease-o), visibility 0s linear 0s; }
-.cfg-handle { width:40px; height:4px; background:var(--border-lt-h); border-radius:2px; margin:.7rem auto .2rem; flex-shrink:0; }
-.cfg-header { display:flex; align-items:center; gap:1rem; padding:.9rem 1.4rem 1.1rem; border-bottom:1px solid var(--border-lt); flex-shrink:0; }
-.cfg-header-emoji { width:60px; height:60px; border-radius:14px; background-color:var(--ink-2); color:var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.cfg-header-info { flex:1; min-width:0; }
-.cfg-header-name { font-size:1.1rem; font-weight:800; color:var(--off); line-height:1.25; }
-.cfg-header-price { font-size:1rem; font-weight:700; color:var(--muted-lt); margin-top:2px; }
-.cfg-body { flex:1; overflow-y:auto; padding:1.1rem 1.4rem; }
-.cfg-group { margin-bottom:1.5rem; }
-.cfg-group-label { display:flex; align-items:center; justify-content:space-between; font-size:.9rem; font-weight:800; color:var(--off); margin-bottom:.7rem; }
-.cfg-group-hint { font-size:.72rem; font-weight:700; color:var(--muted-lt); background:var(--paper-3); padding:.2rem .55rem; border-radius:var(--r-f); }
-.cfg-group-hint.ok { color:#fff; background:var(--wa-d); }
-.cfg-options { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
-.cfg-opt { display:flex; align-items:center; gap:.55rem; padding:.72rem .85rem; border-radius:var(--r-md); border:1.5px solid var(--border-lt); background:#fff; font-size:.86rem; font-weight:600; color:var(--off); transition:border-color var(--tf),background var(--tf); text-align:left; }
-.cfg-opt-check { width:18px; height:18px; border-radius:50%; border:1.5px solid var(--border-lt-h); flex-shrink:0; transition:all var(--tf); }
-.cfg-opt:hover, .cfg-opt.mobile-hover { border-color:var(--border-lt-h); }
-.cfg-opt.selected { border-color:var(--off); background:var(--paper-2); }
-.cfg-opt.selected .cfg-opt-check { background:var(--flame); border-color:var(--flame); box-shadow:inset 0 0 0 3px #fff; }
-.cfg-qty-row { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1rem; background:#fff; border:1.5px solid var(--border-lt); border-radius:var(--r-md); }
-.cfg-qty-lbl { font-size:.9rem; font-weight:600; }
-.cfg-qty-controls { display:flex; align-items:center; gap:.9rem; }
-.cfg-qty-btn { position:relative; width:34px; height:34px; border-radius:50%; background:var(--paper-3); color:var(--off); font-size:1.1rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
-.cfg-qty-btn::before { content:''; position:absolute; inset:-5px; }
-.cfg-qty-btn:hover, .cfg-qty-btn.mobile-hover { background:var(--ink); color:#fff; }
-.cfg-qty-val { font-weight:800; font-size:1.05rem; min-width:22px; text-align:center; }
-.cfg-footer { padding:1rem 1.4rem calc(1.2rem + env(safe-area-inset-bottom)); border-top:1px solid var(--border-lt); flex-shrink:0; background:#fff; }
-.cfg-add-btn { display:flex; align-items:center; justify-content:space-between; width:100%; padding:1rem 1.4rem; }
-@media (max-width:420px) { .cfg-options { grid-template-columns:1fr; } }
-@media (min-width:640px) { .cfg-sheet { left:50%; right:auto; bottom:auto; top:50%; transform:translate(-50%,-44%); opacity:0; width:min(500px,92vw); border-radius:24px; max-height:86vh; transition:transform .35s var(--ease-o), opacity .25s var(--ease-o), visibility 0s linear .35s; } .cfg-sheet.open { transform:translate(-50%,-50%); opacity:1; transition:transform .35s var(--ease-o), opacity .25s var(--ease-o), visibility 0s linear 0s; } .cfg-handle { display:none; } }
-
-/* TOAST */
-.toast { position:fixed; bottom:calc(1.5rem + env(safe-area-inset-bottom)); left:50%; transform:translate(-50%,16px); background:var(--ink); color:#fff; padding:.8rem 1.3rem; border-radius:var(--r-f); font-size:.86rem; font-weight:600; white-space:nowrap; z-index:9998; opacity:0; pointer-events:none; transition:opacity .25s var(--ease-o),transform .25s var(--ease-o); box-shadow:0 10px 28px rgba(0,0,0,.3); max-width:90vw; text-align:center; }
-.toast.show { opacity:1; transform:translate(-50%,0); }
-body.has-cart .toast { bottom:calc(5.6rem + env(safe-area-inset-bottom)); }
-/* Panier ou configurateur ouvert : le toast passe en haut pour ne jamais masquer un bouton */
-body.cart-open .toast { bottom:auto; top:calc(1rem + env(safe-area-inset-top)); transform:translate(-50%,-16px); }
-body.cart-open .toast.show { transform:translate(-50%,0); }
-@media (max-width:480px) { .toast { white-space:normal; font-size:.8rem; } }
-
-/* LÉGAL, PANNEAU ÉQUIPE, COOKIES */
-.legal-overlay { position:fixed; inset:0; z-index:9000; background:rgba(10,8,7,.72); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); display:none; align-items:flex-end; justify-content:center; }
-.legal-overlay.open { display:flex; }
-.legal-modal { background:var(--paper); color:var(--off); width:100%; max-width:760px; max-height:88vh; border-radius:22px 22px 0 0; display:flex; flex-direction:column; box-shadow:0 -20px 60px rgba(0,0,0,.45); }
-@media (min-width:760px) { .legal-overlay { align-items:center; padding:2rem; } .legal-modal { border-radius:22px; max-height:82vh; } }
-.legal-head { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.1rem 1.4rem; border-bottom:1px solid var(--border-lt); flex-shrink:0; }
-.legal-head h2 { font-family:var(--font-d); font-weight:400; font-size:1.5rem; text-transform:uppercase; line-height:1; }
-.legal-close { width:38px; height:38px; border-radius:50%; background:var(--ink); color:#fff; font-size:1.3rem; line-height:1; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.legal-body { overflow-y:auto; padding:1.2rem 1.4rem 2rem; -webkit-overflow-scrolling:touch; line-height:1.6; font-size:.92rem; }
-.legal-body h3 { font-size:1rem; font-weight:800; margin:1.4rem 0 .4rem; color:var(--flame); }
-.legal-body p, .legal-body li { margin-bottom:.55rem; color:var(--muted-lt); }
-.legal-body ul { padding-left:1.2rem; list-style:disc; }
-.legal-body a { color:var(--flame); text-decoration:underline; }
-.legal-todo { background:#fff3cd; color:#7a5b00; border-radius:4px; padding:0 .25rem; font-weight:700; }
-.vendor-pin-form { display:flex; gap:.6rem; margin-top:1rem; }
-.vendor-pin-form input { flex:1; min-width:0; padding:.85rem 1rem; border-radius:var(--r-md); border:1.5px solid var(--border-lt-h); font-size:1.3rem; letter-spacing:.4em; text-align:center; font-weight:800; background:#fff; color:var(--ink); }
-.vendor-pin-form input:focus { outline:none; border-color:var(--flame); }
-.vendor-pin-error { color:var(--flame-d); font-weight:700; margin-top:.7rem; }
-.vendor-list { display:flex; flex-direction:column; gap:.5rem; margin-top:1rem; max-height:48vh; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-.vendor-item { display:flex; align-items:center; gap:.8rem; padding:.7rem .9rem; border-radius:var(--r-md); border:1.5px solid var(--border-lt); background:#fff; text-align:left; width:100%; }
-.vendor-item-name { flex:1; font-weight:700; font-size:.88rem; }
-.vendor-item-cat { font-size:.7rem; color:var(--muted-lt); font-weight:600; }
-.vendor-toggle { flex-shrink:0; width:44px; height:26px; border-radius:99px; background:#dcd4c4; position:relative; transition:background .2s var(--ease-o); margin-left:auto; }
-.vendor-toggle::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.3); transition:transform .2s var(--ease-o); }
-.vendor-item.is-out .vendor-toggle { background:var(--flame); }
-.vendor-item.is-out .vendor-toggle::after { transform:translateX(18px); }
-.vendor-item.is-out .vendor-item-name { text-decoration:line-through; opacity:.6; }
-.cookie-banner { position:fixed; left:.75rem; right:.75rem; bottom:.75rem; z-index:8500; max-width:560px; margin-inline:auto; background:var(--ink); color:#f5efe4; border-radius:18px; padding:1.1rem 1.2rem; box-shadow:0 18px 50px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.08); display:none; font-size:.86rem; line-height:1.5; }
-.cookie-banner.show { display:block; animation:cookieIn .4s ease both; }
-@keyframes cookieIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
-.cookie-banner p { margin-bottom:.8rem; }
-.cookie-banner a { color:var(--gold); text-decoration:underline; cursor:pointer; }
-.cookie-actions { display:flex; flex-wrap:wrap; gap:.6rem; }
-.cookie-btn { flex:1 1 140px; padding:.72rem 1rem; border-radius:999px; font-weight:800; font-size:.85rem; text-align:center; }
-.cookie-btn.accept { background:var(--flame); color:#fff; }
-.cookie-btn.refuse { background:transparent; color:#f5efe4; border:1.5px solid rgba(255,255,255,.35); }
-</style>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     CONFIGURATION DU RESTAURANT — SEUL BLOC À MODIFIER POUR UN NOUVEAU CLIENT
-     Tout le site (titre, SEO, téléphone, adresse, carte, footer, FAQ,
-     pages légales, message WhatsApp) se remplit automatiquement depuis ici.
-     ═══════════════════════════════════════════════════════════════════ -->
-<script>
-window.SITE = {
-  /* ── Identité ── */
-  name:        'Le Touareg',
-  logoLe:      'LE',            // petit mot devant le nom dans le logo ('' pour aucun)
-  logoName:    'TOUAREG',       // partie principale du logo
-  logoAccent:  '',              // partie colorée du logo ('' pour aucune)
-  tagline:     'Kebab · French tacos · Burgers',
-  cuisine:     ['Kebab','French tacos','Sandwich','Burger','Pizza'],
-  priceRange:  '€€',
-  domain:      '',              // URL publique du site (ex : 'https://monsite.fr') — vide tant qu'elle n'est pas connue
-  storageKey:  'touareg_cart',    // clé du panier (unique par restaurant)
-  favKey:      'touareg_favorites',   // clé des favoris client
-  lastOrderKey:'touareg_last_order',  // clé de la dernière commande envoyée
-  stockKey:    'touareg_stock_overrides', // clé du panneau vendeur (ruptures du jour)
-  statsKey:    'touareg_add_stats',       // clé des stats d'ajout au panier (panneau vendeur)
-  vendorPinHash: '158a323a7ba44870f23d96f1516dd70aa48e9a72db4ebb026b0a89e212a208ab', // SHA-256 du code équipe (PIN actuel : 2026)
-  // Pour changer le code : ouvrez la console du navigateur sur ce site et tapez
-  // crypto.subtle.digest('SHA-256', new TextEncoder().encode('NOUVEAU_CODE')).then(b => console.log([...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('')))
-  // puis collez le résultat ci-dessus à la place du hash actuel.
-
-  /* ── Contact & adresse ── */
-  whatsapp:    '33673827821',   // format international sans + ni espaces
-  phone:       '+33673827821',  // pour les liens tel:
-  phoneDisplay:'06 73 82 78 21',
-  phone2:      '+33164248754',  // second numéro (fixe) — '' pour masquer
-  phone2Display:'01 64 24 87 54',
-  street:      '11 B place Diderot',
-  postalCode:  '77130',
-  city:        'Montereau-Fault-Yonne',
-
-  /* ── Liens externes ('' pour masquer) ── */
-  uberEatsUrl: 'https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA/fbeff8a2-cf86-4657-9c62-5c3994d6d529',
-  googleRating:{ value:'4.2', count:'180' },   // UNIQUEMENT si réel et vérifié sur la fiche Google — sinon mettre null
-
-  /* ── Informations légales (OBLIGATOIRES en France — à compléter) ── */
-  legal: {
-    companyName:  'L\'ATLAS',                       // raison sociale (registre national des entreprises, SIREN 511 649 568)
-    legalForm:    'SARL',
-    capital:      '[Capital social à compléter]', // OBLIGATOIRE pour une SARL — figure sur le Kbis
-    siret:        '511 649 568 00017',
-    rcs:          'RCS Melun 511 649 568',       // greffe à confirmer sur le Kbis
-    tva:          '',                        // n° TVA intracom. si applicable
-    publisher:    'Kalam Dewan, gérant',
-    contactEmail: 'jamel.tp@hotmail.com',
-    host:         'GitHub, Inc. (GitHub Pages)',
-    hostAddress:  '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis',
-    hostUrl:      'https://pages.github.com',
-    creditLine:   ''                         // ex : 'Site réalisé par VotreNom' (facultatif)
-  },
-
-  /* ── Statut du site : passer à false le jour de la vraie mise en ligne ── */
-  demoMode: false
-};
-</script>
-<!-- Données structurées (JSON-LD) statiques : lisibles par les moteurs de recherche
-     sans exécution JS. Reflètent SITE et HOURS_BY_DAY au moment de l'édition —
-     si les horaires ou l'adresse changent dans app.js, mettez ces deux blocs à jour
-     en même temps (le script les régénère aussi dynamiquement au chargement,
-     ce qui écrase ceux-ci avec les mêmes valeurs tant qu'ils restent synchronisés). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FastFoodRestaurant",
+  "@type": "Restaurant",
   "name": "Le Touareg",
+  "image": "assets/img/og-image.jpg",
+  "servesCuisine": ["Kebab", "French tacos", "Burgers", "Pizzas", "Sandwichs"],
+  "priceRange": "€",
+  "telephone": "+33 6 73 82 78 21",
+  "email": "jamel.tp@hotmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "11 B place Diderot",
-    "addressLocality": "Montereau-Fault-Yonne",
     "postalCode": "77130",
+    "addressLocality": "Montereau-Fault-Yonne",
+    "addressRegion": "Seine-et-Marne",
     "addressCountry": "FR"
   },
-  "telephone": "+33673827821",
-  "servesCuisine": ["Kebab", "French tacos", "Sandwich", "Burger", "Pizza"],
-  "priceRange": "€€",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.2", "reviewCount": "180", "bestRating": "5" },
-  "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "22:45" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:00", "closes": "22:45" }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "Le Touareg est-il ouvert tous les jours ?", "acceptedAnswer": {"@type": "Answer", "text": "Consultez nos horaires dans la section « Infos & Accès » ci-dessous : ils sont mis à jour en direct et indiquent si le restaurant est ouvert en ce moment."}},
-    {"@type": "Question", "name": "Comment commander chez Le Touareg à Montereau-Fault-Yonne ?", "acceptedAnswer": {"@type": "Answer", "text": "Composez votre panier directement sur ce site, puis envoyez votre commande sur WhatsApp en un clic. Nous confirmons la disponibilité et le délai par message."}},
-    {"@type": "Question", "name": "Comment puis-je payer ma commande ?", "acceptedAnswer": {"@type": "Answer", "text": "Le règlement se fait sur place au moment de la prise en charge de votre commande. Titres-restaurant acceptés : UpDéjeuner, Bimpli (ex Apetiz), Pluxee, Swile et Ticket Restaurant®."}},
-    {"@type": "Question", "name": "Où est situé Le Touareg ?", "acceptedAnswer": {"@type": "Answer", "text": "11 B place Diderot, 77130 Montereau-Fault-Yonne."}},
-    {"@type": "Question", "name": "Puis-je me faire livrer ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, la livraison est disponible via Uber Eats dans la zone couverte autour de Montereau-Fault-Yonne. Pour une commande à emporter, passez par ce site et WhatsApp : vous payez sur place."}},
-    {"@type": "Question", "name": "Puis-je connaître les allergènes d'un plat ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les allergènes réglementaires (gluten, lait, œufs, fruits à coque, etc.) peuvent être présents dans nos préparations. Demandez-nous avant de commander : par téléphone au 06 73 82 78 21 ou par message WhatsApp. Nous vous indiquerons les allergènes de chaque plat."}}
-  ]
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "11:00",
+    "closes": "22:45"
+  }],
+  "hasMenu": "#carte",
+  "acceptsReservations": false,
+  "paymentAccepted": "Espèces, Carte bancaire, Titres-restaurant",
+  "sameAs": ["https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA"]
 }
 </script>
 </head>
 <body>
-<!-- SPRITE SVG — icônes UI line-art réutilisables (remplace les emojis).
-     Chaque icône est un <symbol>, appelé ailleurs via <svg class="icon"><use href="#i-xxx" xlink:href="#i-xxx"/></svg>. -->
+
+<!-- Icônes -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
-  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></symbol>
-  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
-  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
-  <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></symbol>
-  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
-  <symbol id="i-utensils" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2M7 2v20M17 2v20M17 2a5 5 0 0 0-5 5v3h5"/></symbol>
-  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
-  <symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
-</svg>
-<!-- FLAMME SVG — accent réutilisable (remplace 🔥 et les icônes-catégories). -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a4 4 0 0 0 8 0c0-1-.4-2-1-3 2 1 3 3.5 3 6a7 7 0 1 1-14 0c0-4 2.5-6.5 4-7 0 0 1-2 2-3z" fill="url(#flameGrad)"/><defs><linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--gold)"/><stop offset="55%" stop-color="var(--flame)"/><stop offset="100%" stop-color="#c62b12"/></linearGradient></defs></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="i-sac" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10V7a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2a9.93 9.93 0 0 0-8.5 15.07L2 22l5.08-1.5A9.94 9.94 0 1 0 12.04 2Zm0 18.13a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.02.89.9-2.94-.2-.31a8.2 8.2 0 1 1 6.82 3.69Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-1.97-1.22 7.4 7.4 0 0 1-1.37-1.7c-.14-.25 0-.38.11-.5l.37-.43c.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05 4.8 4.8 0 0 0 1 2.55 11 11 0 0 0 4.2 3.71c.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.15-1.17-.06-.1-.22-.17-.47-.29Z"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.5 4-2 1.4a11 11 0 0 0 6.4 6.4l1.4-2 4 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-scooter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M8.5 17h7M15 17l-1.5-7H11M13.5 10h3l1.5 4.5M4 13h5l1.5 4"/><path d="M3 8h6"/></g></symbol>
+  <symbol id="i-horloge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-lieu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-etoile" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.1l-5.7 3.2 1.2-6.4L2.8 9.5l6.4-.8L12 2.8Z"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10h6M9 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-loupe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></g></symbol>
+  <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-embleme" viewBox="0 0 32 44"><circle cx="16" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="3.6"/><path d="M3 22.5h26" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path fill="currentColor" fill-rule="evenodd" d="M16 16.5 25.5 30 16 43.5 6.5 30Zm0 7.5-4.2 6 4.2 6 4.2-6Z"/></symbol>
 </svg>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
-  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
-  <symbol id="i-scooter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/><path d="M8 17.5h7.5l2-6.5H14M17.5 11 16 6h-2.5M3 13h6l1.5 4.5"/></symbol>
-  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
-</svg>
+<a class="sr" href="#carte">Aller à la carte</a>
 
-<header class="header" id="header">
-  <div class="announce-bar" id="announceBar">
-    <div class="container announce-inner">
-      <div class="announce-content">
-        <span class="a-text">Ouvert 7j/7 · 11h–22h45 <span class="a-sep">·</span> <span class="a-hide-m">Commandez ici, </span>payez sur place<span class="a-hide-m"> <span class="a-sep">·</span> Titres-restaurant acceptés</span></span>
-      </div>
-      <button class="a-close" id="announceClose" aria-label="Fermer le bandeau"><svg class="icon"><use href="#i-close" xlink:href="#i-close"/></svg></button>
-    </div>
+<div class="bandeau">
+  <div class="wrap">
+    <span>Ouvert <b>7j/7</b> de 11h à 22h45</span>
+    <span class="sep masque-mobile">◆</span>
+    <span class="masque-mobile">Titres-restaurant acceptés</span>
+    <span class="sep masque-mobile">◆</span>
+    <span class="masque-mobile">Commande à emporter en ligne, livraison Uber Eats</span>
   </div>
-  <div class="container header-inner">
-    <a href="#" class="logo" aria-label="Le Touareg — accueil">
-      <span class="logo-le">LE</span>
-      <span class="logo-name">TOUAREG</span>
+</div>
+
+<header class="entete" id="entete">
+  <div class="wrap">
+    <a class="logo" href="#haut" aria-label="Le Touareg, retour en haut">
+      <svg aria-hidden="true"><use href="#i-embleme"/></svg>
+      <span class="logo-texte"><span class="logo-nom">Le Touareg</span><span class="logo-ville">Montereau</span></span>
     </a>
-    <nav class="nav-d" aria-label="Navigation principale">
-      <a href="#populaires" class="nav-link">Incontournables</a>
-      <a href="#menu" class="nav-link">La carte</a>
-      <a href="#commander" class="nav-link">Commander</a>
-      <a href="#avis" class="nav-link">Avis</a>
-      <a href="#infos" class="nav-link">Infos &amp; accès</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#incontournables">Incontournables</a>
+      <a href="#carte">La carte</a>
+      <a href="#commander">Commander</a>
+      <a href="#infos">Horaires & accès</a>
     </nav>
-    <div class="header-actions">
-      <a href="tel:+33673827821" class="btn-phone" aria-label="Appeler le restaurant"><svg class="icon"><use href="#i-phone" xlink:href="#i-phone"/></svg><span class="btn-phone-txt">06 73 82 78 21</span></a>
-      <a href="#" class="btn btn-wa btn-wa-nav" id="cartBtn"><svg class="icon"><use href="#i-bag" xlink:href="#i-bag"/></svg> Panier <span class="cart-badge" id="cartBadge">0</span></a>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
+    <div class="entete-actions">
+      <span class="statut" data-statut>Horaires</span>
+      <button class="btn btn-panier" type="button" data-ouvrir-panier aria-label="Ouvrir le panier">
+        <svg aria-hidden="true"><use href="#i-sac"/></svg>
+        <span class="libelle">Panier</span>
+        <span class="compteur" data-compteur>0</span>
+      </button>
+      <button class="btn-menu" type="button" data-ouvrir-nav aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-mobile">
+        <svg aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
     </div>
-  </div>
-  <div class="mobile-nav" id="mobileNav">
-    <nav aria-label="Navigation mobile">
-      <a href="#populaires" class="mobile-nav-link">Incontournables</a>
-      <a href="#menu" class="mobile-nav-link">La carte</a>
-      <a href="#commander" class="mobile-nav-link">Commander</a>
-      <a href="#avis" class="mobile-nav-link">Avis</a>
-      <a href="#infos" class="mobile-nav-link">Infos &amp; accès</a>
-    </nav>
-    <a href="tel:+33673827821" class="mobile-phone-link"><svg class="icon"><use href="#i-phone" xlink:href="#i-phone"/></svg> 06 73 82 78 21</a>
   </div>
 </header>
 
-<main>
-<section class="hero" id="hero">
-  <div class="hero-photo-layer" role="img" aria-label="Kebab, burger, pizza et tacos du Touareg"></div>
-  <div class="hero-photo-scrim"></div>
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <div class="hero-text-col">
-        <div class="hero-status-row">
-          <span class="hero-pill status-open" id="heroStatusPill"><span class="status-dot pulse"></span> Ouvert jusqu'à 22h45</span>
-          <span class="hero-pill"><svg class="icon"><use href="#i-pin" xlink:href="#i-pin"/></svg> Montereau-Fault-Yonne</span>
-        </div>
-        <span class="hero-eyebrow">Kebab · French tacos · Burgers · Pizzas</span>
-        <h1 class="hero-title">
-          <span class="line"><span class="le">Le</span></span>
-          <span class="line"><span>Touareg</span></span>
-        </h1>
-        <p class="hero-tagline">Kebab, tacos, burgers et pizzas, place Diderot. <strong>Composez votre commande ici</strong>, envoyez-la sur WhatsApp et passez la récupérer&nbsp;: vous payez sur place.</p>
-        <div class="hero-cta-row">
-          <a href="#menu" class="btn btn-primary btn-lg">Voir la carte <svg class="icon"><use href="#i-arrow-r" xlink:href="#i-arrow-r"/></svg></a>
-          <a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA/fbeff8a2-cf86-4657-9c62-5c3994d6d529" target="_blank" rel="noopener" class="btn btn-light btn-lg" data-uber-block><svg class="icon"><use href="#i-scooter" xlink:href="#i-scooter"/></svg> Se faire livrer</a>
-          <button class="btn btn-reorder btn-lg" id="reorderBtn" hidden><svg class="icon"><use href="#i-repeat" xlink:href="#i-repeat"/></svg> Reprendre ma dernière commande</button>
-        </div>
-        <div class="hero-meta-row">
-          <div class="hero-meta-item"><span class="hero-meta-num" data-n="products">97</span><span class="hero-meta-lbl">plats à la carte</span></div>
-          <div class="hero-meta-item"><span class="hero-meta-num">7j/7</span><span class="hero-meta-lbl">de 11h à 22h45</span></div>
-          <div class="hero-meta-item" data-rating-block><span class="hero-meta-num"><span data-rating="value">4,2</span><span style="color:var(--gold);font-size:.7em"> ★</span></span><span class="hero-meta-lbl"><span data-rating="count">180</span>+ avis Google</span></div>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-visual-frame">
-          <img src="plateau-840.webp" width="840" height="560" alt="" fetchpriority="high"/>
-        </div>
-        <div class="hero-float hero-float-1">
-          <span class="hero-float-thumb vis-kebab"></span>
-          <span>
-            <span class="hero-float-k" style="display:block">Signature maison</span>
-            <span class="hero-float-t" style="display:block">Sandwich Touareg</span>
-            <span class="hero-float-p" style="display:block" data-price-of="74"></span>
-          </span>
-        </div>
-        <div class="hero-float hero-float-2" data-rating-block>
-          <span>
-            <span class="hero-float-stars" style="display:block">★★★★<span style="opacity:.35">★</span></span>
-            <span class="hero-float-t" style="display:block;font-size:.85rem"><span data-rating="value">4,2</span>/5 sur Google</span>
-          </span>
-        </div>
-      </div>
-    </div>
+<div class="nav-mobile" id="nav-mobile" hidden>
+  <div class="nav-mobile-haut">
+    <span class="logo"><svg aria-hidden="true" width="30" height="42"><use href="#i-embleme"/></svg><span class="logo-texte"><span class="logo-nom">Le Touareg</span><span class="logo-ville">Montereau</span></span></span>
+    <button class="btn-fermer" type="button" data-fermer-nav aria-label="Fermer le menu"><svg aria-hidden="true"><use href="#i-fermer"/></svg></button>
   </div>
-</section>
-
-<section class="trust-strip" aria-label="Les essentiels">
-  <div class="container trust-grid">
-    <div class="trust-item">
-      <div class="trust-icon"><svg class="icon icon-lg"><use href="#i-chat" xlink:href="#i-chat"/></svg></div>
-      <div><div class="trust-title">Commande WhatsApp</div><div class="trust-sub">Réponse en quelques minutes</div></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon"><svg class="icon icon-lg"><use href="#i-card" xlink:href="#i-card"/></svg></div>
-      <div><div class="trust-title">Titres-restaurant</div><div class="trust-sub">Swile, Pluxee, Ticket Resto…</div></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon"><svg class="icon icon-lg"><use href="#i-clock" xlink:href="#i-clock"/></svg></div>
-      <div><div class="trust-title">Ouvert 7j/7</div><div class="trust-sub">De 11h à 22h45</div></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon"><svg class="icon icon-lg"><use href="#i-pin" xlink:href="#i-pin"/></svg></div>
-      <div><div class="trust-title">Montereau-Fault-Yonne</div><div class="trust-sub">11 B place Diderot</div></div>
-    </div>
+  <span class="statut" data-statut>Horaires</span>
+  <nav aria-label="Navigation mobile">
+    <a href="#incontournables">Incontournables</a>
+    <a href="#carte">La carte</a>
+    <a href="#commander">Commander</a>
+    <a href="#avis">Les avis</a>
+    <a href="#infos">Horaires & accès</a>
+  </nav>
+  <div class="nav-mobile-bas">
+    <a class="btn btn-clair" href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg>06 73 82 78 21</a>
+    <a class="btn btn-ligne-clair" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-scooter"/></svg>Livraison Uber Eats</a>
   </div>
-</section>
+</div>
 
-<section class="section section-paper" id="populaires">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-eyebrow">Par où commencer</span>
-      <h2 class="section-title">Nos <span class="hl">incontournables</span></h2>
-      <p class="section-sub">La signature de la maison, le tacos qui cale et la pizza taille sénior. Touchez un plat pour le composer.</p>
-    </div>
-    <div class="classiques-grid">
-      <div class="classique-card reveal" data-id="74" tabindex="0" role="button" aria-label="Composer le Sandwich Touareg">
-        <div class="classique-img vis-kebab-lg"></div>
-        <div class="classique-card-overlay"></div>
-        <span class="classique-badge badge-flame">Signature maison</span>
-        <div class="classique-name">Sandwich Touareg</div>
-        <p class="classique-desc">Steak de viande hachée, œuf, fromage, olives, oignons et tomates.</p>
-        <div class="classique-foot"><span class="classique-price" data-price-of="74"></span><span class="classique-cta">Ajouter <svg class="icon"><use href="#i-arrow-r" xlink:href="#i-arrow-r"/></svg></span></div>
+<main id="haut">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="titre-hero">
+    <div class="wrap">
+      <div class="hero-texte">
+        <span class="surtitre">Montereau-Fault-Yonne · place Diderot</span>
+        <h1 class="titre titre-xl" id="titre-hero">Le kebab de la <em>place Diderot.</em></h1>
+        <p class="chapo">Sandwichs, French tacos, burgers, pizzas et assiettes, préparés à la commande. À emporter ou en livraison, tous les jours de 11h à 22h45.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="#carte"><svg aria-hidden="true"><use href="#i-sac"/></svg>Commander à emporter</a>
+          <a class="btn btn-ligne" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-scooter"/></svg>Se faire livrer</a>
+        </div>
+        <ul class="preuves">
+          <li><svg class="etoile" aria-hidden="true"><use href="#i-etoile"/></svg>4,2/5 sur Uber Eats · 190+ notes</li>
+          <li><svg aria-hidden="true"><use href="#i-horloge"/></svg>7j/7, 11h–22h45</li>
+          <li><svg aria-hidden="true"><use href="#i-ticket"/></svg>Titres-restaurant acceptés</li>
+        </ul>
       </div>
-      <div class="classique-card reveal" data-id="55" tabindex="0" role="button" aria-label="Composer le Tacos XL">
-        <div class="classique-img vis-wrap-lg"></div>
-        <div class="classique-card-overlay"></div>
-        <span class="classique-badge">French tacos</span>
-        <div class="classique-name">Tacos XL</div>
-        <p class="classique-desc">Le french tacos généreux : 2 viandes au choix.</p>
-        <div class="classique-foot"><span class="classique-price" data-price-of="55"></span><span class="classique-cta">Composer <svg class="icon"><use href="#i-arrow-r" xlink:href="#i-arrow-r"/></svg></span></div>
-      </div>
-      <div class="classique-card reveal" data-id="53" tabindex="0" role="button" aria-label="Composer la Pizza 3 Viandes">
-        <div class="classique-img vis-pizza-lg"></div>
-        <div class="classique-card-overlay"></div>
-        <span class="classique-badge">Taille sénior</span>
-        <div class="classique-name">Pizza 3 Viandes</div>
-        <p class="classique-desc">Base au choix, 3 viandes au choix et fromage.</p>
-        <div class="classique-foot"><span class="classique-price" data-price-of="53"></span><span class="classique-cta">Composer <svg class="icon"><use href="#i-arrow-r" xlink:href="#i-arrow-r"/></svg></span></div>
+      <div class="hero-visuel">
+        <img class="hero-photo" src="assets/img/hero-900.webp" srcset="assets/img/hero-900.webp 900w, assets/img/hero-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="900" height="600" alt="Sandwich kebab garni de viande, crudités et sauce blanche" fetchpriority="high">
+        <div class="pastille" aria-hidden="true"><small>Le n°1</small><strong>Sandwich Kebab</strong><span data-prix-de="kebab">7,80 €</span></div>
+        <span class="etiquette-photo">Photo d’illustration</span>
       </div>
     </div>
+  </section>
 
-    <div class="pop-wrap reveal">
-      <div class="pop-head">
-        <h3>À goûter aussi</h3>
-        <div class="pop-nav">
-          <button type="button" data-pop-scroll="-1" aria-label="Précédent"><svg class="icon"><use href="#i-arrow-l" xlink:href="#i-arrow-l"/></svg></button>
-          <button type="button" data-pop-scroll="1" aria-label="Suivant"><svg class="icon"><use href="#i-arrow-r" xlink:href="#i-arrow-r"/></svg></button>
+  <div class="frise" role="presentation"></div>
+
+  <!-- ENVIES -->
+  <section class="envies" aria-labelledby="titre-envies">
+    <div class="wrap">
+      <div class="envies-tete">
+        <h2 class="titre titre-m" id="titre-envies">Une envie de…</h2>
+        <a class="lien-fleche" href="#carte">Toute la carte <svg width="18" height="18" aria-hidden="true"><use href="#i-fleche"/></svg></a>
+      </div>
+      <div class="rail" data-rail-envies></div>
+    </div>
+  </section>
+
+  <!-- INCONTOURNABLES -->
+  <section class="section sombre" id="incontournables" aria-labelledby="titre-incontournables" style="margin-top:48px">
+    <div class="wrap">
+      <div class="section-tete ligne">
+        <div style="display:grid;gap:14px">
+          <span class="surtitre">Les plus commandés</span>
+          <h2 class="titre titre-l" id="titre-incontournables" style="color:var(--blanc)">Les incontournables</h2>
+        </div>
+        <p class="chapo">Les plats que nos clients recommandent le plus. Tous existent en menu avec frites et boisson.</p>
+      </div>
+      <div class="vedettes" data-vedettes></div>
+    </div>
+  </section>
+
+  <!-- COMMANDER -->
+  <section class="section" id="commander" aria-labelledby="titre-commander">
+    <div class="wrap">
+      <div class="section-tete">
+        <span class="surtitre">Commander</span>
+        <h2 class="titre titre-l" id="titre-commander" style="color:var(--indigo)">Trois façons de se régaler</h2>
+      </div>
+      <div class="facons">
+        <article class="facon principale">
+          <div class="facon-icone"><svg aria-hidden="true"><use href="#i-sac"/></svg></div>
+          <h3>À emporter, en ligne</h3>
+          <p>Composez votre commande sur ce site et envoyez-la par WhatsApp. Choisissez l’heure de retrait, payez au comptoir. Sans compte, sans frais.</p>
+          <a class="btn btn-clair" href="#carte">Composer ma commande</a>
+        </article>
+        <article class="facon">
+          <div class="facon-icone"><svg aria-hidden="true"><use href="#i-tel"/></svg></div>
+          <h3>Par téléphone</h3>
+          <p>Appelez-nous, on prépare pendant que vous arrivez.</p>
+          <a class="tel" href="tel:+33673827821">06 73 82 78 21</a>
+          <a class="btn btn-ligne" href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg>Appeler</a>
+        </article>
+        <article class="facon">
+          <div class="facon-icone"><svg aria-hidden="true"><use href="#i-scooter"/></svg></div>
+          <h3>En livraison</h3>
+          <p>Toute la carte livrée chez vous avec Uber Eats, à Montereau et alentours.</p>
+          <a class="btn btn-ligne" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Commander sur Uber Eats</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTE -->
+  <section class="carte" id="carte" aria-labelledby="titre-carte" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-tete ligne">
+        <div style="display:grid;gap:14px">
+          <span class="surtitre">63 plats, 13 rayons</span>
+          <h2 class="titre titre-l" id="titre-carte" style="color:var(--indigo)">La carte</h2>
+        </div>
+        <p class="chapo">Touchez un plat pour le personnaliser et l’ajouter au panier. Passez-le en menu pour avoir les frites et la boisson.</p>
+      </div>
+    </div>
+    <div class="carte-outils">
+      <div class="wrap">
+        <nav class="puces" aria-label="Rayons de la carte" data-puces></nav>
+        <label class="recherche">
+          <span class="sr">Rechercher un plat</span>
+          <svg aria-hidden="true"><use href="#i-loupe"/></svg>
+          <input type="search" id="recherche" placeholder="Rechercher : kebab, chèvre…" autocomplete="off" data-recherche>
+        </label>
+      </div>
+    </div>
+    <div class="wrap">
+      <div data-carte></div>
+      <div class="vide" data-vide hidden><strong>Aucun plat trouvé</strong>Essayez un autre mot, par exemple « poulet » ou « tacos ».</div>
+      <div class="carte-pied">
+        <span>Prix TTC, en euros.</span>
+        <span>Menu = le plat + frites + boisson.</span>
+        <span>Allergènes : la liste est disponible au comptoir, demandez-nous.</span>
+        <span>Photos d’illustration.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS -->
+  <section class="section avis" id="avis" aria-labelledby="titre-avis">
+    <div class="wrap">
+      <div class="avis-grille">
+        <div class="avis-gauche">
+          <span class="surtitre">Ce qu’en disent les clients</span>
+          <div class="note-geante" style="margin-top:24px">4,2<small>/5</small></div>
+          <div class="etoiles" aria-hidden="true">
+            <svg><use href="#i-etoile"/></svg><svg><use href="#i-etoile"/></svg><svg><use href="#i-etoile"/></svg><svg><use href="#i-etoile"/></svg><svg style="opacity:.35"><use href="#i-etoile"/></svg>
+          </div>
+          <p><strong style="color:var(--blanc)">Plus de 190 notes sur Uber Eats.</strong></p>
+          <p>Et voici les plats les mieux notés, d’après les clients qui les ont commandés.</p>
+        </div>
+        <div>
+          <h2 class="titre titre-m" id="titre-avis" style="margin-bottom:18px">Le palmarès des clients</h2>
+          <ol class="palmares" data-palmares></ol>
+          <p class="source">Pourcentage de clients Uber Eats qui recommandent le plat, avec le nombre d’avis.</p>
         </div>
       </div>
-      <div class="pop-scroller" id="popScroller"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section section-cream" id="menu">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-eyebrow"><svg class="icon"><use href="#i-utensils" xlink:href="#i-utensils"/></svg> <span data-n="products">97</span> plats · <span data-n="cats">19</span> familles</span>
-      <h2 class="section-title">La <span class="hl">carte</span></h2>
-      <p class="section-sub">Prix au comptoir, réglés sur place. Les menus comprennent frites et boisson.</p>
-    </div>
-    <div class="menu-toolbar" id="menuToolbar">
-      <div class="search-box" id="searchBox">
-        <span class="search-icon"><svg class="icon"><use href="#i-search" xlink:href="#i-search"/></svg></span>
-        <input type="search" id="searchInput" placeholder="Chercher un plat : tacos, kebab, burger…" aria-label="Chercher un plat" autocomplete="off"/>
-        <button class="search-clear" id="searchClear" aria-label="Effacer la recherche"><svg class="icon"><use href="#i-close" xlink:href="#i-close"/></svg></button>
+  <!-- INFOS -->
+  <section class="section" id="infos" aria-labelledby="titre-infos">
+    <div class="wrap">
+      <div class="section-tete">
+        <span class="surtitre">Horaires & accès</span>
+        <h2 class="titre titre-l" id="titre-infos" style="color:var(--indigo)">On vous attend</h2>
       </div>
-      <div class="cat-filters" id="catFilters"></div>
-    </div>
-    <div class="budget-filters" id="budgetFilters">
-      <span class="budget-label">Budget</span>
-      <button class="budget-chip active" data-budget="all">Tous</button>
-      <button class="budget-chip" data-budget="lt5">Moins de 5€</button>
-      <button class="budget-chip" data-budget="5to8">5€ – 8€</button>
-      <button class="budget-chip" data-budget="gt8">Plus de 8€</button>
-    </div>
-    <p class="menu-results-info" id="menuResultsInfo" aria-live="polite"></p>
-    <div id="menuGrid"></div>
-  </div>
-</section>
-
-<section class="section section-paper" id="commander">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="section-eyebrow">Simple comme un message</span>
-      <h2 class="section-title">Comment <span class="hl">commander</span></h2>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <span class="step-num">01</span>
-        <div class="step-icon"><svg class="icon icon-lg"><use href="#i-utensils" xlink:href="#i-utensils"/></svg></div>
-        <div class="step-title">Composez</div>
-        <p class="step-text">Choisissez vos plats, vos viandes, vos sauces et votre boisson directement sur la carte.</p>
-      </div>
-      <div class="step-card reveal">
-        <span class="step-num">02</span>
-        <div class="step-icon"><svg class="icon icon-lg"><use href="#i-chat" xlink:href="#i-chat"/></svg></div>
-        <div class="step-title">Envoyez sur WhatsApp</div>
-        <p class="step-text">Votre commande part en un clic, déjà rédigée. On vous répond avec le délai de préparation.</p>
-      </div>
-      <div class="step-card reveal">
-        <span class="step-num">03</span>
-        <div class="step-icon"><svg class="icon icon-lg"><use href="#i-bag" xlink:href="#i-bag"/></svg></div>
-        <div class="step-title">Récupérez, payez sur place</div>
-        <p class="step-text">Au 11 B place Diderot. Vous réglez au comptoir, titres-restaurant acceptés.</p>
-      </div>
-    </div>
-    <div class="delivery-card reveal" data-uber-block>
-      <div style="position:relative;z-index:1">
-        <div class="delivery-k">Livraison</div>
-        <div class="delivery-t">Pas envie de vous déplacer&nbsp;?</div>
-        <p class="delivery-s">Le Touareg livre aussi via Uber Eats autour de Montereau. Mêmes plats, livrés chez vous (tarifs de l'application).</p>
-      </div>
-      <a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA/fbeff8a2-cf86-4657-9c62-5c3994d6d529" target="_blank" rel="noopener" class="btn btn-uber btn-lg" style="position:relative;z-index:1"><span class="uber-dot"></span> Commander sur Uber Eats <svg class="icon"><use href="#i-ext" xlink:href="#i-ext"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="section section-ink" id="avis">
-  <div class="container reviews-band">
-    <div class="reveal">
-      <span class="section-eyebrow">Ce qu'en disent les clients</span>
-      <h2 class="section-title">Les <span class="hl">avis</span></h2>
-      <p class="section-sub">Les avis sont publics et vérifiables sur Google. Lisez-les — et laissez le vôtre après votre commande, ça nous aide énormément.</p>
-      <div class="reviews-actions">
-        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener">Lire les avis Google <svg class="icon"><use href="#i-ext" xlink:href="#i-ext"/></svg></a>
-      </div>
-    </div>
-    <div class="reviews-score reveal" data-rating-block>
-      <span class="reviews-score-num" data-rating="value">4,2</span>
-      <span class="reviews-score-side">
-        <span class="reviews-stars" aria-hidden="true">★★★★<span style="opacity:.35">★</span></span>
-        <span class="reviews-score-lbl">
-          <svg class="brand-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Note Google · <span data-rating="count">180</span>+ avis
-        </span>
-      </span>
-    </div>
-  </div>
-</section>
-
-<section class="section section-paper" id="infos">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-eyebrow"><svg class="icon"><use href="#i-pin" xlink:href="#i-pin"/></svg> 11 B place Diderot</span>
-      <h2 class="section-title">Infos &amp; <span class="hl">accès</span></h2>
-    </div>
-    <div class="loc-grid">
-      <div class="loc-card reveal">
-        <div class="loc-row">
-          <div class="loc-icon"><svg class="icon icon-lg"><use href="#i-pin" xlink:href="#i-pin"/></svg></div>
-          <div><div class="loc-row-title">Adresse</div><address class="loc-row-sub" data-loc="address">11 B place Diderot<br/>77130 Montereau-Fault-Yonne</address></div>
-        </div>
-        <div class="loc-row">
-          <div class="loc-icon"><svg class="icon icon-lg"><use href="#i-phone" xlink:href="#i-phone"/></svg></div>
-          <div><div class="loc-row-title">Téléphone</div><div class="loc-row-sub"><a href="tel:+33673827821">06 73 82 78 21</a><div class="loc-row-sub-line"><a href="tel:+33164248754" data-phone2>01 64 24 87 54</a></div></div></div>
-        </div>
-        <div class="loc-row">
-          <div class="loc-icon"><svg class="icon icon-lg"><use href="#i-clock" xlink:href="#i-clock"/></svg></div>
-          <div style="width:100%">
-            <div class="loc-row-title" style="margin-bottom:.4rem">Horaires</div>
-            <div class="hours-table" id="hoursTable"></div>
+      <div class="infos-grille">
+        <div class="infos-photo">
+          <img src="assets/img/broche-900.webp" srcset="assets/img/broche-900.webp 900w, assets/img/broche-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="900" height="1350" alt="Broche de viande kebab grillée" loading="lazy">
+          <div class="infos-adresse">
+            <address>11 B place Diderot<small>77130 Montereau-Fault-Yonne</small></address>
+            <a class="btn btn-clair" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-lieu"/></svg>Itinéraire</a>
           </div>
         </div>
-        <div class="loc-row">
-          <div class="loc-icon"><svg class="icon icon-lg"><use href="#i-card" xlink:href="#i-card"/></svg></div>
-          <div><div class="loc-row-title">Paiement</div><div class="loc-row-sub">Sur place. Titres-restaurant acceptés : UpDéjeuner, Bimpli (ex Apetiz), Pluxee, Swile et Ticket Restaurant®.</div></div>
+        <div class="infos-texte">
+          <div class="bloc">
+            <h3>Horaires</h3>
+            <table class="horaires" data-horaires><caption class="sr">Horaires d’ouverture</caption><tbody></tbody></table>
+          </div>
+          <div class="bloc">
+            <h3>Contact</h3>
+            <div class="contacts">
+              <a href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg>06 73 82 78 21</a>
+              <a href="https://wa.me/33673827821" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</a>
+            </div>
+          </div>
+          <div class="bloc">
+            <h3>Titres-restaurant acceptés</h3>
+            <div class="etiquettes" data-titres></div>
+          </div>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener" class="btn btn-primary btn-full"><svg class="icon"><use href="#i-compass" xlink:href="#i-compass"/></svg> Itinéraire</a>
       </div>
-      <div class="map-embed reveal"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section section-paper" style="padding-top:0">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="section-eyebrow"><svg class="icon"><use href="#i-help" xlink:href="#i-help"/></svg> Questions fréquentes</span>
-      <h2 class="section-title">Besoin d'une <span class="hl">réponse</span>&nbsp;?</h2>
-    </div>
-    <div class="faq-list" id="faqList"></div>
-  </div>
-</section>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-cta">
-      <div class="footer-cta-title">Une petite faim&nbsp;?<br/><span>On s'en occupe.</span></div>
-      <div class="footer-cta-actions">
-        <a href="#menu" class="btn btn-primary btn-lg">Commander maintenant</a>
-        <a href="tel:+33673827821" class="btn btn-light btn-lg"><svg class="icon"><use href="#i-phone" xlink:href="#i-phone"/></svg> 06 73 82 78 21</a>
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied-cta">
+      <h2 class="titre titre-l">Une petite faim ?<br><em>On s’occupe du reste.</em></h2>
+      <div class="pied-cta-boutons">
+        <a class="btn" href="#carte"><svg aria-hidden="true"><use href="#i-sac"/></svg>Commander</a>
+        <a class="btn btn-ligne-clair" href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg>Appeler</a>
       </div>
     </div>
-    <div class="footer-grid">
+    <div class="pied-cols">
       <div>
-        <div class="footer-brand-logo"><span class="logo-le">LE</span><span class="logo-name">TOUAREG</span></div>
-        <p class="footer-brand-desc">Kebab, french tacos, sandwichs, burgers et pizzas à Montereau-Fault-Yonne.</p>
+        <span class="logo"><svg aria-hidden="true" width="30" height="42"><use href="#i-embleme"/></svg><span class="logo-texte"><span class="logo-nom">Le Touareg</span><span class="logo-ville">Montereau</span></span></span>
+        <p style="margin-top:16px;max-width:30ch">Kebab, French tacos, burgers et pizzas, place Diderot.</p>
       </div>
       <div>
-        <div class="footer-col-title">Navigation</div>
-        <div class="footer-links">
-          <a href="#populaires">Incontournables</a>
-          <a href="#menu">La carte</a>
-          <a href="#commander">Commander</a>
-          <a href="#avis">Avis clients</a>
-        </div>
+        <h4>La carte</h4>
+        <ul data-pied-carte></ul>
       </div>
       <div>
-        <div class="footer-col-title">Contact</div>
-        <div class="footer-links">
-          <a href="tel:+33673827821">06 73 82 78 21</a>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener">11 B place Diderot, 77130</a>
-          <a href="#" id="footerWaLink">Commander sur WhatsApp</a>
-          <a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA/fbeff8a2-cf86-4657-9c62-5c3994d6d529" target="_blank" rel="noopener">Livraison Uber Eats</a>
-        </div>
+        <h4>Nous trouver</h4>
+        <ul>
+          <li><p>11 B place Diderot<br>77130 Montereau-Fault-Yonne</p></li>
+          <li><a href="tel:+33673827821">06 73 82 78 21</a></li>
+          <li><a href="mailto:jamel.tp@hotmail.com">jamel.tp@hotmail.com</a></li>
+        </ul>
       </div>
       <div>
-        <div class="footer-col-title">Horaires</div>
-        <div class="footer-links">
-          <span>Tous les jours</span>
-          <span>11h00 – 22h45</span>
-        </div>
+        <h4>Horaires</h4>
+        <ul>
+          <li><p>Tous les jours<br>11h00 – 22h45</p></li>
+          <li><a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Livraison Uber Eats</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="currentYear">2026</span> <span data-site="name">Le Touareg</span> — <span data-site="city">Montereau-Fault-Yonne</span>. Tous droits réservés.</span>
-      <span class="footer-legal-links">
-        <a href="#" data-legal="mentions">Mentions légales</a>
-        <a href="#" data-legal="confidentialite">Confidentialité</a>
-        <a href="#" data-legal="allergenes">Allergènes</a>
-        <a href="#" data-cookie-settings>Cookies</a>
-        <a href="#" id="vendorPanelLink" title="Accès équipe"><svg class="icon icon-inline"><use href="#i-lock" xlink:href="#i-lock"/></svg> Équipe</a>
-      </span>
-      <span id="demoNotice" hidden>Site non-officiel réalisé à titre de démonstration.</span>
+    <div class="marque-geante" aria-hidden="true">Le Touareg</div>
+    <div class="pied-legal">
+      <span>© <span data-annee>2026</span> Le Touareg · SARL L’Atlas</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> · Site sans cookies ni pistage</span>
+      <span>Site réalisé par ConvertWEB</span>
     </div>
   </div>
 </footer>
 
-<!-- CONFIGURATEUR -->
-<div class="cfg-overlay" id="cfgOverlay"></div>
-<div class="cfg-sheet" id="cfgSheet" role="dialog" aria-modal="true" aria-labelledby="cfgName">
-  <div class="cfg-handle"></div>
-  <div class="cfg-header">
-    <div class="cfg-header-emoji" id="cfgEmoji"><svg class="icon icon-lg"><use href="#i-utensils" xlink:href="#i-utensils"/></svg></div>
-    <div class="cfg-header-info">
-      <div class="cfg-header-name" id="cfgName">Produit</div>
-      <div class="cfg-header-price" id="cfgPrice">0,00€</div>
-    </div>
-    <button class="cfg-close" id="cfgClose" aria-label="Fermer"><svg class="icon"><use href="#i-close" xlink:href="#i-close"/></svg></button>
-  </div>
-  <div class="cfg-body" id="cfgBody"></div>
-  <div class="cfg-footer">
-    <button class="btn btn-primary btn-full cfg-add-btn" id="cfgAddBtn">
-      <span id="cfgAddLabel">Ajouter au panier</span>
-      <span id="cfgAddPrice">0,00€</span>
-    </button>
-  </div>
+<!-- Barre panier mobile -->
+<div class="barre-panier" data-barre-panier aria-hidden="true">
+  <button class="btn" type="button" data-ouvrir-panier tabindex="-1">
+    <span style="display:inline-flex;gap:10px;align-items:center"><span class="compteur" data-compteur>0</span>Voir mon panier</span>
+    <span class="prix" data-total>0,00 €</span>
+  </button>
 </div>
 
-<!-- PANIER -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-panel" id="cartPanel" aria-label="Votre commande">
-  <div class="cart-panel-header">
-    <div class="cart-panel-title">Votre commande</div>
-    <button class="cart-close" id="cartClose" aria-label="Fermer le panier"><svg class="icon"><use href="#i-close" xlink:href="#i-close"/></svg></button>
-  </div>
-  <div class="cart-body" id="cartBody"></div>
-  <div class="cart-footer" id="cartFooter" style="display:none">
-    <div class="cart-total-row">
-      <span class="cart-total-label">Total à régler sur place</span>
-      <span class="cart-total-price" id="cartTotalPrice">0,00€</span>
+<!-- Fiche produit -->
+<dialog class="fiche" id="fiche" aria-labelledby="fiche-titre">
+  <form class="fiche-boite" method="dialog" data-fiche-form></form>
+</dialog>
+
+<!-- Panier -->
+<dialog class="panier" id="panier" aria-labelledby="panier-titre">
+  <div class="panier-boite">
+    <div class="panier-tete">
+      <h2 id="panier-titre">Mon panier</h2>
+      <button class="btn-fermer" type="button" data-fermer-panier aria-label="Fermer le panier"><svg aria-hidden="true"><use href="#i-fermer"/></svg></button>
     </div>
-    <div class="cart-form">
-      <div>
-        <div class="cart-form-label" style="margin-bottom:.35rem">Votre prénom</div>
-        <input type="text" class="cart-input" id="custName" placeholder="Prénom" autocomplete="given-name"/>
-      </div>
-      <div>
-        <div class="cart-form-label" style="margin-bottom:.35rem">Allergie, remarque ? (facultatif)</div>
-        <input type="text" class="cart-input" id="custNote" placeholder="Ex : sans oignon, allergie arachides…" maxlength="140"/>
-      </div>
-      <div class="order-mode-group">
-        <div class="order-mode-label"><svg class="icon"><use href="#i-bag" xlink:href="#i-bag"/></svg> À emporter ou sur place — réglé au comptoir</div>
-      </div>
-      <button class="btn btn-wa btn-full btn-lg" id="sendWaBtn"><svg class="icon"><use href="#i-chat" xlink:href="#i-chat"/></svg> Envoyer sur WhatsApp</button>
-      <p class="cart-disclaimer">Nous confirmons la disponibilité et le délai directement sur WhatsApp.</p>
-      <p class="cart-delivery-note" data-uber-block>Besoin d'être livré ? <a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA/fbeff8a2-cf86-4657-9c62-5c3994d6d529" target="_blank" rel="noopener">Commandez sur Uber Eats</a></p>
-    </div>
+    <div class="panier-corps" data-panier-corps></div>
+    <div class="panier-pied" data-panier-pied></div>
   </div>
-</aside>
+</dialog>
 
-<!-- BARRE PANIER -->
-<button class="cart-bar" id="cartBar" aria-label="Voir ma commande">
-  <span class="cart-bar-count" id="cartBarCount">0</span>
-  <span class="cart-bar-label">Voir ma commande</span>
-  <span class="cart-bar-total" id="cartBarTotal">0,00€</span>
-</button>
+<div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<!-- MODALE LÉGALE -->
-<div class="legal-overlay" id="legalOverlay" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
-  <div class="legal-modal">
-    <div class="legal-head">
-      <h2 id="legalTitle">Mentions légales</h2>
-      <button class="legal-close" id="legalClose" aria-label="Fermer">×</button>
-    </div>
-    <div class="legal-body" id="legalBody"></div>
-  </div>
-</div>
-
-<!-- PANNEAU ÉQUIPE (gestion des ruptures du jour) -->
-<div class="legal-overlay" id="vendorOverlay" role="dialog" aria-modal="true" aria-labelledby="vendorTitle">
-  <div class="legal-modal">
-    <div class="legal-head">
-      <h2 id="vendorTitle">Espace équipe</h2>
-      <button class="legal-close" id="vendorClose" aria-label="Fermer">×</button>
-    </div>
-    <div class="legal-body">
-      <div id="vendorGate">
-        <p>Réservé à l'équipe du Touareg. Entrez le code à 4 chiffres pour marquer les plats en rupture aujourd'hui.</p>
-        <form id="vendorPinForm" class="vendor-pin-form">
-          <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="4" id="vendorPinInput" placeholder="Code" autocomplete="off">
-          <button type="submit" class="btn btn-primary">Entrer</button>
-        </form>
-        <p id="vendorPinError" class="vendor-pin-error" hidden>Code incorrect, réessayez.</p>
-      </div>
-      <div id="vendorContent" hidden>
-        <p>Touchez un plat pour basculer sa disponibilité. C'est enregistré sur cet appareil et visible immédiatement par les clients qui consultent le site.</p>
-        <div class="vendor-list" id="vendorList"></div>
-        <button class="btn btn-outline btn-full" id="vendorResetAll" style="margin-top:1rem">Tout remettre disponible</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- BANDEAU COOKIES -->
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Préférences cookies">
-  <p>Ce site utilise <strong>Google Maps</strong> pour afficher le plan d'accès, ce qui peut déposer des cookies. Rien n'est chargé sans votre accord. <a data-legal="confidentialite">En savoir plus</a></p>
-  <div class="cookie-actions">
-    <button class="cookie-btn refuse" id="cookieRefuse">Refuser</button>
-    <button class="cookie-btn accept" id="cookieAccept">Accepter</button>
-  </div>
-</div>
-
-<script src="app.js?v=3" defer></script>
+<script src="js/donnees.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
