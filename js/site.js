@@ -157,81 +157,111 @@
     demarrer();
   }
 
-  /* ---------- Rayons + carte ---------- */
-  let rayonActif = T.categories[0].id;
+  /* ---------- Rayons, filtres et grille de plats ---------- */
+  const PAR_PAGE = 12;
+  let filtre = 'tout', limite = PAR_PAGE, recherche = '';
+  let favoris = new Set(lire('touareg.favoris.v1', []).filter(id => parId[id]));
 
   function rendreRayons() {
     $('[data-rayons]').innerHTML = T.categories.map(c =>
-      `<button class="rayon" type="button" role="tab" data-rayon="${c.id}" aria-selected="${c.id === rayonActif}">${detour(c.photo, { alt: '' })}<span>${c.nom}</span></button>`).join('');
+      `<button class="rayon" type="button" role="tab" data-rayon="${c.id}" aria-selected="false">${detour(c.photo, { alt: '' })}<span>${c.nom}</span></button>`).join('');
     $$('[data-defiler]').forEach(b => b.addEventListener('click', () => {
       const l = $('[data-rayons]'); l.scrollBy({ left: Number(b.dataset.defiler) * l.clientWidth * .7, behavior: 'smooth' });
     }));
   }
 
-  function blocPrix(p) {
-    return `<strong class="prix">${euros(prixDe(p))}</strong>${p.menu ? `<small class="prix">Menu <b>${euros(prixDe(p, 'menu'))}</b></small>` : ''}`;
+  function rendreFiltres() {
+    const pilules = [['tout', 'Tout'], ...T.categories.map(c => [c.id, c.nom])];
+    if (favoris.size) pilules.push(['favoris', `<svg class="coeur-mini" aria-hidden="true"><use href="#i-coeur"/></svg>Mes favoris (${favoris.size})`]);
+    $('[data-filtres]').innerHTML = pilules.map(([id, nom]) =>
+      `<button class="filtre" type="button" role="tab" data-filtre="${id}" aria-selected="${id === filtre && !recherche}">${nom}</button>`).join('');
+  }
+
+  // Vue « Tout » : un plat de chaque rayon à tour de rôle, pour une grille variée
+  const melange = (() => {
+    const files = T.categories.map(c => T.produits.filter(p => p.cat === c.id));
+    const out = [];
+    for (let i = 0; out.length < T.produits.length; i++) files.forEach(f => { if (f[i]) out.push(f[i]); });
+    return out;
+  })();
+
+  // Plat sans option à choisir : il part directement au panier
+  const ajoutDirect = p => !p.menu && !p.choix && !p.base;
+
+  function cartePlat(p) {
+    const fav = favoris.has(p.id);
+    const note = p.avis
+      ? `<span class="etoiles">${icone('etoile')}</span><span title="% de clients Uber Eats qui recommandent ce plat">${p.avis[0]} % · ${p.avis[1]} avis</span>`
+      : badges({ tags: (p.tags || []).slice(0, 1) });
+    return `<article class="plat" data-plat-ligne="${p.id}">
+      <button class="coeur" type="button" data-favori="${p.id}" aria-pressed="${fav}" aria-label="${fav ? 'Retirer des favoris' : 'Ajouter aux favoris'} : ${echap(p.nom)}">${icone('coeur')}</button>
+      <button class="plat-image" type="button" data-plat="${p.id}" tabindex="-1" aria-hidden="true">${detour(detourPlat(p), { alt: '' })}</button>
+      <div class="plat-note">${note}</div>
+      <h3>${echap(p.nom)}</h3>
+      <p>${echap(p.desc || catParId[p.cat].accroche)}</p>
+      <div class="plat-prix"><strong class="prix">${euros(prixDe(p))}</strong>${p.menu ? `<small class="prix">ou ${euros(prixDe(p, 'menu'))} en menu</small>` : ''}</div>
+      <div class="plat-actions">
+        <button class="btn-oeil" type="button" data-plat="${p.id}" aria-label="Voir le détail : ${echap(p.nom)}">${icone('oeil')}</button>
+        <button class="btn-ajouter" type="button" ${ajoutDirect(p) ? `data-ajout-direct="${p.id}"` : `data-plat="${p.id}"`} aria-label="Ajouter au panier : ${echap(p.nom)}">${icone('sac')}Ajouter</button>
+      </div>
+    </article>`;
+  }
+
+  function platsVisibles() {
+    if (recherche) return T.produits.filter(p => norm(p.nom + ' ' + p.desc + ' ' + catParId[p.cat].nom).includes(recherche));
+    if (filtre === 'favoris') return T.produits.filter(p => favoris.has(p.id));
+    if (filtre === 'tout') return melange;
+    return T.produits.filter(p => p.cat === filtre);
   }
 
   function rendreCarte() {
-    $('[data-carte]').innerHTML = T.categories.map(c => {
-      const plats = T.produits.filter(p => p.cat === c.id);
-      return `<section class="rayon-bloc" id="cat-${c.id}" data-categorie="${c.id}" aria-labelledby="t-${c.id}">
-        <div class="rayon-tete">
-          <div class="rayon-tete-texte">
-            <span class="compte">${plats.length} choix${c.menu ? ' · existe en menu' : ''}</span>
-            <h3 id="t-${c.id}">${c.nom}</h3>
-            <p>${echap(c.accroche)}</p>
-          </div>
-          ${detour(c.photo, { grand: true, alt: '' })}
-        </div>
-        <div class="plats">
-          ${plats.map(p => `<article class="plat" data-plat-ligne="${p.id}" data-texte="${echap(norm(p.nom + ' ' + p.desc + ' ' + c.nom))}">
-            <div class="plat-badges">${badges(p)}</div>
-            <h4>${echap(p.nom)}</h4>
-            ${p.desc ? `<p>${echap(p.desc)}</p>` : ''}
-            <div class="plat-bas">
-              <div class="plat-prix">${blocPrix(p)}</div>
-              <button class="btn-ajout etire" type="button" data-plat="${p.id}" aria-label="Ajouter ${echap(p.nom)}">${icone('plus')}</button>
-            </div>
-          </article>`).join('')}
-        </div>
-        ${c.note ? `<p class="note-rayon">${echap(c.note)}</p>` : ''}
-      </section>`;
-    }).join('');
-    $('[data-pied-carte]').innerHTML = T.categories.slice(0, 7).map(c => `<li><a href="#carte" data-aller-rayon="${c.id}">${c.nom}</a></li>`).join('');
-    afficherRayon(rayonActif, false);
+    const liste = platsVisibles();
+    $('[data-carte]').innerHTML = liste.slice(0, limite).map(cartePlat).join('');
+    $('[data-vide]').hidden = liste.length > 0;
+    const plus = $('[data-voir-plus]');
+    plus.hidden = liste.length <= limite;
+    plus.textContent = `Voir plus (${liste.length - Math.min(limite, liste.length)})`;
+    rendreFiltres();
+    $$('[data-rayon]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.rayon === filtre && !recherche)));
   }
 
-  function afficherRayon(id, defiler = true) {
-    rayonActif = id;
-    const champ = $('[data-recherche]');
-    if (champ.value) { champ.value = ''; }
-    $$('[data-categorie]').forEach(s => { s.hidden = s.dataset.categorie !== id; $$('[data-plat-ligne]', s).forEach(l => { l.hidden = false; }); });
-    $('[data-vide]').hidden = true;
-    $$('[data-rayon]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.rayon === id)));
-    const b = $(`[data-rayon="${id}"]`);
-    const liste = $('[data-rayons]');
-    if (b) liste.scrollTo({ left: b.offsetLeft - liste.clientWidth / 2 + b.clientWidth / 2, behavior: 'smooth' });
+  function choisirFiltre(id, defiler = true) {
+    if (id !== 'favoris' && id !== 'tout' && !catParId[id]) return;
+    filtre = id; limite = PAR_PAGE; recherche = '';
+    $('[data-recherche]').value = '';
+    rendreCarte();
+    const b = $(`[data-rayon="${id}"]`), rail = $('[data-rayons]');
+    if (b) rail.scrollTo({ left: b.offsetLeft - rail.clientWidth / 2 + b.clientWidth / 2, behavior: 'smooth' });
     if (defiler) $('#carte').scrollIntoView({ behavior: mouvementReduit ? 'auto' : 'smooth', block: 'start' });
   }
 
-  function brancherRecherche() {
+  function brancherCarte() {
     const champ = $('[data-recherche]');
     let minuteur;
     champ.addEventListener('input', () => {
       clearTimeout(minuteur);
-      minuteur = setTimeout(() => {
-        const q = norm(champ.value.trim());
-        if (!q) return afficherRayon(rayonActif, false);
-        let total = 0;
-        $$('[data-categorie]').forEach(sec => {
-          let n = 0;
-          $$('[data-plat-ligne]', sec).forEach(l => { const ok = l.dataset.texte.includes(q); l.hidden = !ok; if (ok) n++; });
-          sec.hidden = n === 0; total += n;
-        });
-        $('[data-vide]').hidden = total > 0;
-      }, 120);
+      minuteur = setTimeout(() => { recherche = norm(champ.value.trim()); limite = PAR_PAGE; rendreCarte(); }, 120);
     });
+    $('[data-voir-plus]').addEventListener('click', () => { limite += PAR_PAGE; rendreCarte(); });
+    $('[data-filtres]').addEventListener('click', e => { const f = e.target.closest('[data-filtre]'); if (f) choisirFiltre(f.dataset.filtre, false); });
+    $('[data-carte]').addEventListener('click', e => {
+      const c = e.target.closest('[data-favori]');
+      if (c) {
+        const id = c.dataset.favori;
+        if (favoris.has(id)) favoris.delete(id); else favoris.add(id);
+        ecrire('touareg.favoris.v1', [...favoris]);
+        if (filtre === 'favoris' && !favoris.size) filtre = 'tout';
+        rendreCarte();
+        return toast(favoris.has(id) ? `${parId[id].nom} ajouté aux favoris` : 'Retiré des favoris');
+      }
+      const d = e.target.closest('[data-ajout-direct]');
+      if (d) {
+        const p = parId[d.dataset.ajoutDirect];
+        ajouterAuPanier(p.id, { formule: 'seul', boisson: '', base: '', viandes: '', note: '', qte: 1 });
+        toast(`${p.nom} ajouté au panier`);
+      }
+    });
+    $('[data-pied-carte]').innerHTML = T.categories.slice(0, 7).map(c => `<li><a href="#carte" data-aller-rayon="${c.id}">${c.nom}</a></li>`).join('');
   }
 
   /* ---------- Avis, horaires, prix affichés ---------- */
@@ -542,7 +572,7 @@
     const o = e.target.closest('[data-ouvrir-plat]');
     if (o) { e.preventDefault(); return ouvrirFiche(o.dataset.ouvrirPlat, o.dataset.formule); }
     const r = e.target.closest('[data-rayon], [data-aller-rayon]');
-    if (r) { e.preventDefault(); return afficherRayon(r.dataset.rayon || r.dataset.allerRayon); }
+    if (r) { e.preventDefault(); return choisirFiltre(r.dataset.rayon || r.dataset.allerRayon); }
     if (e.target.closest('[data-ouvrir-panier]')) { rendrePanier(); return ouvrirDialog(panierDlg); }
   });
 
@@ -561,7 +591,7 @@
   majStatut();
   majCompteurs();
   rendrePanier();
-  brancherRecherche();
+  brancherCarte();
   surDefilement();
   $$('[data-annee]').forEach(el => { el.textContent = new Date().getFullYear(); });
   setInterval(majStatut, 60 * 1000);

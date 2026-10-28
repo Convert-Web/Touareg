@@ -22,6 +22,7 @@
 <link rel="canonical" href="https://convert-web.github.io/Touareg/">
 
 <link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lilita-one.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/cut/kebab-840.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -74,6 +75,8 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-oeil" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-coeur" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.6 4.5 6.9 4.5c2.1 0 3.6 1.1 5.1 3 1.5-1.9 3-3 5.1-3 3.3 0 5.5 3.1 4.2 6.6-1.8 4.8-9.3 9.4-9.3 9.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-loupe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></g></symbol>
   <symbol id="i-gauche" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-droite" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -209,22 +212,22 @@
   </section>
 
   <!-- LA CARTE -->
-  <section class="carte fond-creme" id="carte" aria-labelledby="titre-carte">
+  <section class="carte" id="carte" aria-labelledby="titre-carte">
     <div class="wrap">
       <div class="carte-tete">
-        <div>
-          <span class="surtitre">63 plats · 13 rayons</span>
-          <h2 class="titre-section" id="titre-carte">La carte</h2>
-        </div>
-        <label class="recherche">
-          <span class="sr">Rechercher un plat</span>
-          <svg aria-hidden="true"><use href="#i-loupe"/></svg>
-          <input type="search" id="recherche" placeholder="Rechercher un plat…" autocomplete="off" data-recherche>
-        </label>
+        <h2 class="titre-carte" id="titre-carte">Notre <em>Carte</em></h2>
+        <p>63 plats préparés à la commande, place Diderot. Choisissez un rayon, touchez un plat pour le personnaliser, puis ajoutez-le au panier.</p>
       </div>
-      <div data-carte></div>
+      <div class="filtres" role="tablist" aria-label="Filtrer la carte" data-filtres></div>
+      <label class="recherche">
+        <span class="sr">Rechercher un plat</span>
+        <svg aria-hidden="true"><use href="#i-loupe"/></svg>
+        <input type="search" id="recherche" placeholder="Rechercher un plat…" autocomplete="off" data-recherche>
+      </label>
+      <div class="grille-plats" data-carte aria-live="polite"></div>
       <div class="vide" data-vide hidden><strong>Aucun plat trouvé</strong>Essayez un autre mot, par exemple « poulet » ou « tacos ».</div>
-      <p class="carte-pied">Prix TTC · Menu = le plat + frites + boisson · Allergènes : liste disponible au comptoir · Photos d’illustration</p>
+      <div class="voir-plus"><button class="btn" type="button" data-voir-plus hidden>Voir plus</button></div>
+      <p class="carte-pied">Prix TTC · Menu = le plat + frites + boisson · GPT : galette de pomme de terre · Allergènes : liste disponible au comptoir · Photos d’illustration</p>
     </div>
   </section>
 

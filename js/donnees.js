@@ -89,25 +89,25 @@ window.TOUAREG = {
     { id: 'big-burger',        cat: 'burgers', nom: 'Big Burger',             desc: '1 steak de 180 g, 2 fromages, salade et tomates.', prix: 7.80,  menu: 10.40, tags: ['populaire'], avis: [80, 5] },
     { id: 'double-big-burger', cat: 'burgers', nom: 'Double Big Burger',      desc: '2 steaks de 180 g, 2 fromages, salade et tomates.', prix: 10.40, menu: 13.00, avis: [100, 3], photo: 'burger-dark' },
     { id: 'double-big-plus',   cat: 'burgers', nom: 'Double Big Burger Plus', desc: '2 steaks de 180 g, GPT, œuf et 2 fromages.', prix: 13.00, menu: 15.60 },
-    { id: 'burger-maison',     cat: 'burgers', nom: 'Burger Maison',          desc: 'Steak de viande hachée 100 g, fromage, raclette, salade, tomates et oignons.', prix: 7.15, menu: 9.10, tags: ['maison'] },
-    { id: 'cheese',            cat: 'burgers', nom: 'Cheeseburger',           desc: '1 steak et fromage.', prix: 3.90, menu: 7.15, tags: ['populaire'] },
-    { id: 'double-cheese',     cat: 'burgers', nom: 'Double Cheeseburger',    desc: '2 steaks et 2 fromages.', prix: 5.20, menu: 8.45 },
-    { id: 'chicken-burger',    cat: 'burgers', nom: 'Chicken Burger',         desc: 'Chicken pané et fromage.', prix: 5.20, menu: 7.80 },
-    { id: 'zinger-burger',     cat: 'burgers', nom: 'Zinger Burger',          desc: 'Poulet pané croustillant et fromage.', prix: 5.85, menu: 8.45, avis: [100, 3] },
+    { id: 'burger-maison',     cat: 'burgers', nom: 'Burger Maison',          desc: 'Steak de viande hachée 100 g, fromage, raclette, salade, tomates et oignons.', prix: 7.15, menu: 9.10, tags: ['maison'], photo: 'burger-2' },
+    { id: 'cheese',            cat: 'burgers', nom: 'Cheeseburger',           desc: '1 steak et fromage.', prix: 3.90, menu: 7.15, tags: ['populaire'], photo: 'cheese' },
+    { id: 'double-cheese',     cat: 'burgers', nom: 'Double Cheeseburger',    desc: '2 steaks et 2 fromages.', prix: 5.20, menu: 8.45, photo: 'cheese' },
+    { id: 'chicken-burger',    cat: 'burgers', nom: 'Chicken Burger',         desc: 'Chicken pané et fromage.', prix: 5.20, menu: 7.80, photo: 'burger-2' },
+    { id: 'zinger-burger',     cat: 'burgers', nom: 'Zinger Burger',          desc: 'Poulet pané croustillant et fromage.', prix: 5.85, menu: 8.45, avis: [100, 3], photo: 'burger-2' },
     { id: 'fish-burger',       cat: 'burgers', nom: 'Fish Burger',            desc: 'Poisson pané, salade, oignons et fromage.', prix: 4.55, menu: 7.15 },
     { id: 'burger-vege',       cat: 'burgers', nom: 'Burger Végétarien',      desc: 'Steak de pommes de terre, œuf et fromage.', prix: 5.20, menu: 7.80, tags: ['vege'] },
 
     // Pizzas (taille sénior)
     { id: 'pizza-3-viandes', cat: 'pizzas', nom: 'Pizza 3 Viandes',   desc: 'Base au choix, 3 viandes au choix et fromage.', prix: 9.75, base: true, choix: 3, tags: ['populaire'], avis: [100, 10] },
-    { id: 'pizza-touareg',   cat: 'pizzas', nom: 'Pizza Touareg',     desc: 'Base au choix, fromage, poulet, sauce fromagère et pommes de terre.', prix: 9.75, base: true, tags: ['maison'], avis: [100, 3] },
+    { id: 'pizza-touareg',   cat: 'pizzas', nom: 'Pizza Touareg',     desc: 'Base au choix, fromage, poulet, sauce fromagère et pommes de terre.', prix: 9.75, base: true, tags: ['maison'], avis: [100, 3], photo: 'pizza-2' },
     { id: 'margherita',      cat: 'pizzas', nom: 'Pizza Margherita',  desc: 'Base au choix, fromage et oignons.', prix: 9.75, base: true, tags: ['populaire', 'vege'], photo: 'margherita' },
-    { id: 'combine',         cat: 'pizzas', nom: 'Pizza Combiné',     desc: 'Base au choix, fromage, viande hachée, champignons et œuf.', prix: 9.75, base: true, avis: [100, 4] },
+    { id: 'combine',         cat: 'pizzas', nom: 'Pizza Combiné',     desc: 'Base au choix, fromage, viande hachée, champignons et œuf.', prix: 9.75, base: true, avis: [100, 4], photo: 'pizza-2' },
     { id: 'orientale',       cat: 'pizzas', nom: 'Pizza Orientale',   desc: 'Base au choix, fromage, oignons, olives, merguez et œuf.', prix: 9.75, base: true },
-    { id: 'saisons',         cat: 'pizzas', nom: 'Pizza Saisons',     desc: 'Base au choix, fromage, jambon de dinde, olives, poivrons et champignons.', prix: 9.75, base: true },
+    { id: 'saisons',         cat: 'pizzas', nom: 'Pizza Saisons',     desc: 'Base au choix, fromage, jambon de dinde, olives, poivrons et champignons.', prix: 9.75, base: true, photo: 'pizza-2' },
     { id: 'chevre-miel',     cat: 'pizzas', nom: 'Pizza Chèvre Miel', desc: 'Base au choix, fromage, chèvre et miel.', prix: 9.75, base: true, tags: ['vege'], avis: [100, 5] },
-    { id: 'pizza-chicken',   cat: 'pizzas', nom: 'Pizza Chicken',     desc: 'Base au choix, fromage, chicken et pommes de terre.', prix: 9.75, base: true, avis: [87, 8] },
+    { id: 'pizza-chicken',   cat: 'pizzas', nom: 'Pizza Chicken',     desc: 'Base au choix, fromage, chicken et pommes de terre.', prix: 9.75, base: true, avis: [87, 8], photo: 'pizza-2' },
     { id: 'pizza-saumon',    cat: 'pizzas', nom: 'Pizza Saumon',      desc: 'Base au choix, fromage, saumon et pommes de terre.', prix: 9.75, base: true, avis: [87, 8] },
-    { id: 'pizza-thon',      cat: 'pizzas', nom: 'Pizza Thon',        desc: 'Base au choix, fromage, thon et olives.', prix: 9.75, base: true },
+    { id: 'pizza-thon',      cat: 'pizzas', nom: 'Pizza Thon',        desc: 'Base au choix, fromage, thon et olives.', prix: 9.75, base: true, photo: 'pizza-2' },
     { id: 'pizza-vege',      cat: 'pizzas', nom: 'Pizza Végétarienne',desc: 'Base au choix, fromage, olives, poivrons, champignons et oignons.', prix: 9.75, base: true, tags: ['vege'] },
 
     // Pizza turque
@@ -141,8 +141,8 @@ window.TOUAREG = {
 
     // Buckets
     { id: 'bucket-frites',  cat: 'buckets', nom: 'Bucket Frites',  desc: 'Seau de frites, format à partager.', prix: 2.60 },
-    { id: 'bucket-kebab',   cat: 'buckets', nom: 'Bucket Kebab',   desc: 'Viande kebab, format bucket.', prix: 9.10 },
-    { id: 'bucket-chicken', cat: 'buckets', nom: 'Bucket Chicken', desc: 'Morceaux de poulet servis en bucket, à partager.', prix: 9.10 },
+    { id: 'bucket-kebab',   cat: 'buckets', nom: 'Bucket Kebab',   desc: 'Viande kebab, format bucket.', prix: 9.10, photo: 'kebab' },
+    { id: 'bucket-chicken', cat: 'buckets', nom: 'Bucket Chicken', desc: 'Morceaux de poulet servis en bucket, à partager.', prix: 9.10, photo: 'texmex' },
 
     // Desserts
     { id: 'tiramisu',      cat: 'desserts', nom: 'Tiramisu',      desc: 'Classique italien au café, biscuits imbibés et crème mascarpone, saupoudré de cacao.', prix: 3.90, avis: [85, 7] },
