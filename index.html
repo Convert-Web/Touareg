@@ -36,7 +36,7 @@
 <link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/cut/kebab-420.webp" imagesrcset="assets/img/cut/kebab-160.webp 160w, assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-600.webp 600w, assets/img/cut/kebab-840.webp 840w" imagesizes="(min-width: 768px) 560px, 300px" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/site.css?v=20261028i">
+<link rel="stylesheet" href="assets/css/site.css?v=20261028j">
 
 <script type="application/ld+json">
 {
@@ -66,6 +66,20 @@
   "acceptsReservations": false,
   "paymentAccepted": "Espèces, Carte bancaire, Titres-restaurant",
   "sameAs": ["https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Comment commander sur le site ?", "acceptedAnswer": {"@type": "Answer", "text": "Choisissez vos plats sur la carte, ouvrez le panier, indiquez votre prénom et l’heure de retrait. WhatsApp s’ouvre avec votre commande déjà écrite : appuyez sur Envoyer. Pas besoin de compte ni d’application à installer."}},
+    {"@type": "Question", "name": "Vous livrez ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, avec Uber Eats. Sur ce site, les commandes sont à emporter : vous venez les chercher au 11 B place Diderot à Montereau-Fault-Yonne."}},
+    {"@type": "Question", "name": "Comment payer ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous payez au comptoir en récupérant votre commande. Les titres-restaurant sont acceptés : UpDéjeuner, Bimpli, Pluxee, Swile et Ticket Restaurant®."}},
+    {"@type": "Question", "name": "Quels sont vos horaires ?", "acceptedAnswer": {"@type": "Answer", "text": "Tous les jours, de 11h à 22h45, midi et soir sans interruption."}},
+    {"@type": "Question", "name": "Je peux commander à l’avance ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Dans le panier, choisissez l’heure de retrait qui vous arrange, même pour plus tard dans la journée ou le lendemain si nous sommes fermés."}},
+    {"@type": "Question", "name": "C’est quoi un menu ?", "acceptedAnswer": {"@type": "Answer", "text": "Le plat avec des frites et une boisson au choix : Coca-Cola, Pepsi ou Lipton Ice Tea. Sandwichs, tacos, burgers, pizzas turques, paninis et croques existent en menu."}}
+  ]
 }
 </script>
 </head>
@@ -139,8 +153,8 @@
       </div>
       <ul class="rassure">
         <li><svg aria-hidden="true"><use href="#i-etoile"/></svg>4,2/5 · 190+ avis</li>
+        <li><svg aria-hidden="true"><use href="#i-horloge"/></svg><span data-delai>Prêt en ~20 min</span></li>
         <li><svg aria-hidden="true"><use href="#i-sac"/></svg>Paiement au comptoir</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sans compte ni frais</li>
       </ul>
     </div>
     <svg class="hero-dunes" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
@@ -238,6 +252,7 @@
         <h2 class="titre-carte" id="titre-carte">Notre <em>Carte</em></h2>
         <p>63 plats préparés à la commande, place Diderot. Choisissez un rayon, touchez un plat pour le personnaliser, puis ajoutez-le au panier.</p>
       </div>
+      <div class="reprise-zone" data-reprise hidden></div>
       <div class="filtres" role="tablist" aria-label="Filtrer la carte" data-filtres></div>
       <label class="recherche">
         <span class="sr">Rechercher un plat</span>
@@ -286,6 +301,7 @@
           <small>Note moyenne sur Uber Eats, plus de 190 avis</small></div>
         </div>
         <ul class="favoris-clients" data-palmares></ul>
+        <a class="lien-avis" href="https://www.google.com/maps/search/?api=1&amp;query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener" data-suivi="avis-google"><svg aria-hidden="true"><use href="#i-etoile"/></svg>Vous êtes déjà venu ? Donnez votre avis sur Google</a>
       </div>
       <div class="duo-col" id="infos">
         <h2 class="duo-titre">Adresse et horaires</h2>
@@ -301,6 +317,24 @@
           </div>
         </div>
         <div class="titres"><svg aria-hidden="true"><use href="#i-ticket"/></svg><span>Titres-restaurant acceptés : <b data-titres></b></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS FRÉQUENTES -->
+  <section class="faq" id="faq" aria-labelledby="titre-faq">
+    <div class="wrap faq-wrap">
+      <div class="faq-tete">
+        <h2 id="titre-faq">Questions fréquentes</h2>
+        <p>Une autre question ? Appelez-nous au <a href="tel:+33673827821">06 73 82 78 21</a>.</p>
+      </div>
+      <div class="faq-liste">
+        <details><summary>Comment commander sur le site ?</summary><p>Choisissez vos plats sur la carte, ouvrez le panier, indiquez votre prénom et l’heure de retrait. WhatsApp s’ouvre avec votre commande déjà écrite : appuyez sur Envoyer. Pas besoin de compte ni d’application à installer.</p></details>
+        <details><summary>Vous livrez ?</summary><p>Oui, avec Uber Eats. Sur ce site, les commandes sont à emporter : vous venez les chercher au 11 B place Diderot à Montereau-Fault-Yonne.</p></details>
+        <details><summary>Comment payer ?</summary><p>Vous payez au comptoir en récupérant votre commande. Les titres-restaurant sont acceptés : UpDéjeuner, Bimpli, Pluxee, Swile et Ticket Restaurant®.</p></details>
+        <details><summary>Quels sont vos horaires ?</summary><p>Tous les jours, de 11h à 22h45, midi et soir sans interruption.</p></details>
+        <details><summary>Je peux commander à l’avance ?</summary><p>Oui. Dans le panier, choisissez l’heure de retrait qui vous arrange, même pour plus tard dans la journée ou le lendemain si nous sommes fermés.</p></details>
+        <details><summary>C’est quoi un menu ?</summary><p>Le plat avec des frites et une boisson au choix : Coca-Cola, Pepsi ou Lipton Ice Tea. Sandwichs, tacos, burgers, pizzas turques, paninis et croques existent en menu.</p></details>
       </div>
     </div>
   </section>
@@ -378,8 +412,8 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<script src="js/donnees.js?v=20261028i"></script>
-<script src="js/site.js?v=20261028i"></script>
-<script src="js/consentement.js?v=20261028i" defer></script>
+<script src="js/donnees.js?v=20261028j"></script>
+<script src="js/site.js?v=20261028j"></script>
+<script src="js/consentement.js?v=20261028j" defer></script>
 </body>
 </html>

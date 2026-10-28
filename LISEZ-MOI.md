@@ -75,3 +75,12 @@ Changer le numéro de version `?v=...` dans les balises qui chargent `site.css` 
 
 ### Limite de l'adresse github.io
 Les moteurs de recherche ne lisent le `robots.txt` qu'à la racine d'un domaine. Sur `convert-web.github.io/Touareg/`, il n'est donc pas lu. Il le sera dès qu'un nom de domaine (ex. `le-touareg.fr`) sera relié au site. En attendant, déclarer `sitemap.xml` dans Google Search Console.
+
+## Fonctions qui font vendre
+
+- **Passer en menu en un geste** : dans le panier, chaque plat pris seul propose le menu (frites + boisson) avec le supplément exact.
+- **Suggestions selon la commande** : boisson s'il n'y en a pas, puis dessert, puis accompagnement.
+- **« Comme la dernière fois ? »** : la dernière commande envoyée est gardée dans le navigateur du client et se recommande en un geste (en haut de la carte et dans le panier vide).
+- **Prix comptoir** : les prix de `js/donnees.js` sont ceux d'Uber Eats (prix comptoir × 1,3). Mettre `diviseurPrix: 1.3` affiche les prix comptoir partout, et le panier montre alors « Vous économisez X € par rapport à la livraison Uber Eats ». À activer seulement après accord du gérant sur ses prix comptoir.
+- **Mesure des ventes** (si GoatCounter est activé) : ajout-panier, ouverture-panier, passage-menu, recommander, commande-whatsapp, appel, uber-eats, itineraire, avis-google.
+- **Questions fréquentes** : section visible et données structurées FAQ pour Google (à tenir à jour avec le texte affiché).

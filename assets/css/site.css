@@ -962,3 +962,51 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
 .hero .rassure svg { width: 15px; height: 15px; }
 @media (max-width: 419px) { .hero .rassure li:nth-child(3) { display: none; } }
 @media (max-width: 370px) { .hero .rassure li { font-size: .75rem; padding: 5px 10px 5px 8px; } }
+
+/* ---------- Ventes : passer en menu, dernière commande, économie, FAQ ---------- */
+.ligne .passer-menu { grid-column: 1 / -1; background: #fff6d6; border: 1.5px dashed var(--jaune-fonce); border-radius: 12px; padding: 10px 12px; margin-top: 2px; }
+.passer-menu p { margin: 0 0 8px; font-size: .8rem; line-height: 1.35; color: var(--noir); }
+.passer-menu-choix { display: flex; flex-wrap: wrap; gap: 6px; }
+.passer-menu-choix button { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--noir); background: var(--blanc); color: var(--noir); font: inherit; font-size: .8rem; font-weight: 700; }
+.passer-menu-choix button:active { transform: scale(.96); }
+@media (hover: hover) { .passer-menu-choix button:hover { background: var(--noir); color: var(--blanc); } }
+
+.economie { display: flex; align-items: center; gap: 6px; margin: -4px 0 0; font-size: .8rem; font-weight: 600; color: #11804a; }
+.economie svg { width: 16px; height: 16px; flex: none; }
+
+.reprise { display: grid; grid-template-columns: 56px minmax(0, 1fr); align-items: center; gap: 4px 12px; background: var(--blanc); border: 2px solid var(--jaune); border-radius: 18px; padding: 12px 14px; box-shadow: 0 14px 30px -22px rgba(120,60,0,.6); }
+.reprise-img { width: 56px; height: 56px; border-radius: 14px; background: #fff6d6; display: grid; place-items: center; }
+.reprise-img img { width: 86%; height: 86%; object-fit: contain; }
+.reprise-texte { display: grid; gap: 2px; min-width: 0; font-size: .82rem; color: var(--gris); line-height: 1.35; }
+.reprise-texte b { color: var(--noir); font-size: .95rem; font-weight: 800; }
+.reprise-texte .prix { color: var(--rouge-fonce); font-weight: 800; }
+.reprise-btn { grid-column: 1 / -1; min-height: 46px; margin-top: 8px; font-size: .85rem; }
+.reprise-zone { margin: 0 0 18px; }
+.reprise-panier { margin-bottom: 18px; }
+@media (min-width: 600px) {
+  .reprise { grid-template-columns: 56px minmax(0, 1fr) auto; }
+  .reprise-btn { grid-column: auto; margin-top: 0; }
+  .reprise-zone { max-width: 640px; margin-inline: auto; }
+}
+
+.lien-avis { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; min-height: 44px; font-weight: 700; font-size: .88rem; color: var(--noir); }
+.lien-avis svg { width: 18px; height: 18px; color: var(--jaune-fonce); flex: none; }
+
+.faq { background: var(--blanc); padding-block: 48px; }
+.faq-wrap { display: grid; gap: 22px; }
+.faq-tete h2 { margin: 0 0 8px; font-weight: 900; font-size: clamp(1.6rem, 6vw, 2.2rem); text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; }
+.faq-tete p { margin: 0; color: var(--gris); font-size: .95rem; }
+.faq-tete a { color: var(--rouge-fonce); font-weight: 700; }
+.faq-liste { display: grid; gap: 10px; }
+.faq details { background: var(--creme); border-radius: 16px; border: 1px solid var(--gris-clair); }
+.faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 12px 18px; font-weight: 800; font-size: .95rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--rouge); color: var(--blanc); display: grid; place-items: center; font-size: 1.2rem; font-weight: 700; line-height: 1; transition: transform .2s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0; padding: 0 18px 16px; color: var(--gris); font-size: .92rem; line-height: 1.6; }
+@media (min-width: 900px) {
+  .faq { padding-block: 72px; }
+  .faq-wrap { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
+  .faq-tete { position: sticky; top: calc(var(--entete) + 24px); }
+}
+.faq-tete a { white-space: nowrap; }

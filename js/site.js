@@ -26,6 +26,7 @@
   const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   const icone = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
   const lire = (cle, defaut) => { try { const v = localStorage.getItem(cle); return v ? JSON.parse(v) : defaut; } catch (e) { return defaut; } };
+  const suivre = nom => { if (window.mesure) window.mesure(nom); };
   const ecrire = (cle, v) => { try { localStorage.setItem(cle, JSON.stringify(v)); } catch (e) { /* navigation privée */ } };
 
   /* Plats détourés (fond transparent) : assets/img/cut/<cle>-420.webp et -840.webp */
@@ -70,8 +71,12 @@
   function majStatut() {
     const s = statut();
     $$('[data-statut]').forEach(el => { el.textContent = texteStatut(s); el.classList.toggle('ouvert', s.ouvert); el.classList.toggle('ferme', !s.ouvert); });
+    const delai = R.delaiPreparation || 20;
+    $$('[data-delai]').forEach(el => { el.textContent = s.ouvert && statutPermetImmediat(s, delai) ? `Prêt en ~${delai} min` : 'Commande à l’avance possible'; });
     return s;
   }
+
+  const statutPermetImmediat = (s, delai) => s.ouvert && maintenantParis().minutes + delai <= s.fermeA;
 
   /* Créneaux de retrait proposés */
   function creneauxRetrait() {
@@ -451,13 +456,14 @@
     if (existante) existante.qte = Math.min(20, existante.qte + o.qte);
     else panier.push({ k, id, formule: o.formule, boisson: o.boisson, base: o.base, viandes: o.viandes, note: o.note, qte: o.qte });
     commandeEnvoyee = false;
+    suivre('ajout-panier');
     sauver();
   }
   const prixLigne = l => prixDe(parId[l.id], l.formule) * l.qte;
   const totalPanier = () => arrondi(panier.reduce((s, l) => s + prixLigne(l), 0));
   const nbArticles = () => panier.reduce((s, l) => s + l.qte, 0);
 
-  function sauver() { ecrire(CLE_PANIER, panier); majCompteurs(); rendrePanier(); }
+  function sauver() { ecrire(CLE_PANIER, panier); majCompteurs(); rendrePanier(); rendreReprise(); }
 
   function majCompteurs() {
     const n = nbArticles();
@@ -495,7 +501,7 @@
       return;
     }
     if (!panier.length) {
-      corps.innerHTML = `<div class="panier-vide"><img src="assets/img/cut/burger-420.webp" width="420" height="347" alt="" loading="lazy"><strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
+      corps.innerHTML = `${blocReprise('panier')}<div class="panier-vide"><img src="assets/img/cut/burger-420.webp" width="420" height="347" alt="" loading="lazy"><strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
       pied.innerHTML = `<p class="petit-texte">Envie d’être livré ? <a href="${R.uberEats}" target="_blank" rel="noopener">Commandez sur Uber Eats</a></p>`;
       return;
     }
@@ -517,6 +523,7 @@
             </div>
             <button class="lien-discret" type="button" data-ligne-suppr="${i}">Supprimer</button>
           </div>
+          ${propositionMenu(l, i)}
         </li>`;
       }).join('')}</ul>
       ${suggestions()}
@@ -534,23 +541,88 @@
     panierOuvertA = Date.now();
     pied.innerHTML = `
       <div class="total"><span>Total</span><strong class="prix">${euros(totalPanier())}</strong></div>
+      ${economie() > 0 ? `<p class="economie">${icone('check')}Vous économisez <b>${euros(economie())}</b> par rapport à la livraison Uber Eats</p>` : ''}
       <button class="btn btn-whatsapp btn-plein" type="button" data-envoyer>${icone('whatsapp')}Envoyer ma commande</button>
       <p class="petit-texte">WhatsApp s’ouvre avec votre commande déjà écrite : il suffit d’appuyer sur <b>Envoyer</b>. Vous payez au comptoir.</p>
       <p class="petit-texte">Pas de WhatsApp ? Appelez le <a href="tel:+33673827821">${R.telephone}</a></p>`;
   }
 
-  /* Suggestions dans le panier : boisson, dessert, accompagnement, ajoutés en un clic */
-  const SUGGESTIONS = ['coca', 'tiramisu', 'bucket-frites', 'tarte-daim', 'camembert', 'lipton'];
+  /* Panier → menu en un geste : le client choisit juste sa boisson */
+  function propositionMenu(l, i) {
+    const p = parId[l.id];
+    if (l.formule === 'menu' || !p.menu) return '';
+    const supplement = arrondi(prixDe(p, 'menu') - prixDe(p));
+    return `<div class="passer-menu">
+      <p><b>En menu pour + ${euros(supplement)}${l.qte > 1 ? ' chacun' : ''}</b> : frites + boisson. Votre boisson :</p>
+      <div class="passer-menu-choix">${T.boissonsMenu.map(bo => `<button type="button" data-menu-ligne="${i}" data-boisson="${echap(bo)}">${echap(bo)}</button>`).join('')}</div>
+    </div>`;
+  }
+
+  /* Suggestions selon ce qu'il manque à la commande : boisson, dessert, accompagnement */
+  const SUGGESTIONS = { boisson: ['coca', 'lipton', 'pepsi'], dessert: ['tiramisu', 'tarte-daim'], accompagnement: ['bucket-frites', 'camembert'] };
   function suggestions() {
     const dans = new Set(panier.map(l => l.id));
-    const liste = SUGGESTIONS.filter(id => parId[id] && !dans.has(id)).slice(0, 3);
+    const rayons = new Set(panier.map(l => parId[l.id].cat));
+    const enMenu = panier.some(l => l.formule === 'menu');
+    const manque = {
+      boisson: !rayons.has('boissons') && !enMenu,
+      dessert: !rayons.has('desserts'),
+      accompagnement: !enMenu && !rayons.has('tex-mex') && !dans.has('bucket-frites'),
+    };
+    const dispo = type => SUGGESTIONS[type].filter(id => parId[id] && !dans.has(id));
+    const liste = [];
+    for (const type of ['boisson', 'dessert', 'accompagnement']) if (manque[type] && dispo(type).length) liste.push(dispo(type)[0]);
+    for (const type of ['dessert', 'boisson', 'accompagnement']) if (manque[type]) for (const id of dispo(type)) if (liste.length < 3 && !liste.includes(id)) liste.push(id);
     if (!liste.length) return '';
-    return `<div class="suggestions"><h3>Un petit plus ?</h3><div class="suggestions-liste">${liste.map(id => {
+    const titre = manque.boisson ? 'Une boisson avec ça ?' : manque.dessert ? 'Un petit dessert ?' : 'Un petit plus ?';
+    return `<div class="suggestions"><h3>${titre}</h3><div class="suggestions-liste">${liste.slice(0, 3).map(id => {
       const p = parId[id];
       return `<button class="suggestion" type="button" data-suggestion="${id}" aria-label="Ajouter ${echap(p.nom)}, ${euros(prixDe(p))}">
         ${detour(detourPlat(p), { alt: '', sizes: '48px' })}<span>${echap(p.nom)}</span><b class="prix">+ ${euros(prixDe(p))}</b></button>`;
     }).join('')}</div></div>`;
   }
+
+  /* Économie par rapport à Uber Eats : seulement quand le site affiche les prix comptoir (diviseurPrix > 1) */
+  const economie = () => (R.diviseurPrix || 1) > 1
+    ? arrondi(panier.reduce((s, l) => s + ((l.formule === 'menu' ? parId[l.id].menu : parId[l.id].prix) || 0) * l.qte, 0) - totalPanier())
+    : 0;
+
+  /* ---------- « Comme la dernière fois » : la dernière commande envoyée, à recommander en un geste ---------- */
+  const CLE_DERNIERE = 'touareg.derniere-commande.v1';
+  const derniereCommande = () => {
+    const d = lire(CLE_DERNIERE, null);
+    if (!d || !Array.isArray(d.lignes)) return null;
+    const lignes = d.lignes.filter(l => parId[l.id] && l.qte > 0);
+    return lignes.length ? { date: d.date, lignes } : null;
+  };
+  function blocReprise(ou) {
+    const d = derniereCommande();
+    if (!d) return '';
+    const total = arrondi(d.lignes.reduce((s, l) => s + prixLigne(l), 0));
+    const noms = d.lignes.map(l => `${l.qte} × ${parId[l.id].nom}${l.formule === 'menu' ? ' (menu)' : ''}`);
+    const resume = noms.slice(0, 2).join(', ') + (noms.length > 2 ? ` et ${noms.length - 2} autre${noms.length > 3 ? 's' : ''}` : '');
+    return `<div class="reprise reprise-${ou}">
+      <span class="reprise-img">${detour(detourPlat(parId[d.lignes[0].id]), { alt: '', sizes: '64px' })}</span>
+      <div class="reprise-texte"><b>Comme la dernière fois ?</b><span>${echap(resume)} · <span class="prix">${euros(total)}</span></span></div>
+      <button class="btn btn-faim reprise-btn" type="button" data-recommander>Recommander</button>
+    </div>`;
+  }
+  function rendreReprise() {
+    const zone = $('[data-reprise]');
+    if (!zone) return;
+    const html = panier.length ? '' : blocReprise('carte');
+    zone.innerHTML = html;
+    zone.hidden = !html;
+  }
+  function recommander() {
+    const d = derniereCommande();
+    if (!d) return;
+    d.lignes.forEach(l => ajouterAuPanier(l.id, { formule: l.formule, boisson: l.boisson || '', base: l.base || '', viandes: l.viandes || '', note: l.note || '', qte: l.qte }));
+    suivre('recommander');
+    rendrePanier();
+    ouvrirDialog(panierDlg);
+  }
+  document.addEventListener('click', e => { if (e.target.closest('[data-recommander]')) recommander(); });
 
   function messageWhatsApp(f) {
     const lignes = panier.map(l => {
@@ -579,6 +651,15 @@
       l.qte += Number(q.dataset.delta);
       if (l.qte <= 0) panier.splice(i, 1);
       return sauver();
+    }
+    const m = e.target.closest('[data-menu-ligne]');
+    if (m) {
+      const l = panier[Number(m.dataset.menuLigne)];
+      if (!l) return;
+      panier.splice(panier.indexOf(l), 1);
+      ajouterAuPanier(l.id, { formule: 'menu', boisson: m.dataset.boisson, base: l.base, viandes: l.viandes, note: l.note, qte: l.qte });
+      suivre('passage-menu');
+      return toast(`${parId[l.id].nom} passé en menu`);
     }
     const sug = e.target.closest('[data-suggestion]');
     if (sug) { const p = parId[sug.dataset.suggestion]; ajouterAuPanier(p.id, { formule: 'seul', boisson: '', base: '', viandes: '', note: '', qte: 1 }); return toast(`${p.nom} ajouté`); }
@@ -610,7 +691,8 @@
       const f = { nom, retrait: form.retrait.value, remarque: form.remarque.value.trim() };
       ecrire('touareg.dernier-envoi.v1', Date.now());
       window.open(`https://wa.me/${R.whatsapp}?text=${encodeURIComponent(messageWhatsApp(f))}`, '_blank', 'noopener');
-      if (window.mesure) window.mesure('commande-whatsapp');
+      suivre('commande-whatsapp');
+      ecrire(CLE_DERNIERE, { date: Date.now(), lignes: panier.map(({ id, formule, boisson, base, viandes, note, qte }) => ({ id, formule, boisson, base, viandes, note, qte })) });
       commandeEnvoyee = true;
       rendrePanier();
     }
@@ -657,7 +739,7 @@
     if (o) { e.preventDefault(); return ouvrirFiche(o.dataset.ouvrirPlat, o.dataset.formule); }
     const r = e.target.closest('[data-rayon], [data-aller-rayon]');
     if (r) { e.preventDefault(); return choisirFiltre(r.dataset.rayon || r.dataset.allerRayon); }
-    if (e.target.closest('[data-ouvrir-panier]')) { rendrePanier(); return ouvrirDialog(panierDlg); }
+    if (e.target.closest('[data-ouvrir-panier]')) { suivre('ouverture-panier'); rendrePanier(); return ouvrirDialog(panierDlg); }
   });
 
   /* En-tête : fond rouge plein dès qu'on quitte le haut de page */
@@ -675,7 +757,16 @@
   majStatut();
   majCompteurs();
   rendrePanier();
+  rendreReprise();
   brancherCarte();
+  /* Suivi des contacts : appel, itinéraire, livraison */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    if (a.href.startsWith('tel:')) suivre('appel');
+    else if (a.href.includes('ubereats.com')) suivre('uber-eats');
+    else if (a.href.includes('google.com/maps')) suivre(a.dataset.suivi || 'itineraire');
+  });
   brancherNavBasse();
   surDefilement();
   setInterval(majStatut, 60 * 1000);
