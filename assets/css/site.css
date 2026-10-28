@@ -125,16 +125,18 @@ button { cursor: pointer; }
 .entete.plein { background: var(--rouge); box-shadow: 0 10px 30px -18px rgba(0,0,0,.6); }
 .entete-wrap { height: var(--entete); display: flex; align-items: center; gap: 12px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--blanc); flex: none; }
-/* Nom en typographie seule : « Le » manuscrit jaune + « TOUAREG » blanc souligné d'un trait jaune */
-.logo-nom { display: inline-flex; align-items: flex-end; gap: .16em; font-size: 1.3rem; line-height: 1; color: var(--blanc); white-space: nowrap; }
-.logo-le {
-  font-family: var(--f-titre); font-weight: 400; font-size: .74em; color: var(--jaune);
-  transform: rotate(-10deg) translateY(-.32em); letter-spacing: .01em;
+/* Nom façon enseigne du restaurant : lettres rouges bordées de blanc sur bandeau sombre */
+@font-face { font-family: 'Archivo Black'; src: url('../fonts/archivo-black.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+.logo-nom {
+  display: inline-flex; align-items: baseline; gap: .38em; white-space: nowrap; line-height: 1;
+  font-family: 'Archivo Black', var(--f); font-weight: 400; font-size: 1.22rem;
+  background: var(--noir); border-radius: 8px; padding: .3em .62em .4em;
+  box-shadow: inset 0 -3px 0 var(--rouge-vif), 0 6px 14px -6px rgba(0,0,0,.6);
 }
-.logo-mot { position: relative; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.02em; padding-right: .06em; }
-.logo-mot::after {
-  content: ""; position: absolute; left: .08em; right: .12em; bottom: -.2em; height: .13em;
-  background: var(--jaune); border-radius: 2px; transform: skewX(-24deg);
+.logo-le { color: var(--blanc); font-size: .5em; letter-spacing: .06em; }
+.logo-mot {
+  color: var(--rouge); letter-spacing: .09em;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1.5px 1.5px #fff, -1.5px -1.5px #fff, 1.5px -1.5px #fff, -1.5px 1.5px #fff, 4px 4px 0 rgba(0,0,0,.5);
 }
 .nav { display: none; }
 .entete-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
@@ -147,7 +149,7 @@ button { cursor: pointer; }
 .statut.ferme::before { background: var(--jaune); }
 @media (min-width: 1024px) {
   .entete-wrap { gap: 28px; }
-  .logo-nom { font-size: 1.55rem; }
+  .logo-nom { font-size: 1.45rem; }
   .nav { display: flex; gap: 6px; margin-left: auto; }
   .nav a { text-decoration: none; font-weight: 700; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; padding: 12px; border-radius: 999px; transition: background-color .15s ease; }
   .nav a:hover { background: rgba(255,255,255,.16); }
