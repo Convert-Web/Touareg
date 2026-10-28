@@ -848,3 +848,20 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
   .pied-col-carte { display: block; }
   .pied-contact { gap: 12px !important; }
 }
+
+/* ---------- Les préférés des clients ---------- */
+.favoris-clients { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.fav { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 12px; background: var(--blanc); border-radius: var(--r); padding: 10px 12px; box-shadow: 0 10px 24px -18px rgba(120,30,20,.4); }
+.fav-img { width: 64px; height: 56px; border-radius: 12px; background: var(--creme-2); display: grid; place-items: center; }
+.fav-img img { width: 88%; height: 88%; object-fit: contain; }
+.fav-texte { display: grid; gap: 2px; min-width: 0; }
+.fav-texte b { font-weight: 800; font-size: .92rem; line-height: 1.2; }
+.fav-note { display: block; font-size: .78rem; font-weight: 600; color: var(--gris); }
+.fav-note svg { width: 13px; height: 13px; color: var(--jaune-fonce); vertical-align: -1px; margin-right: 4px; }
+.fav-prix { font-size: .82rem; font-weight: 800; color: var(--rouge-fonce); }
+.fav .btn-ajouter { flex: none; max-width: none; padding: 0 12px; }
+.fav .btn-ajouter svg { width: 16px; height: 16px; }
+@media (max-width: 420px) { .fav .btn-ajouter span { display: none; } .fav .btn-ajouter { width: 44px; padding: 0; } }
+@media (min-width: 768px) { .fav { padding: 12px 16px; } .fav .btn-ajouter { background: var(--noir); color: var(--blanc); } }
+.duo-titre { margin-bottom: 14px; }
+.note-globale small { line-height: 1.35; }

@@ -268,15 +268,22 @@
   }
 
   /* ---------- Avis, horaires, prix affichés ---------- */
+  /* Les plats les mieux notés (au moins 4 avis), 2 par rayon au maximum, hors boissons */
   function rendrePalmares() {
-    const liste = T.produits.filter(p => p.avis && p.avis[1] >= 4)
-      .sort((a, b) => b.avis[0] - a.avis[0] || b.avis[1] - a.avis[1]).slice(0, 6);
-    $('[data-palmares]').innerHTML = liste.map(p => `<div class="avis-carte">
-      <span class="score">${p.avis[0]} %</span>
-      <span class="nom">${echap(p.nom)}</span>
-      <small>${p.avis[1]} avis</small>
-      <span class="jauge" aria-hidden="true"><i style="width:${p.avis[0]}%"></i></span>
-    </div>`).join('');
+    const parRayon = {};
+    const liste = T.produits.filter(p => p.avis && p.avis[1] >= 4 && p.cat !== 'boissons')
+      .sort((a, b) => b.avis[0] - a.avis[0] || b.avis[1] - a.avis[1])
+      .filter(p => (parRayon[p.cat] = (parRayon[p.cat] || 0) + 1) <= 2)
+      .slice(0, 5);
+    $('[data-palmares]').innerHTML = liste.map(p => `<li class="fav">
+      <span class="fav-img">${detour(detourPlat(p), { alt: '', sizes: '64px' })}</span>
+      <span class="fav-texte">
+        <b>${echap(p.nom)}</b>
+        <span class="fav-note">${icone('etoile')}${p.avis[0]} % recommandé · ${p.avis[1]} avis</span>
+        <span class="fav-prix prix">${euros(prixDe(p))}${p.menu ? ` · menu ${euros(prixDe(p, 'menu'))}` : ''}</span>
+      </span>
+      <button class="btn-ajouter" type="button" data-plat="${p.id}" aria-label="Ajouter au panier : ${echap(p.nom)}">${icone('plus')}<span>Ajouter</span></button>
+    </li>`).join('');
   }
 
   function rendreHoraires() {
