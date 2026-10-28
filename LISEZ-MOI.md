@@ -27,7 +27,7 @@ La feuille de style part du téléphone, puis ajoute la tablette (768 px) et l'o
 ## Modifier le site
 
 - **Un prix, un plat, une description** : `js/donnees.js`, tableau `produits`.
-- **Le grand diaporama photo du haut** : `diaporama` en bas de `js/donnees.js` (plat, titre, texte, prix seul ou menu, `fond` = nom de la photo). Les photos sont dans `assets/img/hero/` : pour chaque nom, `-1100`, `-1600`, `-2000` (format 16:9, ordinateur) et `-m480`, `-m800` (format 4:5, téléphone), en WebP. Ce sont des photos d'illustration : les remplacer dès que possible par de vraies photos des plats du restaurant, en gardant les mêmes noms.
+- **Le grand bandeau rouge (diaporama)** : `diaporama` en bas de `js/donnees.js` (plat, titre, texte, prix seul ou menu).
 - **Les horaires** : `reglages.horaires`. Plusieurs créneaux par jour sont possibles. Le statut « Ouvert / Fermé » et les heures de retrait se calculent seuls, à l'heure de Paris.
   Les horaires sont aussi écrits en dur dans les données Google en haut de `index.html` : pense à les changer aussi.
 - **Afficher les prix comptoir** : `reglages.diviseurPrix: 1.3` (voir le point 1 ci-dessous).
