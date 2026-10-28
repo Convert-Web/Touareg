@@ -81,8 +81,9 @@
     recomposerEmails();
     document.querySelectorAll('[data-annee]').forEach(el => { el.textContent = new Date().getFullYear(); });
     const c = lire();
-    if (!c) afficherBanniere();
-    else if (c.choix === 'oui') chargerMesure();
+    // Pas de mesure configurée = aucun traceur = rien à demander au visiteur
+    if (!c && R.analytics && R.analytics.goatcounter) afficherBanniere();
+    else if (c && c.choix === 'oui') chargerMesure();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
   else demarrer();

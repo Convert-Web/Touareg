@@ -194,7 +194,7 @@ button { cursor: pointer; }
 .hero-deco i:nth-child(2) { width: 220px; height: 220px; left: -120px; bottom: -120px; border-width: 34px; }
 .hero-deco i:nth-child(3) { display: none; }
 .hero > .wrap { position: relative; z-index: 1; }
-.diapos { position: relative; display: grid; min-height: 420px; }
+.diapos { position: relative; display: grid; min-height: 395px; }
 @media (min-width: 768px) { .diapos { min-height: 440px; } }
 .diapo {
   grid-area: 1 / 1; display: grid; grid-template-columns: 1fr; align-items: center; gap: 4px;
@@ -778,3 +778,52 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
 .pied-simple { background: var(--noir); color: rgba(255,255,255,.8); padding-block: 24px; font-size: .86rem; }
 .pied-simple .wrap { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; }
 .pied-simple a { color: var(--blanc); display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ---------- Conversion : repères de confiance, étapes, suggestions ---------- */
+.rassure { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .8rem; font-weight: 600; color: var(--blanc); }
+.rassure li { display: inline-flex; align-items: center; gap: 6px; }
+.rassure svg { width: 16px; height: 16px; color: var(--jaune); flex: none; }
+@media (min-width: 768px) { .rassure { font-size: .88rem; gap: 10px 22px; } }
+
+.etapes { background: var(--blanc); border-top: 1px solid var(--gris-clair); padding-block: 18px 20px; }
+.etapes-titre { margin: 0 0 12px; text-align: center; font-weight: 800; font-size: .95rem; text-transform: uppercase; letter-spacing: .04em; }
+.etapes-liste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.etapes-liste li { display: grid; justify-items: center; gap: 6px; text-align: center; font-size: .8rem; line-height: 1.3; color: var(--gris); }
+.etapes-liste b { display: block; color: var(--noir); font-size: .9rem; }
+.etape-num { width: 34px; height: 34px; border-radius: 50%; background: var(--rouge); color: var(--blanc); font-weight: 900; display: grid; place-items: center; font-size: .95rem; }
+@media (min-width: 768px) {
+  .etapes { padding-block: 26px; }
+  .etapes .wrap { display: flex; align-items: center; justify-content: center; gap: 40px; }
+  .etapes-titre { margin: 0; font-size: 1rem; }
+  .etapes-liste { display: flex; gap: 32px; }
+  .etapes-liste li { display: flex; align-items: center; gap: 10px; text-align: left; font-size: .9rem; }
+  .etapes-liste b { display: inline; }
+}
+
+/* Sur mobile, un seul bouton par plat : « Ajouter » en pleine largeur */
+@media (max-width: 767px) {
+  .btn-oeil { display: none; }
+  .btn-ajouter { max-width: none; }
+}
+
+/* Notification avec action */
+.toast.avec-action { pointer-events: auto; padding: 8px 8px 8px 16px; }
+.toast-action { border: 0; border-radius: 999px; background: var(--jaune); color: var(--noir); font-weight: 800; font-size: .82rem; min-height: 40px; padding: 0 14px; white-space: nowrap; }
+
+/* Suggestions dans le panier */
+.suggestions { margin-top: 14px; background: var(--blanc); border-radius: 16px; padding: 14px; }
+.suggestions h3 { margin: 0 0 10px; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--rouge); }
+.suggestions-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.suggestion {
+  display: grid; justify-items: center; gap: 4px; padding: 10px 6px; border: 1.5px dashed var(--trait); border-radius: 12px; background: var(--creme);
+  font-size: .78rem; line-height: 1.2; text-align: center; min-height: 44px;
+}
+.suggestion img { width: 48px; height: 40px; object-fit: contain; }
+.suggestion b { color: var(--rouge-fonce); font-size: .8rem; }
+.suggestion:active { transform: scale(.96); }
+@media (hover: hover) { .suggestion:hover { border-color: var(--rouge); border-style: solid; } }
+@media (max-width: 1023px) {
+  .toast.avec-action { left: var(--gauche); right: var(--droite); max-width: none; transform: translateY(20px); justify-content: space-between; border-radius: 16px; }
+  .toast.avec-action.visible { transform: none; }
+  .toast.avec-action span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}

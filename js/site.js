@@ -141,7 +141,7 @@
       });
       $$('[data-point]').forEach((b, k) => b.setAttribute('aria-selected', String(k === courant)));
     };
-    const demarrer = () => { if (mouvementReduit || diapos.length < 2) return; arreter(); minuteur = setInterval(() => aller(courant + 1), 6000); };
+    const demarrer = () => { if (mouvementReduit || diapos.length < 2) return; arreter(); minuteur = setInterval(() => aller(courant + 1), 7000); };
     const arreter = () => { clearInterval(minuteur); minuteur = null; };
     $('[data-points]').addEventListener('click', e => { const b = e.target.closest('[data-point]'); if (b) { aller(Number(b.dataset.point)); demarrer(); } });
     const hero = $('.hero');
@@ -261,7 +261,7 @@
       if (d) {
         const p = parId[d.dataset.ajoutDirect];
         ajouterAuPanier(p.id, { formule: 'seul', boisson: '', base: '', viandes: '', note: '', qte: 1 });
-        toast(`${p.nom} ajouté au panier`);
+        toast(`${p.nom} ajouté au panier`, { panier: true });
       }
     });
     $('[data-pied-carte]').innerHTML = T.categories.slice(0, 7).map(c => `<li><a href="#carte" data-aller-rayon="${c.id}">${c.nom}</a></li>`).join('');
@@ -317,7 +317,7 @@
           <legend>Formule</legend>
           <div class="choix-formule">
             <label class="option"><input type="radio" name="formule" value="seul"${enMenu ? '' : ' checked'}><span><b>Seul</b><small>Le plat uniquement</small><span class="prix">${euros(prixDe(p))}</span></span></label>
-            <label class="option"><input type="radio" name="formule" value="menu"${enMenu ? ' checked' : ''}><span><b>En menu</b><small>+ frites + boisson</small><span class="prix">${euros(prixDe(p, 'menu'))}</span></span></label>
+            <label class="option"><input type="radio" name="formule" value="menu"${enMenu ? ' checked' : ''}><span><b>En menu</b><small>+ ${euros(arrondi(prixDe(p, 'menu') - prixDe(p)))} : frites + boisson</small><span class="prix">${euros(prixDe(p, 'menu'))}</span></span></label>
           </div>
         </fieldset>
         <fieldset class="champ" data-bloc-boisson hidden>
@@ -391,7 +391,7 @@
     const o = lireFiche();
     ajouterAuPanier(ficheProduit.id, o);
     fermerDialog(fiche);
-    toast(`${o.qte > 1 ? o.qte + ' × ' : ''}${ficheProduit.nom}${o.formule === 'menu' ? ' en menu' : ''} ajouté`);
+    toast(`${o.qte > 1 ? o.qte + ' × ' : ''}${ficheProduit.nom}${o.formule === 'menu' ? ' en menu' : ''} ajouté`, { panier: true });
   });
 
   /* ---------- Fenêtres ---------- */
@@ -493,6 +493,7 @@
           </div>
         </li>`;
       }).join('')}</ul>
+      ${suggestions()}
       <form class="commande" data-commande novalidate>
         <h3>Retrait au comptoir</h3>
         ${options.differe ? `<p class="alerte">${s.ouvert ? 'Il est trop tard pour un retrait ce soir.' : 'Nous sommes fermés pour le moment.'} Votre commande sera préparée pour l’heure choisie.</p>` : ''}
@@ -508,7 +509,21 @@
     pied.innerHTML = `
       <div class="total"><span>Total</span><strong class="prix">${euros(totalPanier())}</strong></div>
       <button class="btn btn-whatsapp btn-plein" type="button" data-envoyer>${icone('whatsapp')}Envoyer ma commande</button>
-      <p class="petit-texte">Paiement au comptoir : espèces, carte ou titres-restaurant.<br>Livraison ? <a href="${R.uberEats}" target="_blank" rel="noopener">Commandez sur Uber Eats</a></p>`;
+      <p class="petit-texte">WhatsApp s’ouvre avec votre commande déjà écrite : il suffit d’appuyer sur <b>Envoyer</b>. Vous payez au comptoir.</p>
+      <p class="petit-texte">Pas de WhatsApp ? Appelez le <a href="tel:+33673827821">${R.telephone}</a></p>`;
+  }
+
+  /* Suggestions dans le panier : boisson, dessert, accompagnement, ajoutés en un clic */
+  const SUGGESTIONS = ['coca', 'tiramisu', 'bucket-frites', 'tarte-daim', 'camembert', 'lipton'];
+  function suggestions() {
+    const dans = new Set(panier.map(l => l.id));
+    const liste = SUGGESTIONS.filter(id => parId[id] && !dans.has(id)).slice(0, 3);
+    if (!liste.length) return '';
+    return `<div class="suggestions"><h3>Un petit plus ?</h3><div class="suggestions-liste">${liste.map(id => {
+      const p = parId[id];
+      return `<button class="suggestion" type="button" data-suggestion="${id}" aria-label="Ajouter ${echap(p.nom)}, ${euros(prixDe(p))}">
+        ${detour(detourPlat(p), { alt: '', sizes: '48px' })}<span>${echap(p.nom)}</span><b class="prix">+ ${euros(prixDe(p))}</b></button>`;
+    }).join('')}</div></div>`;
   }
 
   function messageWhatsApp(f) {
@@ -539,6 +554,8 @@
       if (l.qte <= 0) panier.splice(i, 1);
       return sauver();
     }
+    const sug = e.target.closest('[data-suggestion]');
+    if (sug) { const p = parId[sug.dataset.suggestion]; ajouterAuPanier(p.id, { formule: 'seul', boisson: '', base: '', viandes: '', note: '', qte: 1 }); return toast(`${p.nom} ajouté`); }
     const s = e.target.closest('[data-ligne-suppr]');
     if (s) { panier.splice(Number(s.dataset.ligneSuppr), 1); return sauver(); }
     if (e.target.closest('[data-fermer-panier]')) return fermerDialog(panierDlg);
@@ -582,12 +599,13 @@
 
   /* ---------- Toast ---------- */
   let minuteurToast;
-  function toast(txt) {
+  function toast(txt, { panier = false } = {}) {
     const t = $('[data-toast]');
-    t.innerHTML = `${icone('check')}<span>${echap(txt)}</span>`;
+    t.innerHTML = `${icone('check')}<span>${echap(txt)}</span>${panier ? '<button class="toast-action" type="button" data-ouvrir-panier>Voir le panier</button>' : ''}`;
+    t.classList.toggle('avec-action', panier);
     t.classList.add('visible');
     clearTimeout(minuteurToast);
-    minuteurToast = setTimeout(() => t.classList.remove('visible'), 2400);
+    minuteurToast = setTimeout(() => t.classList.remove('visible'), panier ? 4500 : 2400);
   }
 
   /* ---------- Barre de navigation basse : rubrique active ---------- */
