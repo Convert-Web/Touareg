@@ -195,7 +195,7 @@ button { cursor: pointer; }
 
 /* ---------- Hero rouge : soleil du désert, rayons, dunes ---------- */
 .hero {
-  --soleil-x: 50%; --soleil-y: 26%;
+  --soleil-x: 50%; --soleil-y: calc(var(--entete) + var(--haut-securite) + 100px); /* en px : ne bouge pas si la hauteur du bandeau change */
   position: relative; overflow: hidden; color: var(--blanc); isolation: isolate;
   background:
     radial-gradient(60% 45% at var(--soleil-x) var(--soleil-y), rgba(255,120,60,.55) 0%, rgba(255,80,40,0) 70%),
@@ -305,7 +305,7 @@ button { cursor: pointer; }
 @media (hover: hover) { .hero-pause:hover { background: rgba(255,255,255,.14); opacity: 1; } }
 
 @media (min-width: 768px) {
-  .hero { --soleil-x: 72%; --soleil-y: 48%; padding: calc(var(--entete) + var(--haut-securite) + 24px) 0 96px; }
+  .hero { --soleil-x: 72%; --soleil-y: calc(var(--entete) + var(--haut-securite) + 249px); padding: calc(var(--entete) + var(--haut-securite) + 24px) 0 96px; }
   .hero-dunes { height: 80px; }
   .diapos { min-height: 450px; }
   .diapo { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 24px; }
@@ -960,7 +960,7 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
 .hero .rassure { gap: 8px; margin-top: 16px; }
 .hero .rassure li { padding: 6px 12px 6px 10px; border-radius: 999px; background: rgba(0,0,0,.16); border: 1px solid rgba(255,255,255,.16); }
 .hero .rassure svg { width: 15px; height: 15px; }
-@media (max-width: 419px) { .hero .rassure li:nth-child(3) { display: none; } }
+@media (max-width: 599px) { .hero .rassure li:nth-child(3) { display: none; } }
 @media (max-width: 370px) { .hero .rassure li { font-size: .75rem; padding: 5px 10px 5px 8px; } }
 
 /* ---------- Ventes : passer en menu, dernière commande, économie, FAQ ---------- */
@@ -1124,3 +1124,10 @@ body { padding-bottom: calc(var(--nav-basse) + var(--nav-marge) + var(--bas-secu
   .entete.plein .entete-wrap { background: var(--rouge); }
   .toast { background: var(--noir); }
 }
+/* Hauteur du bandeau réservée : rien ne bouge pendant le chargement des polices */
+.hero { min-height: calc(var(--entete) + var(--haut-securite) + 642px); }
+@media (min-width: 768px) { .hero { min-height: calc(var(--entete) + var(--haut-securite) + 690px); } }
+.rayon span { min-height: 2.4em; } /* 2 lignes réservées : la barre ne change pas de hauteur au chargement des polices */
+/* Place réservée pour les rayons (remplis par le script) : pas de saut à l'affichage */
+.rayons-liste { min-height: 101px; }
+@media (min-width: 768px) { .rayons-liste { min-height: 113px; } }
