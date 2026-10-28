@@ -107,29 +107,47 @@
     const [e, c] = euros(n).replace(/\s?€/, '').split(',');
     return `${e}<sup>,${c} €</sup>`;
   }
+  /* Titre avec la fin mise en valeur en jaune (champ « accent », sinon le dernier mot) */
+  function titreDiapo(d) {
+    const accent = d.accent && d.titre.endsWith(d.accent) ? d.accent : d.titre.split(' ').pop();
+    const debut = d.titre.slice(0, d.titre.length - accent.length).trim();
+    return `${debut ? echap(debut) + ' ' : ''}<span class="accent">${echap(accent)}</span>`;
+  }
+  /* Grand bandeau rouge : la barre jaune du point actif sert de minuteur (fin de l'animation = plat suivant) */
   function rendreDiapos() {
     const diapos = T.diaporama.filter(d => parId[d.id]);
     $('[data-diapos]').innerHTML = diapos.map((d, i) => {
       const p = parId[d.id];
       return `<div class="diapo${i === 0 ? ' active' : ''}" id="diapo-${i}" role="tabpanel" aria-roledescription="diapositive" aria-label="${i + 1} sur ${diapos.length}"${i ? ' aria-hidden="true"' : ''}>
         <div class="diapo-texte">
-          <span class="diapo-sur">${echap(d.surtitre)}</span>
-          <h2>${echap(d.titre)}</h2>
+          <span class="diapo-sur">${icone('etincelle')}${echap(d.surtitre)}</span>
+          <h2>${titreDiapo(d)}</h2>
           <p>${echap(d.texte)}</p>
-          <button class="btn btn-contour" type="button" data-plat="${p.id}" data-formule="${d.formule}"${i ? ' tabindex="-1"' : ''}>Commander</button>
+          <button class="btn btn-faim btn-hero" type="button" data-plat="${p.id}" data-formule="${d.formule}"${i ? ' tabindex="-1"' : ''}>Commander${icone('droite')}</button>
         </div>
         <div class="diapo-visuel">
+          <span class="soleil" aria-hidden="true"></span>
           ${detour(detourPlat(p), { alt: p.nom, lazy: i > 0, sizes: '(min-width: 768px) 560px, 300px' })}
           <div class="badge-prix"><small>${d.formule === 'menu' ? 'Le menu' : 'Seulement'}</small><strong>${prixBadge(prixDe(p, d.formule))}</strong></div>
-          <svg class="fleche-deco f1" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
-          <svg class="fleche-deco f2" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
+          <svg class="etincelle e1" aria-hidden="true"><use href="#i-etincelle"/></svg>
+          <svg class="etincelle e2" aria-hidden="true"><use href="#i-etincelle"/></svg>
+          <svg class="etincelle e3" aria-hidden="true"><use href="#i-etincelle"/></svg>
         </div>
       </div>`;
     }).join('');
     $('[data-points]').innerHTML = diapos.map((d, i) =>
       `<button type="button" role="tab" aria-controls="diapo-${i}" aria-selected="${i === 0}" aria-label="${echap(d.titre)}" data-point="${i}"></button>`).join('');
 
-    let courant = 0, minuteur = null;
+    const hero = $('.hero');
+    const btnPause = $('[data-pause]');
+    let courant = 0;
+    let pauseVoulue = mouvementReduit; // choix du visiteur (ou réglage « réduire les animations »)
+    let survol = false, focusClavier = false;
+    const majLecture = () => {
+      hero.classList.toggle('en-pause', pauseVoulue || survol || focusClavier);
+      btnPause.setAttribute('aria-label', pauseVoulue ? 'Reprendre le défilement' : 'Mettre en pause le défilement');
+      btnPause.innerHTML = icone(pauseVoulue ? 'lecture' : 'pause');
+    };
     const aller = i => {
       courant = (i + diapos.length) % diapos.length;
       $$('.diapo').forEach((el, k) => {
@@ -140,24 +158,26 @@
       });
       $$('[data-point]').forEach((b, k) => b.setAttribute('aria-selected', String(k === courant)));
     };
-    const demarrer = () => { if (mouvementReduit || diapos.length < 2) return; arreter(); minuteur = setInterval(() => aller(courant + 1), 7000); };
-    const arreter = () => { clearInterval(minuteur); minuteur = null; };
-    $('[data-points]').addEventListener('click', e => { const b = e.target.closest('[data-point]'); if (b) { aller(Number(b.dataset.point)); demarrer(); } });
-    const hero = $('.hero');
-    hero.addEventListener('mouseenter', arreter);
-    hero.addEventListener('mouseleave', demarrer);
-    hero.addEventListener('focusin', arreter);
+    if (diapos.length < 2) { $('.hero-commandes').hidden = true; return; }
+    if (mouvementReduit) btnPause.hidden = true;
+    $('[data-points]').addEventListener('animationend', e => { if (e.animationName === 'minuteur') aller(courant + 1); });
+    $('[data-points]').addEventListener('click', e => { const b = e.target.closest('[data-point]'); if (b) aller(Number(b.dataset.point)); });
+    btnPause.addEventListener('click', () => { pauseVoulue = !pauseVoulue; majLecture(); });
+    hero.addEventListener('mouseenter', () => { survol = true; majLecture(); });
+    hero.addEventListener('mouseleave', () => { survol = false; majLecture(); });
+    hero.addEventListener('focusin', e => { if (e.target.matches(':focus-visible')) { focusClavier = true; majLecture(); } });
+    hero.addEventListener('focusout', e => { if (!hero.contains(e.relatedTarget)) { focusClavier = false; majLecture(); } });
     // glisser du doigt
     let x0 = null;
     hero.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
     hero.addEventListener('touchend', e => {
       if (x0 == null) return;
       const dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 50) { aller(courant + (dx < 0 ? 1 : -1)); demarrer(); }
+      if (Math.abs(dx) > 50) aller(courant + (dx < 0 ? 1 : -1));
     });
-    document.addEventListener('visibilitychange', () => (document.hidden ? arreter() : demarrer()));
-    demarrer();
+    majLecture();
   }
+
 
   /* ---------- Rayons, filtres et grille de plats ---------- */
   const PAR_PAGE = 12;

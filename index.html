@@ -36,7 +36,7 @@
 <link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/cut/kebab-420.webp" imagesrcset="assets/img/cut/kebab-160.webp 160w, assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-600.webp 600w, assets/img/cut/kebab-840.webp 840w" imagesizes="(min-width: 768px) 560px, 300px" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/site.css?v=20261028g">
+<link rel="stylesheet" href="assets/css/site.css?v=20261028h">
 
 <script type="application/ld+json">
 {
@@ -94,6 +94,9 @@
   <symbol id="i-gauche" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-droite" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-embleme" viewBox="0 0 32 44"><circle cx="16" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="3.6"/><path d="M3 22.5h26" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path fill="currentColor" fill-rule="evenodd" d="M16 16.5 25.5 30 16 43.5 6.5 30Zm0 7.5-4.2 6 4.2 6 4.2-6Z"/></symbol>
+  <symbol id="i-etincelle" viewBox="0 0 24 24"><path d="M12 0c.9 6.4 4.6 10.6 12 12-7.4 1.4-11.1 5.6-12 12-.9-6.4-4.6-10.6-12-12C7.4 10.6 11.1 6.4 12 0z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></symbol>
   <symbol id="i-fleche-courbe" viewBox="0 0 80 60"><path d="M6 50C14 22 36 10 64 12" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M52 2l16 10-14 13" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -127,16 +130,23 @@
   <!-- HERO ROUGE -->
   <section class="hero" aria-roledescription="carrousel" aria-label="Nos spécialités">
     <h1 class="invisible">Le Touareg, kebab, tacos, burgers et pizzas à Montereau-Fault-Yonne</h1>
-    <div class="hero-deco" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="hero-deco" aria-hidden="true"><span class="hero-rayons"></span><span class="hero-grain"></span></div>
     <div class="wrap">
       <div class="diapos" data-diapos></div>
-      <div class="points" role="tablist" aria-label="Choisir une spécialité" data-points></div>
+      <div class="hero-commandes">
+        <div class="points" role="tablist" aria-label="Choisir une spécialité" data-points></div>
+        <button class="hero-pause" type="button" data-pause aria-label="Mettre en pause le défilement"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
+      </div>
       <ul class="rassure">
         <li><svg aria-hidden="true"><use href="#i-etoile"/></svg>4,2/5 · 190+ avis</li>
         <li><svg aria-hidden="true"><use href="#i-sac"/></svg>Paiement au comptoir</li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Sans compte ni frais</li>
       </ul>
     </div>
+    <svg class="hero-dunes" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path class="dune-1" d="M0 70C180 30 360 20 560 48s380 60 560 30 260-50 320-46V120H0z"/>
+      <path class="dune-2" d="M0 96c240-34 470-40 720-18s500 34 720 4V120H0z"/>
+    </svg>
   </section>
 
   <!-- BARRE DES RAYONS -->
@@ -368,8 +378,8 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<script src="js/donnees.js?v=20261028g"></script>
-<script src="js/site.js?v=20261028g"></script>
-<script src="js/consentement.js?v=20261028g" defer></script>
+<script src="js/donnees.js?v=20261028h"></script>
+<script src="js/site.js?v=20261028h"></script>
+<script src="js/consentement.js?v=20261028h" defer></script>
 </body>
 </html>
