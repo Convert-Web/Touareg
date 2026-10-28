@@ -125,10 +125,16 @@ button { cursor: pointer; }
 .entete.plein { background: var(--rouge); box-shadow: 0 10px 30px -18px rgba(0,0,0,.6); }
 .entete-wrap { height: var(--entete); display: flex; align-items: center; gap: 12px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--blanc); flex: none; }
-.logo-nom {
-  font-weight: 900; font-size: 1.3rem; letter-spacing: -.02em; text-transform: uppercase; font-style: italic; line-height: 1;
-  background: linear-gradient(90deg, #000 0%, #fff 100%); -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent; padding-right: .12em;
+/* Nom en typographie seule : « Le » manuscrit jaune + « TOUAREG » blanc souligné d'un trait jaune */
+.logo-nom { display: inline-flex; align-items: flex-end; gap: .16em; font-size: 1.3rem; line-height: 1; color: var(--blanc); white-space: nowrap; }
+.logo-le {
+  font-family: var(--f-titre); font-weight: 400; font-size: .74em; color: var(--jaune);
+  transform: rotate(-10deg) translateY(-.32em); letter-spacing: .01em;
+}
+.logo-mot { position: relative; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.02em; padding-right: .06em; }
+.logo-mot::after {
+  content: ""; position: absolute; left: .08em; right: .12em; bottom: -.2em; height: .13em;
+  background: var(--jaune); border-radius: 2px; transform: skewX(-24deg);
 }
 .nav { display: none; }
 .entete-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
