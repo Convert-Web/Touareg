@@ -125,13 +125,12 @@ button { cursor: pointer; }
 .entete.plein { background: var(--rouge); box-shadow: 0 10px 30px -18px rgba(0,0,0,.6); }
 .entete-wrap { height: var(--entete); display: flex; align-items: center; gap: 12px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--blanc); flex: none; }
-/* Nom façon enseigne du restaurant : lettres rouges bordées de blanc sur bandeau sombre */
+/* Nom façon enseigne du restaurant : lettres rouges bordées de blanc, avec ombre */
 @font-face { font-family: 'Archivo Black'; src: url('../fonts/archivo-black.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 .logo-nom {
   display: inline-flex; align-items: baseline; gap: .38em; white-space: nowrap; line-height: 1;
   font-family: 'Archivo Black', var(--f); font-weight: 400; font-size: 1.22rem;
-  background: var(--noir); border-radius: 8px; padding: .3em .62em .4em;
-  box-shadow: inset 0 -3px 0 var(--rouge-vif), 0 6px 14px -6px rgba(0,0,0,.6);
+  padding: .1em .1em .2em 0;
 }
 .logo-le { color: var(--blanc); font-size: .5em; letter-spacing: .06em; }
 .logo-mot {
