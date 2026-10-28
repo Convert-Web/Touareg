@@ -32,10 +32,12 @@
   const DETOUR = { sandwich: 'kebab', hero: 'kebab', 'burger-dark': 'burger-double', margherita: 'pizza' };
   const detourDe = cle => DETOUR[cle] || cle;
   const detourPlat = p => detourDe(p.photo || catParId[p.cat].photo);
-  function detour(cle, { grand = false, alt = '', lazy = true, cls = '', sizes } = {}) {
+  /* Dimensions (version 420 px) de chaque plat détouré, pour réserver la place avant le chargement */
+  const DIMS = {"americain":[420,119],"assiette":[420,171],"boisson":[352,420],"bucket":[420,311],"burger-2":[420,233],"burger":[420,347],"burger-double":[320,420],"cheese":[283,235],"croque":[420,287],"dessert":[420,236],"frites":[414,420],"kebab":[420,225],"panini":[420,244],"pide":[420,420],"pizza-2":[345,420],"pizza":[420,252],"salade":[420,388],"tacos":[420,366],"texmex":[420,360]};
+  function detour(cle, { alt = '', lazy = true, cls = '', sizes = '(min-width: 768px) 240px, 45vw' } = {}) {
     const c = detourDe(cle), base = `assets/img/cut/${c}`;
-    const taille = sizes || (grand ? '(min-width: 768px) 560px, 90vw' : '(min-width: 768px) 240px, 45vw');
-    return `<img class="${cls}" src="${base}-${grand ? 840 : 420}.webp" srcset="${base}-420.webp 420w, ${base}-840.webp 840w" sizes="${taille}" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
+    const [w, h] = DIMS[c] || [420, 420];
+    return `<img class="${cls}" src="${base}-420.webp" srcset="${base}-160.webp 160w, ${base}-420.webp 420w, ${base}-600.webp 600w, ${base}-840.webp 840w" sizes="${sizes}" width="${w}" height="${h}" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
   }
 
   const BADGES = { n1: ['badge-n1', 'N°1 des ventes'], populaire: ['badge-populaire', 'Populaire'], maison: ['badge-maison', 'Signature'], vege: ['badge-vege', 'Végétarien'] };
@@ -118,7 +120,7 @@
           <button class="btn btn-contour" type="button" data-plat="${p.id}" data-formule="${d.formule}"${i ? ' tabindex="-1"' : ''}>Commander</button>
         </div>
         <div class="diapo-visuel">
-          ${detour(detourPlat(p), { grand: true, alt: p.nom, lazy: i > 0 })}
+          ${detour(detourPlat(p), { alt: p.nom, lazy: i > 0, sizes: '(min-width: 768px) 560px, 300px' })}
           <div class="badge-prix"><small>${d.formule === 'menu' ? 'Le menu' : 'Seulement'}</small><strong>${prixBadge(prixDe(p, d.formule))}</strong></div>
           <svg class="fleche-deco f1" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
           <svg class="fleche-deco f2" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
@@ -165,7 +167,7 @@
 
   function rendreRayons() {
     $('[data-rayons]').innerHTML = T.categories.map(c =>
-      `<button class="rayon" type="button" role="tab" data-rayon="${c.id}" aria-selected="false">${detour(c.photo, { alt: '' })}<span>${c.nom}</span></button>`).join('');
+      `<button class="rayon" type="button" role="tab" data-rayon="${c.id}" aria-selected="false">${detour(c.photo, { alt: '', sizes: '(min-width: 768px) 74px, 60px' })}<span>${c.nom}</span></button>`).join('');
     $$('[data-defiler]').forEach(b => b.addEventListener('click', () => {
       const l = $('[data-rayons]'); l.scrollBy({ left: Number(b.dataset.defiler) * l.clientWidth * .7, behavior: 'smooth' });
     }));
@@ -196,7 +198,7 @@
       : badges({ tags: (p.tags || []).slice(0, 1) });
     return `<article class="plat" data-plat-ligne="${p.id}">
       <button class="coeur" type="button" data-favori="${p.id}" aria-pressed="${fav}" aria-label="${fav ? 'Retirer des favoris' : 'Ajouter aux favoris'} : ${echap(p.nom)}">${icone('coeur')}</button>
-      <button class="plat-image" type="button" data-plat="${p.id}" tabindex="-1" aria-hidden="true">${detour(detourPlat(p), { alt: '' })}</button>
+      <button class="plat-image" type="button" data-plat="${p.id}" tabindex="-1" aria-hidden="true">${detour(detourPlat(p), { alt: p.nom, sizes: '(min-width: 1100px) 230px, (min-width: 768px) 210px, 150px' })}</button>
       <div class="plat-note">${note}</div>
       <h3>${echap(p.nom)}</h3>
       <p>${echap(p.desc || catParId[p.cat].accroche)}</p>
@@ -302,7 +304,7 @@
     const enMenu = !!p.menu && formule === 'menu';
     ficheForm.innerHTML = `
       <div class="fiche-visuel">
-        ${detour(detourPlat(p), { grand: true, alt: p.nom, lazy: false })}
+        ${detour(detourPlat(p), { alt: p.nom, lazy: false, sizes: '(min-width: 640px) 390px, 280px' })}
         <button class="rond" type="button" data-fermer-fiche aria-label="Fermer">${icone('fermer')}</button>
       </div>
       <div class="fiche-corps">
@@ -322,8 +324,8 @@
           <legend>Boisson du menu</legend>
           <div class="pastilles-choix">${T.boissonsMenu.map((b, i) => `<label class="option"><input type="radio" name="boisson" value="${echap(b)}"${i === 0 ? ' checked' : ''}><span>${echap(b)}</span></label>`).join('')}</div>
         </fieldset>` : ''}
-        ${p.base ? `<div class="champ"><label for="f-base">Base de la pizza <small>(au choix)</small></label><input class="saisie" id="f-base" name="base" placeholder="Ex. tomate ou crème fraîche" maxlength="60"></div>` : ''}
-        ${p.choix ? `<div class="champ"><label for="f-viandes">${p.choix > 1 ? `Vos ${p.choix} viandes` : 'Votre viande'} <small>(au choix)</small></label><input class="saisie" id="f-viandes" name="viandes" placeholder="${p.choix > 1 ? 'Ex. kebab et poulet' : 'Ex. kebab'}" maxlength="90"></div>` : ''}
+        ${p.base ? `<div class="champ"><label for="f-base">Base de la pizza <small>(obligatoire)</small></label><input class="saisie" id="f-base" name="base" placeholder="Ex. tomate ou crème fraîche" maxlength="60" required aria-describedby="err-base"><p class="erreur" id="err-base" hidden>Indiquez la base de votre pizza.</p></div>` : ''}
+        ${p.choix ? `<div class="champ"><label for="f-viandes">${p.choix > 1 ? `Vos ${p.choix} viandes` : 'Votre viande'} <small>(obligatoire)</small></label><input class="saisie" id="f-viandes" name="viandes" placeholder="${p.choix > 1 ? 'Ex. kebab et poulet' : 'Ex. kebab'}" maxlength="90" required aria-describedby="err-viandes"><p class="erreur" id="err-viandes" hidden>${p.choix > 1 ? `Indiquez vos ${p.choix} viandes.` : 'Indiquez votre viande.'}</p></div>` : ''}
         <div class="champ"><label for="f-note">Une précision ? <small>(sauce, sans oignons…)</small></label><textarea class="zone" id="f-note" name="note" maxlength="160" placeholder="Ex. sauce blanche, sans tomates"></textarea></div>
       </div>
       <div class="fiche-pied">
@@ -368,8 +370,24 @@
     }
     if (e.target.closest('[data-fermer-fiche]')) fermerDialog(fiche);
   });
+  /* Affiche ou efface l'erreur d'un champ ; renvoie true si le champ est valide */
+  function verifierChamp(champ, valide) {
+    if (!champ) return true;
+    const msg = document.getElementById(champ.getAttribute('aria-describedby'));
+    champ.toggleAttribute('aria-invalid', !valide);
+    if (!valide) champ.setAttribute('aria-invalid', 'true');
+    if (msg) msg.hidden = valide;
+    return valide;
+  }
+  ficheForm.addEventListener('input', e => {
+    if (e.target.matches('[required]') && e.target.value.trim()) verifierChamp(e.target, true);
+  });
+
   ficheForm.addEventListener('submit', e => {
     e.preventDefault();
+    const obligatoires = $$('[required]', ficheForm);
+    const invalides = obligatoires.filter(c => !verifierChamp(c, c.value.trim().length > 0));
+    if (invalides.length) { invalides[0].focus(); return; }
     const o = lireFiche();
     ajouterAuPanier(ficheProduit.id, o);
     fermerDialog(fiche);
@@ -398,6 +416,7 @@
   /* ---------- Panier ---------- */
   let panier = lire(CLE_PANIER, []).filter(l => parId[l.id]);
   let commandeEnvoyee = false;
+  let panierOuvertA = Date.now();
 
   const cleLigne = (id, o) => [id, o.formule, o.boisson, o.base, o.viandes, o.note].join('|');
   function ajouterAuPanier(id, o) {
@@ -450,7 +469,7 @@
       return;
     }
     if (!panier.length) {
-      corps.innerHTML = `<div class="panier-vide"><img src="assets/img/cut/burger-420.webp" alt=""><strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
+      corps.innerHTML = `<div class="panier-vide"><img src="assets/img/cut/burger-420.webp" width="420" height="347" alt="" loading="lazy"><strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
       pied.innerHTML = `<p class="petit-texte">Envie d’être livré ? <a href="${R.uberEats}" target="_blank" rel="noopener">Commandez sur Uber Eats</a></p>`;
       return;
     }
@@ -461,7 +480,7 @@
       <ul class="lignes">${panier.map((l, i) => {
         const p = parId[l.id];
         return `<li class="ligne">
-          <span class="ligne-img">${detour(detourPlat(p), { alt: '' })}</span>
+          <span class="ligne-img">${detour(detourPlat(p), { alt: '', sizes: '62px' })}</span>
           <div><div class="ligne-nom">${echap(p.nom)}</div>${detailLigne(l).map(t => `<div class="ligne-detail">${echap(t)}</div>`).join('')}</div>
           <div class="ligne-prix prix">${euros(prixLigne(l))}</div>
           <div class="ligne-actions">
@@ -477,12 +496,15 @@
       <form class="commande" data-commande novalidate>
         <h3>Retrait au comptoir</h3>
         ${options.differe ? `<p class="alerte">${s.ouvert ? 'Il est trop tard pour un retrait ce soir.' : 'Nous sommes fermés pour le moment.'} Votre commande sera préparée pour l’heure choisie.</p>` : ''}
-        <div class="champ"><label for="c-nom">Votre prénom</label><input class="saisie" id="c-nom" name="nom" autocomplete="given-name" required maxlength="40" value="${echap(brouillon.nom)}" placeholder="Pour vous appeler au comptoir"></div>
+        <div class="champ"><label for="c-nom">Votre prénom <small>(obligatoire)</small></label><input class="saisie" id="c-nom" name="nom" autocomplete="given-name" required minlength="2" maxlength="40" value="${echap(brouillon.nom)}" placeholder="Pour vous appeler au comptoir" aria-describedby="err-nom"><p class="erreur" id="err-nom" hidden>Indiquez votre prénom (2 lettres minimum).</p></div>
+        <div class="piege" aria-hidden="true"><label for="c-site">Ne pas remplir</label><input id="c-site" name="site" tabindex="-1" autocomplete="off"></div>
         <div class="champ"><label for="c-retrait">Heure de retrait</label>
           <select class="saisie" id="c-retrait" name="retrait">${options.map(o => `<option${o === retraitChoisi ? ' selected' : ''}>${echap(o)}</option>`).join('')}</select>
         </div>
         <div class="champ"><label for="c-remarque">Un mot pour la cuisine ? <small>(facultatif)</small></label><input class="saisie" id="c-remarque" name="remarque" maxlength="140" value="${echap(brouillon.remarque)}" placeholder="Ex. couverts, sauces à part"></div>
+        <p class="erreur" id="err-envoi" role="alert" hidden></p>
       </form>`;
+    panierOuvertA = Date.now();
     pied.innerHTML = `
       <div class="total"><span>Total</span><strong class="prix">${euros(totalPanier())}</strong></div>
       <button class="btn btn-whatsapp btn-plein" type="button" data-envoyer>${icone('whatsapp')}Envoyer ma commande</button>
@@ -524,10 +546,28 @@
     if (e.target.closest('[data-retour]')) { commandeEnvoyee = false; return rendrePanier(); }
     if (e.target.closest('[data-envoyer]')) {
       const form = $('[data-commande]', panierDlg);
-      const nom = form.nom.value.trim();
-      if (!nom) { form.nom.focus(); form.nom.setAttribute('aria-invalid', 'true'); form.nom.placeholder = 'Indiquez votre prénom pour continuer'; return; }
+      const errEnvoi = $('#err-envoi', panierDlg);
+      errEnvoi.hidden = true;
+      // Anti-robot : le champ piège doit rester vide et un humain met au moins 3 s à remplir
+      if (form.site.value || Date.now() - panierOuvertA < 3000) {
+        errEnvoi.textContent = 'Vérifiez votre commande puis appuyez à nouveau sur « Envoyer ».';
+        errEnvoi.hidden = false;
+        return;
+      }
+      const nom = form.nom.value.trim().replace(/\s+/g, ' ');
+      if (!verifierChamp(form.nom, /^[\p{L}][\p{L}' -]{1,39}$/u.test(nom))) { form.nom.focus(); return; }
+      // Une commande par minute au maximum
+      const derniere = Number(lire('touareg.dernier-envoi.v1', 0));
+      const attente = Math.ceil((60000 - (Date.now() - derniere)) / 1000);
+      if (attente > 0) {
+        errEnvoi.textContent = `Une commande vient d’être envoyée. Patientez ${attente} s avant d’en envoyer une autre, ou appelez-nous.`;
+        errEnvoi.hidden = false;
+        return;
+      }
       const f = { nom, retrait: form.retrait.value, remarque: form.remarque.value.trim() };
+      ecrire('touareg.dernier-envoi.v1', Date.now());
       window.open(`https://wa.me/${R.whatsapp}?text=${encodeURIComponent(messageWhatsApp(f))}`, '_blank', 'noopener');
+      if (window.mesure) window.mesure('commande-whatsapp');
       commandeEnvoyee = true;
       rendrePanier();
     }
@@ -535,7 +575,7 @@
   panierDlg.addEventListener('input', e => {
     const form = e.target.closest('[data-commande]'); if (!form) return;
     brouillon.nom = form.nom.value; brouillon.retrait = form.retrait.value; brouillon.remarque = form.remarque.value;
-    if (e.target.name === 'nom') e.target.removeAttribute('aria-invalid');
+    if (e.target.name === 'nom' && e.target.value.trim().length >= 2) verifierChamp(e.target, true);
     ecrire('touareg.client.v1', brouillon);
   });
   panierDlg.addEventListener('change', e => { if (e.target.name === 'retrait') { brouillon.retrait = e.target.value; ecrire('touareg.client.v1', brouillon); } });
@@ -594,7 +634,6 @@
   brancherCarte();
   brancherNavBasse();
   surDefilement();
-  $$('[data-annee]').forEach(el => { el.textContent = new Date().getFullYear(); });
   setInterval(majStatut, 60 * 1000);
 
   /* Pour les tests */

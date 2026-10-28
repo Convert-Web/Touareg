@@ -3,10 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Le Touareg · Kebab, tacos, burgers & pizzas à Montereau-Fault-Yonne</title>
-<meta name="description" content="Le Touareg, place Diderot à Montereau-Fault-Yonne : sandwichs kebab, French tacos, burgers, pizzas et assiettes. Ouvert 7j/7 de 11h à 22h45. Commande à emporter en ligne, livraison Uber Eats, titres-restaurant acceptés.">
+<title>Le Touareg Montereau · Kebab, tacos, burgers, pizzas</title>
+<meta name="description" content="Kebab, French tacos, burgers et pizzas place Diderot à Montereau-Fault-Yonne. Ouvert 7j/7 de 11h à 22h45. Commandez à emporter en ligne en 2 minutes.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.goatcounter.com; font-src 'self'; connect-src 'self' https://*.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#e3101b">
 <meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://convert-web.github.io/Touareg/">
+<link rel="icon" href="assets/img/favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
@@ -14,17 +19,23 @@
 <meta property="og:type" content="restaurant.restaurant">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Touareg">
-<meta property="og:title" content="Le Touareg · Kebab, tacos, burgers & pizzas">
-<meta property="og:description" content="Place Diderot à Montereau-Fault-Yonne. 7j/7 de 11h à 22h45. Commandez à emporter en 2 minutes.">
-<meta property="og:image" content="https://convert-web.github.io/Touareg/assets/img/og-image.jpg">
+<meta property="og:title" content="Le Touareg · Kebab, tacos, burgers & pizzas à Montereau">
+<meta property="og:description" content="Place Diderot à Montereau-Fault-Yonne. Ouvert 7j/7 de 11h à 22h45. Commandez à emporter en 2 minutes.">
 <meta property="og:url" content="https://convert-web.github.io/Touareg/">
+<meta property="og:image" content="https://convert-web.github.io/Touareg/assets/img/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sandwich kebab du Touareg sur fond rouge, menu à 10,40 €">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://convert-web.github.io/Touareg/">
+<meta name="twitter:title" content="Le Touareg · Kebab, tacos, burgers & pizzas à Montereau">
+<meta name="twitter:description" content="Place Diderot à Montereau-Fault-Yonne. Ouvert 7j/7 de 11h à 22h45.">
+<meta name="twitter:image" content="https://convert-web.github.io/Touareg/assets/img/og-image.jpg">
+<meta name="twitter:image:alt" content="Sandwich kebab du Touareg sur fond rouge, menu à 10,40 €">
 
 <link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/lilita-one.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/cut/kebab-840.webp" imagesrcset="assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-840.webp 840w" imagesizes="(min-width: 768px) 560px, 90vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/cut/kebab-420.webp" imagesrcset="assets/img/cut/kebab-160.webp 160w, assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-600.webp 600w, assets/img/cut/kebab-840.webp 840w" imagesizes="(min-width: 768px) 560px, 300px" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/site.css">
 
 <script type="application/ld+json">
@@ -37,7 +48,6 @@
   "servesCuisine": ["Kebab", "French tacos", "Burgers", "Pizzas", "Sandwichs"],
   "priceRange": "€",
   "telephone": "+33 6 73 82 78 21",
-  "email": "jamel.tp@hotmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "11 B place Diderot",
@@ -102,7 +112,7 @@
     </nav>
     <div class="entete-actions">
       <span class="statut" data-statut>Horaires</span>
-      <a class="rond grand-ecran" href="tel:+33673827821" aria-label="Appeler le 06 73 82 78 21"><svg aria-hidden="true"><use href="#i-tel"/></svg></a>
+      <a class="btn btn-blanc btn-petit grand-ecran" href="#carte">Commander</a>
       <button class="rond rond-panier grand-ecran" type="button" data-ouvrir-panier aria-label="Ouvrir le panier">
         <svg aria-hidden="true"><use href="#i-sac"/></svg>
         <span class="compteur" data-compteur>0</span>
@@ -143,7 +153,7 @@
             <p>Le n° 1 de la maison,<br>frites et boisson</p>
             <strong class="offre-prix" data-prix-de="kebab" data-formule-prix="menu">10,40 €</strong>
           </div>
-          <img src="assets/img/cut/kebab-420.webp" alt="Sandwich kebab" width="420" height="225" loading="lazy">
+          <img src="assets/img/cut/kebab-420.webp" srcset="assets/img/cut/kebab-160.webp 160w, assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-600.webp 600w, assets/img/cut/kebab-840.webp 840w" sizes="(min-width: 1024px) 180px, 40vw" alt="Menu sandwich kebab" width="420" height="225" loading="lazy" decoding="async">
           <span class="sticker">N°1</span>
           <button class="sr" type="button" data-plat="kebab">Commander le menu kebab</button>
         </article>
@@ -153,7 +163,7 @@
             <p>Tiramisu ou<br>tarte au Daim</p>
             <strong class="offre-prix" data-prix-de="tiramisu">3,90 €</strong>
           </div>
-          <img src="assets/img/cut/dessert-420.webp" alt="Tiramisu" width="420" height="236" loading="lazy">
+          <img src="assets/img/cut/dessert-420.webp" srcset="assets/img/cut/dessert-160.webp 160w, assets/img/cut/dessert-420.webp 420w, assets/img/cut/dessert-600.webp 600w, assets/img/cut/dessert-840.webp 840w" sizes="(min-width: 1024px) 180px, 40vw" alt="Part de tiramisu" width="420" height="236" loading="lazy" decoding="async">
           <button class="sr" type="button" data-aller-rayon="desserts">Voir les desserts</button>
         </article>
         <a class="offre" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener">
@@ -162,7 +172,7 @@
             <p>11 B place Diderot<br>Montereau-Fault-Yonne</p>
             <span class="offre-lien">Itinéraire</span>
           </div>
-          <svg class="carte-illu" viewBox="0 0 140 120" aria-hidden="true">
+          <svg class="carte-illu" viewBox="0 0 140 120" role="img" aria-label="Plan avec repère">
             <path d="M10 30 50 16l40 14 40-14v76l-40 14-40-14-40 14Z" fill="#ffd7a8"/>
             <path d="M50 16v76l40 14V30Z" fill="#ffc27a"/>
             <path d="M18 66c18-6 30 12 50 4s30-22 54-10" fill="none" stroke="#2aa6a0" stroke-width="7" stroke-linecap="round"/>
@@ -175,18 +185,18 @@
           <div class="offre-texte">
             <h3>French tacos<br>L ou XL</h3>
             <p>1 ou 2 viandes au choix</p>
-            <span class="btn btn-petit">Voir les tacos</span>
+            <span class="offre-lien">Voir les tacos</span>
           </div>
-          <div class="offre-rond"><img src="assets/img/cut/tacos-420.webp" alt="French tacos" width="420" height="368" loading="lazy"></div>
+          <div class="offre-rond"><img src="assets/img/cut/tacos-420.webp" srcset="assets/img/cut/tacos-160.webp 160w, assets/img/cut/tacos-420.webp 420w, assets/img/cut/tacos-600.webp 600w, assets/img/cut/tacos-840.webp 840w" sizes="(min-width: 1024px) 230px, 40vw" alt="French tacos garni de viande" width="420" height="368" loading="lazy" decoding="async"></div>
           <button class="sr" type="button" data-aller-rayon="tacos">Voir les tacos</button>
         </article>
         <a class="offre offre-large" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">
           <div class="offre-texte">
             <h3>Livré<br>chez vous</h3>
             <p>Toute la carte avec Uber Eats</p>
-            <span class="btn btn-petit">Commander</span>
+            <span class="offre-lien">Voir sur Uber Eats</span>
           </div>
-          <div class="offre-rond offre-rond-jaune"><img src="assets/img/cut/burger-420.webp" alt="Burger" width="420" height="347" loading="lazy"></div>
+          <div class="offre-rond offre-rond-jaune"><img src="assets/img/cut/burger-420.webp" srcset="assets/img/cut/burger-160.webp 160w, assets/img/cut/burger-420.webp 420w, assets/img/cut/burger-600.webp 600w, assets/img/cut/burger-840.webp 840w" sizes="(min-width: 1024px) 230px, 40vw" alt="Big burger" width="420" height="347" loading="lazy" decoding="async"></div>
         </a>
       </div>
     </div>
@@ -229,8 +239,8 @@
         <h2 id="titre-whatsapp">Commandez en 2 minutes,<br>sans appli ni compte</h2>
         <p>Composez votre commande sur le site, elle part toute prête sur WhatsApp. Vous choisissez l’heure, vous payez au comptoir.</p>
         <div class="bj-boutons">
-          <a class="btn btn-noir" href="#carte"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><span><small>Commander sur</small>WhatsApp</span></a>
-          <a class="btn btn-noir" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-scooter"/></svg><span><small>Se faire livrer avec</small>Uber Eats</span></a>
+          <a class="btn btn-noir" href="#carte"><svg aria-hidden="true"><use href="#i-sac"/></svg><span><small>À emporter, payé au comptoir</small>Commander</span></a>
+          <a class="lien-sobre" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Plutôt en livraison ? Uber Eats</a>
         </div>
       </div>
     </div>
@@ -240,7 +250,7 @@
   <section class="duo fond-creme" aria-label="Avis et horaires">
     <div class="wrap duo-grille">
       <div class="duo-col" id="avis">
-        <span class="fantome" aria-hidden="true">Avis</span>
+        <span class="fantome" data-texte="Avis" aria-hidden="true"></span>
         <h2 class="duo-titre">Les clients ont voté</h2>
         <div class="note-globale">
           <strong>4,2</strong>
@@ -251,15 +261,15 @@
         <p class="source">% de clients Uber Eats qui recommandent le plat.</p>
       </div>
       <div class="duo-col" id="infos">
-        <span class="fantome" aria-hidden="true">Infos</span>
+        <span class="fantome" data-texte="Infos" aria-hidden="true"></span>
         <h2 class="duo-titre">On vous attend</h2>
         <div class="infos-carte">
-          <img src="assets/img/broche-900.webp" srcset="assets/img/broche-900.webp 900w, assets/img/broche-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="" loading="lazy">
+          <img src="assets/img/broche-900.webp" srcset="assets/img/broche-900.webp 900w, assets/img/broche-1600.webp 1600w" sizes="(min-width: 900px) 560px, 100vw" alt="Broche de viande kebab en cuisson" width="900" height="1350" loading="lazy" decoding="async">
           <div class="infos-contenu">
             <address>11 B place Diderot<small>77130 Montereau-Fault-Yonne</small></address>
             <table class="horaires" data-horaires><caption class="sr">Horaires d’ouverture</caption><tbody></tbody></table>
             <div class="infos-boutons">
-              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-lieu"/></svg>Itinéraire</a>
+              <a class="btn btn-contour" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-lieu"/></svg>Itinéraire</a>
               <a class="btn btn-contour" href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg>Appeler</a>
             </div>
           </div>
@@ -288,17 +298,18 @@
   <div class="pied-noir">
     <div class="wrap">
       <div class="pied-cols">
-        <div><h4>La carte</h4><ul data-pied-carte></ul></div>
-        <div><h4>Le restaurant</h4><ul>
+        <div><h2 class="pied-titre">La carte</h2><ul data-pied-carte></ul></div>
+        <div><h2 class="pied-titre">Le restaurant</h2><ul>
           <li><a href="#infos">Horaires & accès</a></li>
           <li><a href="#avis">Avis clients</a></li>
           <li><a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Livraison Uber Eats</a></li>
-          <li><a href="mailto:jamel.tp@hotmail.com">jamel.tp@hotmail.com</a></li>
+          <li><a href="#" data-email="jamel.tp|hotmail.com">Écrire au restaurant</a></li>
         </ul></div>
-        <div><h4>Infos</h4><ul>
+        <div><h2 class="pied-titre">Infos légales</h2><ul>
           <li><a href="mentions-legales.html">Mentions légales</a></li>
-          <li><span>Allergènes : au comptoir</span></li>
-          <li><span>Site sans cookies</span></li>
+          <li><a href="politique-de-confidentialite.html">Confidentialité (RGPD)</a></li>
+          <li><a href="cgu.html">Conditions d’utilisation</a></li>
+          <li><a href="#" data-gerer-cookies>Gérer les cookies</a></li>
         </ul></div>
       </div>
       <svg class="pied-filigrane" aria-hidden="true"><use href="#i-embleme"/></svg>
@@ -321,7 +332,7 @@
 
 <!-- Fiche produit -->
 <dialog class="fiche" id="fiche" aria-labelledby="fiche-titre">
-  <form class="fiche-boite" method="dialog" data-fiche-form></form>
+  <form class="fiche-boite" method="dialog" data-fiche-form novalidate></form>
 </dialog>
 
 <!-- Panier -->
@@ -338,7 +349,8 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<script src="js/donnees.js"></script>
-<script src="js/site.js"></script>
+<script src="js/donnees.js" defer></script>
+<script src="js/site.js" defer></script>
+<script src="js/consentement.js" defer></script>
 </body>
 </html>

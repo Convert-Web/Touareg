@@ -5,8 +5,13 @@ Site statique (HTML, CSS et JavaScript, sans outil de build), prêt pour GitHub 
 ## Structure
 
 ```
-index.html              page principale
-mentions-legales.html   mentions légales et données personnelles
+index.html                        page principale
+mentions-legales.html             mentions légales
+politique-de-confidentialite.html RGPD : données, durées, droits, cookies
+cgu.html                          conditions d'utilisation et de commande
+404.html                          page « introuvable » personnalisée
+sitemap.xml, robots.txt           référencement
+js/consentement.js                bannière cookies, mesure d'audience, e-mail protégé
 js/donnees.js           ⟵ LE fichier à modifier : réglages, horaires, carte, prix
 js/site.js              moteur (panier, fiche plat, commande WhatsApp, horaires)
 assets/css/site.css     design
@@ -49,3 +54,20 @@ La feuille de style part du téléphone, puis ajoute la tablette (768 px) et l'o
 11. **Allergènes** : le site indique « liste disponible au comptoir ». Le restaurant doit pouvoir la fournir par écrit (obligation légale).
 12. **Photos** : ce sont des photos d'illustration libres de droits (Unsplash), détourées. De vraies photos des plats du Touareg, prises sur fond uni, rendront le site encore plus fort.
 13. **Maquette WhatsApp** (bandeau jaune) : la réponse « C'est noté, à 19h45 ! » montre au client qu'on lui répond. Conseiller au gérant de confirmer chaque commande reçue.
+
+## Qualité, sécurité, conformité
+
+- **HTTPS** : forcé par GitHub Pages (redirection 301 de http vers https, en-tête HSTS d'un an). Chaque page ajoute aussi `upgrade-insecure-requests` et une politique de sécurité (CSP) qui n'autorise que les fichiers du site et GoatCounter.
+- **Aucune clé d'API ni secret** dans le code : le site est 100 % statique, sans base de données ni appel d'API.
+- **Bannière cookies** : « Accepter » et « Refuser » au même niveau, choix gardé 6 mois, lien « Gérer les cookies » en pied de page. Le site ne dépose aucun cookie.
+- **Formulaires** : champs obligatoires vérifiés avec message d'erreur sous le champ (prénom, viandes, base de pizza).
+- **Anti-spam** : champ piège invisible, délai minimum de 3 s avant l'envoi, une commande par minute au maximum, adresse e-mail jamais écrite en clair dans le code.
+- **Images** : WebP compressées en 4 tailles (160, 420, 600, 840 px), dimensions déclarées, texte alternatif sur chaque image utile.
+
+### Activer la mesure d'audience (5 minutes, gratuit)
+1. Créer un compte sur https://www.goatcounter.com (choisir un code, par ex. `letouareg`).
+2. Dans `js/donnees.js`, mettre ce code : `analytics: { goatcounter: 'letouareg' }`.
+3. Les statistiques apparaissent sur https://letouareg.goatcounter.com, dont l'événement `commande-whatsapp` à chaque commande envoyée.
+
+### Limite de l'adresse github.io
+Les moteurs de recherche ne lisent le `robots.txt` qu'à la racine d'un domaine. Sur `convert-web.github.io/Touareg/`, il n'est donc pas lu. Il le sera dès qu'un nom de domaine (ex. `le-touareg.fr`) sera relié au site. En attendant, déclarer `sitemap.xml` dans Google Search Console.

@@ -13,7 +13,7 @@ window.TOUAREG = {
     ville: 'Montereau-Fault-Yonne',
     telephone: '06 73 82 78 21',
     whatsapp: '33673827821',          // numéro qui reçoit les commandes (format international, sans +)
-    email: 'jamel.tp@hotmail.com',
+    email: ['jamel.tp', 'hotmail.com'],   // écrit en deux morceaux contre les robots de spam
     uberEats: 'https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA',
     googleMaps: 'https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne',
     noteUber: { note: '4,2', avis: '190+' },
@@ -34,6 +34,11 @@ window.TOUAREG = {
     /* Les prix ci-dessous sont ceux d'Uber Eats. Ils sont tous égaux au prix comptoir × 1,3.
        Mettre 1.3 ici pour afficher les prix comptoir sur le site (ex. 7,80 € → 6,00 €). */
     diviseurPrix: 1,
+
+    /* Mesure d'audience GoatCounter (gratuite, sans cookie). Créer un compte sur goatcounter.com,
+       puis mettre ici le code choisi (ex. 'letouareg' pour letouareg.goatcounter.com).
+       Vide = aucune mesure. Elle ne démarre qu'après accord du visiteur dans la bannière. */
+    analytics: { goatcounter: '' },
   },
 
   /* Boissons proposées dans les menus */

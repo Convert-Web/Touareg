@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+
+Sitemap: https://convert-web.github.io/Touareg/sitemap.xml
