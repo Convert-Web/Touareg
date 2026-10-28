@@ -1010,3 +1010,117 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
   .faq-tete { position: sticky; top: calc(var(--entete) + 24px); }
 }
 .faq-tete a { white-space: nowrap; }
+
+/* =====================================================================
+   LIQUID GLASS (façon Apple) : les éléments qui flottent au-dessus du
+   contenu (barres, pastilles, notifications) sont en verre : flou,
+   reflet en haut, liseré lumineux. Le contenu (plats, textes) reste net.
+   ===================================================================== */
+:root {
+  --nav-marge: 10px;
+  --verre-flou: blur(22px) saturate(190%);
+  --verre-reflet: inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(255,255,255,.22), inset 0 0 22px rgba(255,255,255,.18);
+  --verre-ombre: 0 16px 36px -14px rgba(50,12,6,.38), 0 2px 8px rgba(50,12,6,.08);
+}
+@media (min-width: 1024px) { :root { --nav-marge: 0px; } }
+
+/* Verre clair (sur le contenu) */
+.verre-clair, .nav-basse, .filtres, .entete:not(.plein) .rond-panier {
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.6));
+  -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: var(--verre-reflet), var(--verre-ombre);
+}
+/* Verre sur le rouge du haut */
+.diapo-sur, .hero .rassure li, .entete .statut, .hero-commandes {
+  background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.08));
+  -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(255,255,255,.08), 0 8px 20px -12px rgba(60,0,0,.5);
+}
+
+/* --- En-tête : une capsule de verre rouge qui flotte dès qu'on descend --- */
+.entete-wrap { transition: background-color .3s ease, box-shadow .3s ease, margin .3s ease, height .3s ease, border-radius .3s ease; border: 1px solid transparent; }
+.entete.plein { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.entete.plein .entete-wrap {
+  height: calc(var(--entete) - 12px); margin-top: 6px; border-radius: 999px;
+  width: calc(100% - 16px); max-width: 1180px; padding-left: 16px; padding-right: 8px;
+  background: linear-gradient(180deg, rgba(242,48,40,.82), rgba(200,8,20,.74));
+  -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou);
+  border-color: rgba(255,255,255,.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -1px 0 rgba(255,255,255,.12), inset 0 0 24px rgba(255,255,255,.08), 0 16px 34px -14px rgba(90,0,0,.55);
+}
+@media (min-width: 1024px) { .entete.plein .entete-wrap { padding-left: 22px; padding-right: 10px; width: calc(100% - 32px); } }
+.entete.plein .statut { background: rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.3); }
+
+/* --- Barre du bas : capsule flottante, l'onglet actif est une goutte de verre --- */
+body { padding-bottom: calc(var(--nav-basse) + var(--nav-marge) + var(--bas-securite)); }
+@media (min-width: 1024px) { body { padding-bottom: 0; } }
+.nav-basse {
+  left: 10px; right: 10px; bottom: calc(var(--nav-marge) + var(--bas-securite));
+  height: var(--nav-basse); padding: 0 4px; border-radius: 999px; align-items: center;
+}
+.nav-basse a, .nav-panier { height: calc(var(--nav-basse) - 2px); position: relative; color: #4d4953; }
+.nav-basse a::before {
+  content: ""; position: absolute; inset: 6px 2px; border-radius: 999px; opacity: 0; transform: scale(.7);
+  background: linear-gradient(180deg, rgba(227,16,27,.16), rgba(227,16,27,.08));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(227,16,27,.12);
+  transition: opacity .25s ease, transform .35s cubic-bezier(.3,1.5,.5,1);
+}
+.nav-basse a.actif::before { opacity: 1; transform: none; }
+.nav-basse a > * { position: relative; }
+.nav-basse a:active::before { opacity: 1; transform: scale(.94); }
+.nav-panier-rond {
+  margin-top: -22px; border: 0;
+  background: radial-gradient(120% 90% at 30% 15%, #ff6a5c 0%, var(--rouge) 45%, var(--rouge-fonce) 100%);
+  box-shadow: inset 0 2px 1px rgba(255,255,255,.55), inset 0 -3px 6px rgba(90,0,0,.35), 0 0 0 4px rgba(255,255,255,.75), 0 12px 22px -8px rgba(227,16,27,.75);
+}
+
+/* --- Notifications et bannière au-dessus de la capsule --- */
+.toast {
+  bottom: calc(var(--nav-basse) + var(--nav-marge) + var(--bas-securite) + 14px);
+  background: linear-gradient(180deg, rgba(40,38,46,.78), rgba(20,19,24,.72));
+  -webkit-backdrop-filter: var(--verre-flou); backdrop-filter: var(--verre-flou);
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 18px 40px -14px rgba(0,0,0,.55);
+}
+@media (min-width: 1024px) { .toast { bottom: 32px; } }
+.banniere { bottom: calc(var(--nav-basse) + var(--nav-marge) + var(--bas-securite) + 12px); }
+@media (min-width: 1024px) { .banniere { bottom: 24px; } }
+
+/* --- Filtres de la carte : bandeau de verre, pastilles de verre --- */
+.filtres { border-width: 0 0 1px; border-radius: 0; box-shadow: inset 0 -1px 0 rgba(255,255,255,.6), 0 12px 24px -20px rgba(50,12,6,.35); }
+@media (min-width: 768px) { .filtres { background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+.filtre {
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
+  border-color: rgba(29,28,34,.1);
+  box-shadow: inset 0 1px 0 #fff, 0 4px 12px -8px rgba(50,12,6,.35);
+}
+.filtre[aria-selected="true"] {
+  background: radial-gradient(120% 100% at 30% 0%, #ff5a4c 0%, var(--rouge) 55%, var(--rouge-fonce) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 4px rgba(90,0,0,.25), 0 8px 18px -8px rgba(227,16,27,.8);
+}
+
+/* --- Points et pause du diaporama dans une capsule de verre --- */
+.hero-commandes { display: inline-flex; width: max-content; margin-left: 0; padding: 0 2px 0 6px; border-radius: 999px; }
+.hero-commandes .points button::before, .hero-commandes .points button::after { top: 19px; }
+
+/* --- Boutons : reflet « liquide » en haut, enfoncement au toucher --- */
+.btn:not(.btn-contour):not(.lien-sobre) { background-image: linear-gradient(180deg, rgba(255,255,255,.32) 0%, rgba(255,255,255,.06) 48%, rgba(255,255,255,0) 52%); }
+.btn-faim, .btn-whatsapp, .btn-hero { box-shadow: inset 0 1px 0 rgba(255,255,255,.65), inset 0 -2px 0 rgba(0,0,0,.1), 0 14px 28px -14px rgba(60,0,0,.6); }
+.btn:active, .rond:active, .filtre:active, .passer-menu-choix button:active { transform: scale(.96); }
+.entete:not(.plein) .rond-panier { color: var(--rouge); }
+.entete.plein .rond-panier { background: linear-gradient(180deg, #fff, rgba(255,255,255,.85)); box-shadow: inset 0 1px 0 #fff, 0 6px 14px -6px rgba(90,0,0,.5); }
+
+/* Accessibilité : réglage « réduire la transparence » ou navigateur sans flou → surfaces pleines */
+@media (prefers-reduced-transparency: reduce) {
+  .nav-basse, .filtres, .entete.plein .entete-wrap, .toast { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .nav-basse, .filtres { background: var(--blanc); }
+  .entete.plein .entete-wrap { background: var(--rouge); }
+  .toast { background: var(--noir); }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-basse, .filtres { background: rgba(255,255,255,.97); }
+  .entete.plein .entete-wrap { background: var(--rouge); }
+  .toast { background: var(--noir); }
+}
