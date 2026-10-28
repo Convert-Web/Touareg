@@ -187,7 +187,8 @@ button { cursor: pointer; }
 .hero-deco i:nth-child(2) { width: 220px; height: 220px; left: -120px; bottom: -120px; border-width: 34px; }
 .hero-deco i:nth-child(3) { display: none; }
 .hero > .wrap { position: relative; z-index: 1; }
-.diapos { position: relative; display: grid; }
+.diapos { position: relative; display: grid; min-height: 420px; }
+@media (min-width: 768px) { .diapos { min-height: 440px; } }
 .diapo {
   grid-area: 1 / 1; display: grid; grid-template-columns: 1fr; align-items: center; gap: 4px;
   opacity: 0; visibility: hidden; transform: translateX(24px); transition: opacity .45s ease, transform .45s ease, visibility 0s .45s;
