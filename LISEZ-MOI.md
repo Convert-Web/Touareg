@@ -11,23 +11,24 @@ js/donnees.js           ⟵ LE fichier à modifier : réglages, horaires, carte,
 js/site.js              moteur (panier, fiche plat, commande WhatsApp, horaires)
 assets/css/site.css     design
 assets/fonts/           polices hébergées sur le site (pas d'appel à Google)
-assets/img/             photos WebP en 2 tailles, icônes, image de partage
+assets/img/cut/         plats détourés (fond transparent), 2 tailles : -420 et -840
+assets/img/             photo de la section horaires, icônes, image de partage
 ```
 
 ## Modifier le site
 
 - **Un prix, un plat, une description** : `js/donnees.js`, tableau `produits`.
-- **Les plats mis en avant** : `incontournables` en bas de `js/donnees.js`.
+- **Le grand bandeau rouge (diaporama)** : `diaporama` en bas de `js/donnees.js` (plat, titre, texte, prix seul ou menu).
 - **Les horaires** : `reglages.horaires`. Plusieurs créneaux par jour sont possibles. Le statut « Ouvert / Fermé » et les heures de retrait se calculent seuls, à l'heure de Paris.
-  Les horaires sont aussi écrits en dur à 4 endroits du HTML (bandeau du haut, hero, pied de page, données Google) : pense à les changer aussi.
+  Les horaires sont aussi écrits en dur dans les données Google en haut de `index.html` : pense à les changer aussi.
 - **Afficher les prix comptoir** : `reglages.diviseurPrix: 1.3` (voir le point 1 ci-dessous).
-- **Remplacer une photo** : déposer `nom-640.webp` et `nom-1200.webp` dans `assets/img/` (même nom que l'existante).
+- **Remplacer une photo** : déposer `nom-420.webp` et `nom-840.webp` (fond transparent) dans `assets/img/cut/`, avec le même nom que l'existante.
 
 ## Mise en ligne (GitHub Pages)
 
 1. Déposer tout le contenu de ce dossier à la racine d'un dépôt.
 2. Settings → Pages → Branch `main`, dossier `/ (root)`.
-3. Une fois le domaine choisi, mettre l'URL complète dans `og:image` (index.html) et ajouter un `sitemap.xml`.
+3. Si un nom de domaine est acheté, remplacer `https://convert-web.github.io/Touareg/` dans `index.html` (balises og, canonical, données Google).
 
 ## Points à faire valider par le gérant avant la mise en ligne
 
@@ -42,4 +43,5 @@ assets/img/             photos WebP en 2 tailles, icônes, image de partage
 9. **Horaires** 7j/7 de 11h à 22h45 : repris d'Uber Eats, à confirmer pour le comptoir.
 10. **Mentions légales** : société L'ATLAS (SARL), SIREN 511 649 568, gérant Kalam Dewan, d'après le registre officiel (recherche-entreprises.api.gouv.fr). Restent à compléter : capital social, greffe RCS, n° de TVA, médiateur de la consommation.
 11. **Allergènes** : le site indique « liste disponible au comptoir ». Le restaurant doit pouvoir la fournir par écrit (obligation légale).
-12. **Photos** : ce sont des photos d'illustration libres de droits (Unsplash). De vraies photos des plats du Touareg rendront le site encore plus fort.
+12. **Photos** : ce sont des photos d'illustration libres de droits (Unsplash), détourées. De vraies photos des plats du Touareg, prises sur fond uni, rendront le site encore plus fort.
+13. **Maquette WhatsApp** (bandeau jaune) : la réponse « C'est noté, à 19h45 ! » montre au client qu'on lui répond. Conseiller au gérant de confirmer chaque commande reçue.

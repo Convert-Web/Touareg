@@ -1,7 +1,8 @@
 /* =====================================================================
    LE TOUAREG · Moteur du site
-   Carte, fiche produit, panier, commande WhatsApp, horaires.
-   Aucune dépendance, aucun cookie : le panier reste dans le navigateur.
+   Diaporama, rayons, carte, fiche produit, panier, commande WhatsApp,
+   horaires. Aucune dépendance, aucun cookie : le panier reste dans le
+   navigateur.
    ===================================================================== */
 (function () {
   'use strict';
@@ -14,6 +15,7 @@
   const catParId = Object.fromEntries(T.categories.map(c => [c.id, c]));
   const CLE_PANIER = 'touareg.panier.v1';
   const JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Utilitaires ---------- */
   const fmt = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
@@ -26,13 +28,14 @@
   const lire = (cle, defaut) => { try { const v = localStorage.getItem(cle); return v ? JSON.parse(v) : defaut; } catch (e) { return defaut; } };
   const ecrire = (cle, v) => { try { localStorage.setItem(cle, JSON.stringify(v)); } catch (e) { /* navigation privée */ } };
 
-  /* Photos : deux tailles par image */
-  const GRANDES = { hero: [900, 1600], broche: [900, 1600] };
-  function photo(cle, { sizes = '100vw', alt = '', lazy = true, cls = '' } = {}) {
-    const [p, g] = GRANDES[cle] || [640, 1200];
-    return `<img class="${cls}" src="assets/img/${cle}-${p}.webp" srcset="assets/img/${cle}-${p}.webp ${p}w, assets/img/${cle}-${g}.webp ${g}w" sizes="${sizes}" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
+  /* Plats détourés (fond transparent) : assets/img/cut/<cle>-420.webp et -840.webp */
+  const DETOUR = { sandwich: 'kebab', hero: 'kebab', 'burger-dark': 'burger-double', margherita: 'pizza' };
+  const detourDe = cle => DETOUR[cle] || cle;
+  const detourPlat = p => detourDe(p.photo || catParId[p.cat].photo);
+  function detour(cle, { grand = false, alt = '', lazy = true, cls = '' } = {}) {
+    const c = detourDe(cle);
+    return `<img class="${cls}" src="assets/img/cut/${c}-${grand ? 840 : 420}.webp" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
   }
-  const photoPlat = p => p.photo || catParId[p.cat].photo;
 
   const BADGES = { n1: ['badge-n1', 'N°1 des ventes'], populaire: ['badge-populaire', 'Populaire'], maison: ['badge-maison', 'Signature'], vege: ['badge-vege', 'Végétarien'] };
   const badges = p => (p.tags || []).map(t => BADGES[t] ? `<span class="badge ${BADGES[t][0]}">${BADGES[t][1]}</span>` : '').join('');
@@ -96,96 +99,122 @@
     return resultat;
   }
 
-  /* ---------- Rendu : rail, vedettes, carte, palmarès, horaires ---------- */
-  function rendreRail() {
-    $('[data-rail-envies]').innerHTML = T.categories.map(c =>
-      `<a class="envie" href="#cat-${c.id}">${photo(c.photo, { sizes: '160px', alt: '' })}<span>${c.nom}</span></a>`).join('');
+  /* ---------- Diaporama du haut ---------- */
+  function prixBadge(n) {
+    const [e, c] = euros(n).replace(/\s?€/, '').split(',');
+    return `${e}<sup>,${c} €</sup>`;
+  }
+  function rendreDiapos() {
+    const diapos = T.diaporama.filter(d => parId[d.id]);
+    $('[data-diapos]').innerHTML = diapos.map((d, i) => {
+      const p = parId[d.id];
+      const Titre = i === 0 ? 'h1' : 'h2';
+      return `<div class="diapo${i === 0 ? ' active' : ''}" id="diapo-${i}" role="tabpanel" aria-roledescription="diapositive" aria-label="${i + 1} sur ${diapos.length}"${i ? ' aria-hidden="true"' : ''}>
+        <div class="diapo-texte">
+          <span class="diapo-sur">${echap(d.surtitre)}</span>
+          <${Titre}>${echap(d.titre)}</${Titre}>
+          <p>${echap(d.texte)}</p>
+          <button class="btn btn-contour" type="button" data-plat="${p.id}" data-formule="${d.formule}"${i ? ' tabindex="-1"' : ''}>Commander</button>
+        </div>
+        <div class="diapo-visuel">
+          ${detour(detourPlat(p), { grand: true, alt: p.nom, lazy: i > 0 })}
+          <div class="badge-prix"><small>${d.formule === 'menu' ? 'Le menu' : 'Seulement'}</small><strong>${prixBadge(prixDe(p, d.formule))}</strong></div>
+          <svg class="fleche-deco f1" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
+          <svg class="fleche-deco f2" aria-hidden="true"><use href="#i-fleche-courbe"/></svg>
+        </div>
+      </div>`;
+    }).join('');
+    $('[data-points]').innerHTML = diapos.map((d, i) =>
+      `<button type="button" role="tab" aria-controls="diapo-${i}" aria-selected="${i === 0}" aria-label="${echap(d.titre)}" data-point="${i}"></button>`).join('');
+
+    let courant = 0, minuteur = null;
+    const aller = i => {
+      courant = (i + diapos.length) % diapos.length;
+      $$('.diapo').forEach((el, k) => {
+        const actif = k === courant;
+        el.classList.toggle('active', actif);
+        el.setAttribute('aria-hidden', String(!actif));
+        $$('button', el).forEach(b => { b.tabIndex = actif ? 0 : -1; });
+      });
+      $$('[data-point]').forEach((b, k) => b.setAttribute('aria-selected', String(k === courant)));
+    };
+    const demarrer = () => { if (mouvementReduit || diapos.length < 2) return; arreter(); minuteur = setInterval(() => aller(courant + 1), 6000); };
+    const arreter = () => { clearInterval(minuteur); minuteur = null; };
+    $('[data-points]').addEventListener('click', e => { const b = e.target.closest('[data-point]'); if (b) { aller(Number(b.dataset.point)); demarrer(); } });
+    const hero = $('.hero');
+    hero.addEventListener('mouseenter', arreter);
+    hero.addEventListener('mouseleave', demarrer);
+    hero.addEventListener('focusin', arreter);
+    // glisser du doigt
+    let x0 = null;
+    hero.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      if (x0 == null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) { aller(courant + (dx < 0 ? 1 : -1)); demarrer(); }
+    });
+    document.addEventListener('visibilitychange', () => (document.hidden ? arreter() : demarrer()));
+    demarrer();
+  }
+
+  /* ---------- Rayons + carte ---------- */
+  let rayonActif = T.categories[0].id;
+
+  function rendreRayons() {
+    $('[data-rayons]').innerHTML = T.categories.map(c =>
+      `<button class="rayon" type="button" role="tab" data-rayon="${c.id}" aria-selected="${c.id === rayonActif}">${detour(c.photo, { alt: '' })}<span>${c.nom}</span></button>`).join('');
+    $$('[data-defiler]').forEach(b => b.addEventListener('click', () => {
+      const l = $('[data-rayons]'); l.scrollBy({ left: Number(b.dataset.defiler) * l.clientWidth * .7, behavior: 'smooth' });
+    }));
   }
 
   function blocPrix(p) {
-    return p.menu
-      ? `<strong class="prix">${euros(prixDe(p))}</strong><small class="prix">Menu ${euros(prixDe(p, 'menu'))}</small>`
-      : `<strong class="prix">${euros(prixDe(p))}</strong>`;
-  }
-
-  function rendreVedettes() {
-    $('[data-vedettes]').innerHTML = T.incontournables.map(id => {
-      const p = parId[id]; if (!p) return '';
-      const avis = p.avis && p.avis[0] >= 85 ? `<span class="badge badge-avis">${icone('etoile')}${p.avis[0]} % recommandé</span>` : '';
-      return `<article class="vedette">
-        <div class="vedette-photo">${photo(photoPlat(p), { sizes: '(max-width: 960px) 80vw, 33vw', alt: p.nom })}</div>
-        <div class="badge-photo">${badges(p)}${avis}</div>
-        <div class="vedette-corps">
-          <h3>${echap(p.nom)}</h3>
-          <p>${echap(p.desc)}</p>
-          <div class="vedette-bas">
-            <div class="vedette-prix">${blocPrix(p)}</div>
-            <button class="btn-ajout etire" type="button" data-plat="${p.id}" aria-label="Ajouter ${echap(p.nom)}">${icone('plus')}</button>
-          </div>
-        </div>
-      </article>`;
-    }).join('');
+    return `<strong class="prix">${euros(prixDe(p))}</strong>${p.menu ? `<small class="prix">Menu <b>${euros(prixDe(p, 'menu'))}</b></small>` : ''}`;
   }
 
   function rendreCarte() {
-    $('[data-puces]').innerHTML = T.categories.map(c => `<a class="puce" href="#cat-${c.id}" data-puce="${c.id}">${c.nom}</a>`).join('');
     $('[data-carte]').innerHTML = T.categories.map(c => {
       const plats = T.produits.filter(p => p.cat === c.id);
-      const aMenu = plats.some(p => p.menu);
-      return `<section class="categorie" id="cat-${c.id}" data-categorie="${c.id}" aria-labelledby="t-${c.id}">
-        <div class="categorie-tete">
-          ${photo(c.photo, { sizes: '(max-width: 1240px) 100vw, 1200px', alt: '' })}
-          <div class="categorie-tete-texte">
-            <span class="compte">${plats.length} ${plats.length > 1 ? 'choix' : 'choix'}</span>
+      return `<section class="rayon-bloc" id="cat-${c.id}" data-categorie="${c.id}" aria-labelledby="t-${c.id}">
+        <div class="rayon-tete">
+          <div class="rayon-tete-texte">
+            <span class="compte">${plats.length} choix${c.menu ? ' · existe en menu' : ''}</span>
             <h3 id="t-${c.id}">${c.nom}</h3>
             <p>${echap(c.accroche)}</p>
           </div>
+          ${detour(c.photo, { grand: true, alt: '' })}
         </div>
-        ${aMenu ? `<div class="legende-formule"><span><b>Prix seul</b> en gras</span><span><b style="color:var(--indigo)">Menu</b> = + frites + boisson</span></div>` : ''}
         <div class="plats">
           ${plats.map(p => `<article class="plat" data-plat-ligne="${p.id}" data-texte="${echap(norm(p.nom + ' ' + p.desc + ' ' + c.nom))}">
-            <div class="plat-info">
-              <div class="plat-nom"><h4>${echap(p.nom)}</h4>${badges(p)}</div>
-              ${p.desc ? `<p>${echap(p.desc)}</p>` : ''}
-            </div>
-            <div class="plat-droite">
+            <div class="plat-badges">${badges(p)}</div>
+            <h4>${echap(p.nom)}</h4>
+            ${p.desc ? `<p>${echap(p.desc)}</p>` : ''}
+            <div class="plat-bas">
               <div class="plat-prix">${blocPrix(p)}</div>
               <button class="btn-ajout etire" type="button" data-plat="${p.id}" aria-label="Ajouter ${echap(p.nom)}">${icone('plus')}</button>
             </div>
           </article>`).join('')}
         </div>
-        ${c.note ? `<p class="note-categorie">${echap(c.note)}</p>` : ''}
+        ${c.note ? `<p class="note-rayon">${echap(c.note)}</p>` : ''}
       </section>`;
     }).join('');
-    $('[data-pied-carte]').innerHTML = T.categories.slice(0, 6).map(c => `<li><a href="#cat-${c.id}">${c.nom}</a></li>`).join('');
+    $('[data-pied-carte]').innerHTML = T.categories.slice(0, 7).map(c => `<li><a href="#carte" data-aller-rayon="${c.id}">${c.nom}</a></li>`).join('');
+    afficherRayon(rayonActif, false);
   }
 
-  function rendrePalmares() {
-    const liste = T.produits.filter(p => p.avis && p.avis[1] >= 4)
-      .sort((a, b) => b.avis[0] - a.avis[0] || b.avis[1] - a.avis[1]).slice(0, 6);
-    $('[data-palmares]').innerHTML = liste.map(p => `<li>
-      <span class="nom">${echap(p.nom)}<span class="detail">${p.avis[1]} avis</span></span>
-      <span class="score">${p.avis[0]} %</span>
-      <span class="jauge" aria-hidden="true"><i style="width:${p.avis[0]}%"></i></span>
-    </li>`).join('');
+  function afficherRayon(id, defiler = true) {
+    rayonActif = id;
+    const champ = $('[data-recherche]');
+    if (champ.value) { champ.value = ''; }
+    $$('[data-categorie]').forEach(s => { s.hidden = s.dataset.categorie !== id; $$('[data-plat-ligne]', s).forEach(l => { l.hidden = false; }); });
+    $('[data-vide]').hidden = true;
+    $$('[data-rayon]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.rayon === id)));
+    const b = $(`[data-rayon="${id}"]`);
+    const liste = $('[data-rayons]');
+    if (b) liste.scrollTo({ left: b.offsetLeft - liste.clientWidth / 2 + b.clientWidth / 2, behavior: 'smooth' });
+    if (defiler) $('#carte').scrollIntoView({ behavior: mouvementReduit ? 'auto' : 'smooth', block: 'start' });
   }
 
-  function rendreHoraires() {
-    const auj = maintenantParis().jour;
-    const ordre = [1, 2, 3, 4, 5, 6, 0];
-    $('[data-horaires] tbody').innerHTML = ordre.map(j => {
-      const c = creneaux(j);
-      const txt = c.length ? c.map(([a, b]) => `${enHeure(a)} – ${enHeure(b)}`).join(' · ') : 'Fermé';
-      return `<tr class="${j === auj ? 'aujourdhui' : ''}"><td>${JOURS[j]}</td><td>${txt}</td></tr>`;
-    }).join('');
-    $('[data-titres]').innerHTML = R.titresRestaurant.map(t => `<span class="etiquette">${echap(t)}</span>`).join('');
-  }
-
-  function majPrixAffiches() {
-    $$('[data-prix-de]').forEach(el => { const p = parId[el.dataset.prixDe]; if (p) el.textContent = euros(prixDe(p)); });
-  }
-
-  /* ---------- Recherche + navigation de la carte ---------- */
   function brancherRecherche() {
     const champ = $('[data-recherche]');
     let minuteur;
@@ -193,10 +222,11 @@
       clearTimeout(minuteur);
       minuteur = setTimeout(() => {
         const q = norm(champ.value.trim());
+        if (!q) return afficherRayon(rayonActif, false);
         let total = 0;
         $$('[data-categorie]').forEach(sec => {
           let n = 0;
-          $$('[data-plat-ligne]', sec).forEach(l => { const ok = !q || l.dataset.texte.includes(q); l.hidden = !ok; if (ok) n++; });
+          $$('[data-plat-ligne]', sec).forEach(l => { const ok = l.dataset.texte.includes(q); l.hidden = !ok; if (ok) n++; });
           sec.hidden = n === 0; total += n;
         });
         $('[data-vide]').hidden = total > 0;
@@ -204,22 +234,30 @@
     });
   }
 
-  function brancherPuces() {
-    const rail = $('[data-puces]');
-    const activer = id => {
-      $$('.puce', rail).forEach(p => p.classList.toggle('actif', p.dataset.puce === id));
-      const puce = $(`[data-puce="${id}"]`, rail);
-      if (puce) rail.scrollTo({ left: puce.offsetLeft - rail.clientWidth / 2 + puce.clientWidth / 2, behavior: 'smooth' });
-    };
-    if (!('IntersectionObserver' in window)) return;
-    const visibles = new Map();
-    const obs = new IntersectionObserver(entrees => {
-      entrees.forEach(e => visibles.set(e.target.dataset.categorie, e.isIntersecting ? e.boundingClientRect.top : null));
-      let meilleur = null, haut = Infinity;
-      visibles.forEach((top, id) => { if (top != null && Math.abs(top) < haut) { haut = Math.abs(top); meilleur = id; } });
-      if (meilleur) activer(meilleur);
-    }, { rootMargin: '-35% 0px -55% 0px' });
-    $$('[data-categorie]').forEach(s => obs.observe(s));
+  /* ---------- Avis, horaires, prix affichés ---------- */
+  function rendrePalmares() {
+    const liste = T.produits.filter(p => p.avis && p.avis[1] >= 4)
+      .sort((a, b) => b.avis[0] - a.avis[0] || b.avis[1] - a.avis[1]).slice(0, 6);
+    $('[data-palmares]').innerHTML = liste.map(p => `<div class="avis-carte">
+      <span class="score">${p.avis[0]} %</span>
+      <span class="nom">${echap(p.nom)}</span>
+      <small>${p.avis[1]} avis</small>
+      <span class="jauge" aria-hidden="true"><i style="width:${p.avis[0]}%"></i></span>
+    </div>`).join('');
+  }
+
+  function rendreHoraires() {
+    const auj = maintenantParis().jour;
+    $('[data-horaires] tbody').innerHTML = [1, 2, 3, 4, 5, 6, 0].map(j => {
+      const c = creneaux(j);
+      const txt = c.length ? c.map(([a, b]) => `${enHeure(a)} – ${enHeure(b)}`).join(' · ') : 'Fermé';
+      return `<tr class="${j === auj ? 'aujourdhui' : ''}"><td>${JOURS[j]}${j === auj ? ' (aujourd’hui)' : ''}</td><td>${txt}</td></tr>`;
+    }).join('');
+    $$('[data-titres]').forEach(el => { el.textContent = R.titresRestaurant.join(', '); });
+  }
+
+  function majPrixAffiches() {
+    $$('[data-prix-de]').forEach(el => { const p = parId[el.dataset.prixDe]; if (p) el.textContent = euros(prixDe(p, el.dataset.formulePrix)); });
   }
 
   /* ---------- Fiche produit ---------- */
@@ -227,26 +265,26 @@
   const ficheForm = $('[data-fiche-form]');
   let ficheProduit = null;
 
-  function ouvrirFiche(id) {
+  function ouvrirFiche(id, formule) {
     const p = parId[id]; if (!p) return;
     ficheProduit = p;
-    const menuDispo = !!p.menu;
+    const enMenu = !!p.menu && formule === 'menu';
     ficheForm.innerHTML = `
-      <div class="fiche-photo">
-        ${photo(photoPlat(p), { sizes: '(max-width: 640px) 100vw, 560px', alt: p.nom, lazy: false })}
-        <button class="btn-fermer" type="button" value="annuler" data-fermer-fiche aria-label="Fermer">${icone('fermer')}</button>
+      <div class="fiche-visuel">
+        ${detour(detourPlat(p), { grand: true, alt: p.nom, lazy: false })}
+        <button class="rond" type="button" data-fermer-fiche aria-label="Fermer">${icone('fermer')}</button>
       </div>
       <div class="fiche-corps">
         <div>
-          <div class="plat-nom" style="margin-bottom:8px">${badges(p)}</div>
+          <div class="plat-badges">${badges(p)}</div>
           <h2 id="fiche-titre">${echap(p.nom)}</h2>
           ${p.desc ? `<p class="desc">${echap(p.desc)}</p>` : ''}
         </div>
-        ${menuDispo ? `<fieldset class="champ">
+        ${p.menu ? `<fieldset class="champ">
           <legend>Formule</legend>
           <div class="choix-formule">
-            <label class="option"><input type="radio" name="formule" value="seul" checked><span><b>Seul</b><small>Le plat uniquement</small><span class="prix">${euros(prixDe(p))}</span></span></label>
-            <label class="option"><input type="radio" name="formule" value="menu"><span><b>En menu</b><small>+ frites + boisson</small><span class="prix">${euros(prixDe(p, 'menu'))}</span></span></label>
+            <label class="option"><input type="radio" name="formule" value="seul"${enMenu ? '' : ' checked'}><span><b>Seul</b><small>Le plat uniquement</small><span class="prix">${euros(prixDe(p))}</span></span></label>
+            <label class="option"><input type="radio" name="formule" value="menu"${enMenu ? ' checked' : ''}><span><b>En menu</b><small>+ frites + boisson</small><span class="prix">${euros(prixDe(p, 'menu'))}</span></span></label>
           </div>
         </fieldset>
         <fieldset class="champ" data-bloc-boisson hidden>
@@ -263,7 +301,7 @@
           <output name="qte" aria-live="polite">1</output>
           <button type="button" data-qte="1" aria-label="Ajouter un">+</button>
         </div>
-        <button class="btn" type="submit" value="ajouter"><span>Ajouter</span><span class="prix" data-fiche-total></span></button>
+        <button class="btn" type="submit"><span>Ajouter</span><span class="prix" data-fiche-total></span></button>
       </div>`;
     majFiche();
     ouvrirDialog(fiche);
@@ -272,12 +310,11 @@
   function lireFiche() {
     const f = ficheForm;
     const formule = (f.querySelector('input[name="formule"]:checked') || {}).value || 'seul';
+    const val = n => ((f.querySelector(`[name="${n}"]`) || {}).value || '').trim();
     return {
       formule,
       boisson: formule === 'menu' ? (f.querySelector('input[name="boisson"]:checked') || {}).value || '' : '',
-      base: (f.querySelector('[name="base"]') || {}).value?.trim() || '',
-      viandes: (f.querySelector('[name="viandes"]') || {}).value?.trim() || '',
-      note: (f.querySelector('[name="note"]') || {}).value?.trim() || '',
+      base: val('base'), viandes: val('viandes'), note: val('note'),
       qte: Number(f.querySelector('output[name="qte"]').textContent) || 1,
     };
   }
@@ -318,12 +355,12 @@
   function fermerDialog(d) {
     if (typeof d.close === 'function' && d.open) d.close(); else d.removeAttribute('open');
   }
-  [fiche, $('#panier')].forEach(d => {
+  const panierDlg = $('#panier');
+  [fiche, panierDlg].forEach(d => {
     d.addEventListener('close', () => {
-      if (!fiche.open && !$('#panier').open) document.body.classList.remove('verrou');
+      if (!fiche.open && !panierDlg.open) document.body.classList.remove('verrou');
       if (dernierFocus && document.contains(dernierFocus)) dernierFocus.focus({ preventScroll: true });
     });
-    // clic sur le fond = fermer
     d.addEventListener('click', e => { if (e.target === d) fermerDialog(d); });
   });
 
@@ -385,7 +422,7 @@
       return;
     }
     if (!panier.length) {
-      corps.innerHTML = `<div class="panier-vide">${icone('sac')}<strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
+      corps.innerHTML = `<div class="panier-vide"><img src="assets/img/cut/burger-420.webp" alt=""><strong>Votre panier est vide</strong><p>Ajoutez un plat depuis la carte pour commencer votre commande.</p><a class="btn" href="#carte" data-fermer-panier>Voir la carte</a></div>`;
       pied.innerHTML = `<p class="petit-texte">Envie d’être livré ? <a href="${R.uberEats}" target="_blank" rel="noopener">Commandez sur Uber Eats</a></p>`;
       return;
     }
@@ -396,7 +433,7 @@
       <ul class="lignes">${panier.map((l, i) => {
         const p = parId[l.id];
         return `<li class="ligne">
-          ${photo(photoPlat(p), { sizes: '56px', alt: '' })}
+          <span class="ligne-img">${detour(detourPlat(p), { alt: '' })}</span>
           <div><div class="ligne-nom">${echap(p.nom)}</div>${detailLigne(l).map(t => `<div class="ligne-detail">${echap(t)}</div>`).join('')}</div>
           <div class="ligne-prix prix">${euros(prixLigne(l))}</div>
           <div class="ligne-actions">
@@ -431,7 +468,7 @@
       return `• ${l.qte} × ${p.nom} — ${euros(prixLigne(l))}${d.length ? '\n   ' + d.join('\n   ') : ''}`;
     });
     return [
-      `Bonjour Le Touareg, je souhaite commander à emporter :`,
+      'Bonjour Le Touareg, je souhaite commander à emporter :',
       '',
       ...lignes,
       '',
@@ -444,13 +481,12 @@
     ].filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n').replace(/\n{3,}/g, '\n\n');
   }
 
-  const panierDlg = $('#panier');
   panierDlg.addEventListener('click', e => {
     const q = e.target.closest('[data-ligne-qte]');
     if (q) {
-      const l = panier[Number(q.dataset.ligneQte)];
+      const i = Number(q.dataset.ligneQte), l = panier[i];
       l.qte += Number(q.dataset.delta);
-      if (l.qte <= 0) panier.splice(Number(q.dataset.ligneQte), 1);
+      if (l.qte <= 0) panier.splice(i, 1);
       return sauver();
     }
     const s = e.target.closest('[data-ligne-suppr]');
@@ -463,8 +499,7 @@
       const nom = form.nom.value.trim();
       if (!nom) { form.nom.focus(); form.nom.setAttribute('aria-invalid', 'true'); form.nom.placeholder = 'Indiquez votre prénom pour continuer'; return; }
       const f = { nom, retrait: form.retrait.value, remarque: form.remarque.value.trim() };
-      const url = `https://wa.me/${R.whatsapp}?text=${encodeURIComponent(messageWhatsApp(f))}`;
-      window.open(url, '_blank', 'noopener');
+      window.open(`https://wa.me/${R.whatsapp}?text=${encodeURIComponent(messageWhatsApp(f))}`, '_blank', 'noopener');
       commandeEnvoyee = true;
       rendrePanier();
     }
@@ -497,26 +532,28 @@
     if (ouvrir) $('[data-fermer-nav]').focus(); else btnNav.focus({ preventScroll: true });
   }
   btnNav.addEventListener('click', () => basculerNav(true));
-  navMobile.addEventListener('click', e => {
-    if (e.target.closest('[data-fermer-nav]') || e.target.closest('nav a')) basculerNav(false);
-  });
+  navMobile.addEventListener('click', e => { if (e.target.closest('[data-fermer-nav]') || e.target.closest('nav a')) basculerNav(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !navMobile.hidden) basculerNav(false); });
 
   /* ---------- Délégation globale ---------- */
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-plat]');
-    if (b) { e.preventDefault(); return ouvrirFiche(b.dataset.plat); }
+    if (b) { e.preventDefault(); return ouvrirFiche(b.dataset.plat, b.dataset.formule); }
+    const o = e.target.closest('[data-ouvrir-plat]');
+    if (o) { e.preventDefault(); return ouvrirFiche(o.dataset.ouvrirPlat, o.dataset.formule); }
+    const r = e.target.closest('[data-rayon], [data-aller-rayon]');
+    if (r) { e.preventDefault(); return afficherRayon(r.dataset.rayon || r.dataset.allerRayon); }
     if (e.target.closest('[data-ouvrir-panier]')) { rendrePanier(); return ouvrirDialog(panierDlg); }
   });
 
-  /* En-tête : ombre au défilement */
+  /* En-tête : fond rouge plein dès qu'on quitte le haut de page */
   const entete = $('#entete');
-  const surDefilement = () => entete.classList.toggle('ombre', window.scrollY > 8);
+  const surDefilement = () => entete.classList.toggle('plein', window.scrollY > 10);
   window.addEventListener('scroll', surDefilement, { passive: true });
 
   /* ---------- Démarrage ---------- */
-  rendreRail();
-  rendreVedettes();
+  rendreDiapos();
+  rendreRayons();
   rendreCarte();
   rendrePalmares();
   rendreHoraires();
@@ -525,10 +562,9 @@
   majCompteurs();
   rendrePanier();
   brancherRecherche();
-  brancherPuces();
   surDefilement();
   $$('[data-annee]').forEach(el => { el.textContent = new Date().getFullYear(); });
-  setInterval(() => { majStatut(); }, 60 * 1000);
+  setInterval(majStatut, 60 * 1000);
 
   /* Pour les tests */
   window.__touareg = { statut, creneauxRetrait, messageWhatsApp, panier: () => panier };
