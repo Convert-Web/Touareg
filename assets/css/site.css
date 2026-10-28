@@ -561,3 +561,11 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
 }
 .hero-deco, .bj-deco { pointer-events: none; }
 .hero > .wrap, .bj-wrap { position: relative; z-index: 1; }
+
+/* Nom en dégradé noir → blanc (sans emblème) */
+.logo-nom {
+  background: linear-gradient(90deg, #000 0%, #fff 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  padding-right: .12em;
+}
