@@ -35,8 +35,10 @@
 
 <link rel="preload" href="assets/fonts/poppins-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/cut/kebab-420.webp" imagesrcset="assets/img/cut/kebab-160.webp 160w, assets/img/cut/kebab-420.webp 420w, assets/img/cut/kebab-600.webp 600w, assets/img/cut/kebab-840.webp 840w" imagesizes="(min-width: 768px) 560px, 300px" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/site.css?v=20261028e">
+<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" media="(max-width: 767px)" href="assets/img/hero/kebab-m800.webp" imagesrcset="assets/img/hero/kebab-m480.webp 480w, assets/img/hero/kebab-m800.webp 800w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(min-width: 768px)" href="assets/img/hero/kebab-1600.webp" imagesrcset="assets/img/hero/kebab-1100.webp 1100w, assets/img/hero/kebab-1600.webp 1600w, assets/img/hero/kebab-2000.webp 2000w" imagesizes="100vw" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/site.css?v=20261028f">
 
 <script type="application/ld+json">
 {
@@ -94,6 +96,8 @@
   <symbol id="i-gauche" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-droite" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-embleme" viewBox="0 0 32 44"><circle cx="16" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="3.6"/><path d="M3 22.5h26" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/><path fill="currentColor" fill-rule="evenodd" d="M16 16.5 25.5 30 16 43.5 6.5 30Zm0 7.5-4.2 6 4.2 6 4.2-6Z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></symbol>
   <symbol id="i-fleche-courbe" viewBox="0 0 80 60"><path d="M6 50C14 22 36 10 64 12" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M52 2l16 10-14 13" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -113,7 +117,7 @@
     </nav>
     <div class="entete-actions">
       <span class="statut" data-statut>Horaires</span>
-      <a class="btn btn-blanc btn-petit grand-ecran" href="#carte">Commander</a>
+      <a class="btn btn-faim grand-ecran" href="#carte">J’ai faim !</a>
       <button class="rond rond-panier grand-ecran" type="button" data-ouvrir-panier aria-label="Ouvrir le panier">
         <svg aria-hidden="true"><use href="#i-sac"/></svg>
         <span class="compteur" data-compteur>0</span>
@@ -124,12 +128,15 @@
 
 <main id="haut">
 
-  <!-- HERO ROUGE -->
+  <!-- HERO PHOTO -->
   <section class="hero" aria-roledescription="carrousel" aria-label="Nos spécialités">
-    <div class="hero-deco" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="wrap">
-      <div class="diapos" data-diapos></div>
-      <div class="points" role="tablist" aria-label="Choisir une spécialité" data-points></div>
+    <h1 class="invisible">Le Touareg, kebab, tacos, burgers et pizzas à Montereau-Fault-Yonne</h1>
+    <div class="diapos" data-diapos></div>
+    <div class="wrap hero-bas">
+      <div class="hero-commandes">
+        <div class="points" role="tablist" aria-label="Choisir une spécialité" data-points></div>
+        <button class="hero-pause" type="button" data-pause aria-label="Mettre en pause le défilement"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
+      </div>
       <ul class="rassure">
         <li><svg aria-hidden="true"><use href="#i-etoile"/></svg>4,2/5 · 190+ avis</li>
         <li><svg aria-hidden="true"><use href="#i-sac"/></svg>Paiement au comptoir</li>
@@ -367,8 +374,8 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-<script src="js/donnees.js?v=20261028e"></script>
-<script src="js/site.js?v=20261028e"></script>
-<script src="js/consentement.js?v=20261028e" defer></script>
+<script src="js/donnees.js?v=20261028f"></script>
+<script src="js/site.js?v=20261028f"></script>
+<script src="js/consentement.js?v=20261028f" defer></script>
 </body>
 </html>

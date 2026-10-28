@@ -161,10 +161,10 @@ window.TOUAREG = {
 
   /* Grand bandeau rouge du haut (diaporama) */
   diaporama: [
-    { id: 'kebab',             formule: 'menu', surtitre: 'Le n° 1 de la maison', titre: 'Menu Sandwich Kebab', texte: 'Viande kebab, salade, tomates et oignons. Servi avec frites et boisson.' },
-    { id: 'tacos-xl',          formule: 'menu', surtitre: 'French tacos',          titre: 'Menu Tacos XL',       texte: '2 viandes au choix. Servi avec frites et boisson, pour les grosses faims.' },
-    { id: 'double-big-burger', formule: 'seul', surtitre: '2 steaks de 180 g',     titre: 'Double Big Burger',   texte: '2 steaks de 180 g, 2 fromages, salade et tomates. À prendre seul ou en menu.' },
-    { id: 'pizza-3-viandes',   formule: 'seul', surtitre: '100 % recommandée',     titre: 'Pizza 3 Viandes',     texte: 'Taille sénior, base et 3 viandes au choix. Recommandée par 100 % des clients Uber Eats qui l’ont notée.' },
+    { id: 'kebab',             fond: 'kebab', formule: 'menu', surtitre: 'Le n° 1 de la maison', titre: 'Menu Sandwich Kebab', texte: 'Viande kebab, salade, tomates et oignons. Servi avec frites et boisson.' },
+    { id: 'tacos-xl',          fond: 'tacos', formule: 'menu', surtitre: 'French tacos',          titre: 'Menu Tacos XL',       texte: '2 viandes au choix. Servi avec frites et boisson, pour les grosses faims.' },
+    { id: 'double-big-burger', fond: 'burger', formule: 'seul', surtitre: '2 steaks de 180 g',     titre: 'Double Big Burger',   texte: '2 steaks de 180 g, 2 fromages, salade et tomates. À prendre seul ou en menu.' },
+    { id: 'pizza-3-viandes',   fond: 'pizza', formule: 'seul', surtitre: '100 % recommandée',     titre: 'Pizza 3 Viandes',     texte: 'Taille sénior, base et 3 viandes au choix. Recommandée par 100 % des clients Uber Eats qui l’ont notée.' },
   ],
 
   /* Plats mis en avant en haut de page (dans cet ordre) */
