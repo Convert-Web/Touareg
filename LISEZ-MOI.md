@@ -33,6 +33,10 @@ La feuille de style part du téléphone, puis ajoute la tablette (768 px) et l'o
 - **Afficher les prix comptoir** : `reglages.diviseurPrix: 1.3` (voir le point 1 ci-dessous).
 - **Remplacer une photo** : déposer `nom-420.webp` et `nom-840.webp` (fond transparent) dans `assets/img/cut/`, avec le même nom que l'existante.
 
+## Après chaque modification du style ou des scripts
+
+Changer le numéro de version `?v=...` dans les balises qui chargent `site.css` et les fichiers `js/` (dans toutes les pages `.html`). Sans ça, certains téléphones gardent l'ancien style en mémoire jusqu'à 10 minutes.
+
 ## Mise en ligne (GitHub Pages)
 
 1. Déposer tout le contenu de ce dossier à la racine d'un dépôt.
