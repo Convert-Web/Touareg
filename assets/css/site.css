@@ -827,3 +827,24 @@ dialog::backdrop { background: rgba(29, 10, 10, .6); backdrop-filter: blur(3px);
   .toast.avec-action.visible { transform: none; }
   .toast.avec-action span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
+
+/* ---------- Pied de page clarifié ---------- */
+.pied-rouge-wrap { display: grid; gap: 14px; padding-block: 24px; }
+.pied-accroche { display: grid; gap: 8px; }
+.pied-accroche p { margin: 0; font-weight: 600; font-size: .95rem; color: var(--blanc); }
+.pied-rouge-wrap .btn { width: 100%; }
+.pied-cols { grid-template-columns: 1fr; gap: 28px; }
+.pied-cols > div:last-child { grid-column: auto; }
+.pied-col-carte { display: none; }
+.pied-contact li > a, .pied-contact li > span { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.9); }
+.pied-contact svg { width: 20px; height: 20px; color: var(--jaune); flex: none; }
+.pied-contact li > span > span { display: block; }
+.pied-noir .pied-cols a { text-decoration: none; }
+@media (min-width: 768px) {
+  .pied-rouge-wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 26px; }
+  .pied-accroche { display: flex; align-items: center; gap: 24px; }
+  .pied-rouge-wrap .btn { width: auto; }
+  .pied-cols { grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; }
+  .pied-col-carte { display: block; }
+  .pied-contact { gap: 12px !important; }
+}

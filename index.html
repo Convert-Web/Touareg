@@ -89,6 +89,7 @@
   <symbol id="i-coeur" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.6 4.5 6.9 4.5c2.1 0 3.6 1.1 5.1 3 1.5-1.9 3-3 5.1-3 3.3 0 5.5 3.1 4.2 6.6-1.8 4.8-9.3 9.4-9.3 9.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-maison" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h4.5v-5.5h3V20H18V9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-liste" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2" fill="currentColor"/><circle cx="4.5" cy="12" r="1.2" fill="currentColor"/><circle cx="4.5" cy="18" r="1.2" fill="currentColor"/></g></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m4 7 8 6 8-6" stroke-linecap="round"/></g></symbol>
   <symbol id="i-loupe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></g></symbol>
   <symbol id="i-gauche" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-droite" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -302,35 +303,38 @@
 <footer class="pied">
   <div class="pied-rouge">
     <div class="wrap pied-rouge-wrap">
-      <span class="logo"><span class="logo-nom"><span class="logo-le">Le</span> <span class="logo-mot">Touareg</span></span></span>
-      <a class="pied-info" href="tel:+33673827821"><span class="rond-trait"><svg aria-hidden="true"><use href="#i-tel"/></svg></span>06 73 82 78 21</a>
-      <a class="pied-info" href="https://www.google.com/maps/search/?api=1&query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener"><span class="rond-trait"><svg aria-hidden="true"><use href="#i-lieu"/></svg></span>11 B place Diderot</a>
-      <div class="pied-reseaux">
-        <a class="rond-trait" href="https://wa.me/33673827821" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
-        <a class="rond-trait" href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener" aria-label="Uber Eats"><svg aria-hidden="true"><use href="#i-scooter"/></svg></a>
-        <a class="rond-trait" href="#infos" aria-label="Horaires"><svg aria-hidden="true"><use href="#i-horloge"/></svg></a>
+      <div class="pied-accroche">
+        <span class="logo"><span class="logo-nom"><span class="logo-le">Le</span> <span class="logo-mot">Touareg</span></span></span>
+        <p>Une petite faim ? Commandez maintenant, c’est prêt à emporter place Diderot.</p>
       </div>
+      <a class="btn btn-blanc" href="#carte"><svg aria-hidden="true"><use href="#i-sac"/></svg>Commander</a>
     </div>
   </div>
   <div class="pied-noir">
     <div class="wrap">
       <div class="pied-cols">
-        <div><h2 class="pied-titre">La carte</h2><ul data-pied-carte></ul></div>
-        <div><h2 class="pied-titre">Le restaurant</h2><ul>
-          <li><a href="#infos">Horaires & accès</a></li>
-          <li><a href="#avis">Avis clients</a></li>
-          <li><a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Livraison Uber Eats</a></li>
-          <li><a href="#" data-email="jamel.tp|hotmail.com">Écrire au restaurant</a></li>
-        </ul></div>
-        <div><h2 class="pied-titre">Infos légales</h2><ul>
-          <li><a href="mentions-legales.html">Mentions légales</a></li>
-          <li><a href="politique-de-confidentialite.html">Confidentialité (RGPD)</a></li>
-          <li><a href="cgu.html">Conditions d’utilisation</a></li>
-          <li><a href="#" data-gerer-cookies>Gérer les cookies</a></li>
-        </ul></div>
+        <div>
+          <h2 class="pied-titre">Nous trouver</h2>
+          <ul class="pied-contact">
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Le+Touareg+11+B+place+Diderot+77130+Montereau-Fault-Yonne" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-lieu"/></svg><span>11 B place Diderot<br>77130 Montereau-Fault-Yonne</span></a></li>
+            <li><a href="tel:+33673827821"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>06 73 82 78 21</span></a></li>
+            <li><span><svg aria-hidden="true"><use href="#i-horloge"/></svg><span>Tous les jours, 11h – 22h45</span></span></li>
+            <li><a href="#" data-email="jamel.tp|hotmail.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>Écrire au restaurant</a></li>
+          </ul>
+        </div>
+        <div class="pied-col-carte"><h2 class="pied-titre">La carte</h2><ul data-pied-carte></ul></div>
+        <div>
+          <h2 class="pied-titre">Infos</h2>
+          <ul>
+            <li><a href="https://www.ubereats.com/fr/store/le-touareg/Fxfsm_SqW_-STqValFyyPA" target="_blank" rel="noopener">Livraison avec Uber Eats</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="politique-de-confidentialite.html">Confidentialité (RGPD)</a></li>
+            <li><a href="cgu.html">Conditions d’utilisation</a></li>
+            <li><a href="#" data-gerer-cookies>Gérer les cookies</a></li>
+          </ul>
+        </div>
       </div>
-      <svg class="pied-filigrane" aria-hidden="true"><use href="#i-embleme"/></svg>
-      <p class="pied-copy">© <span data-annee>2026</span> Le Touareg · SARL L’Atlas · Tous les prix sont TTC · Site réalisé par ConvertWEB</p>
+      <p class="pied-copy">© <span data-annee>2026</span> Le Touareg · SARL L’Atlas · Prix TTC · Site réalisé par ConvertWEB</p>
     </div>
   </div>
 </footer>
