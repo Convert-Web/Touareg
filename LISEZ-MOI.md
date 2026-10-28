@@ -15,6 +15,10 @@ assets/img/cut/         plats détourés (fond transparent), 2 tailles : -420 et
 assets/img/             photo de la section horaires, icônes, image de partage
 ```
 
+## Conception « mobile first »
+
+La feuille de style part du téléphone, puis ajoute la tablette (768 px) et l'ordinateur (1024 px). Sur mobile et tablette, une barre de navigation en bas de l'écran (Accueil, Carte, Panier, Appeler, Infos) remplace le menu du haut. Les filtres de la carte restent collés sous l'en-tête, et tous les boutons font au moins 44 px pour le doigt. Le téléphone charge les images en version légère (420 px).
+
 ## Modifier le site
 
 - **Un prix, un plat, une description** : `js/donnees.js`, tableau `produits`.

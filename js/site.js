@@ -32,9 +32,10 @@
   const DETOUR = { sandwich: 'kebab', hero: 'kebab', 'burger-dark': 'burger-double', margherita: 'pizza' };
   const detourDe = cle => DETOUR[cle] || cle;
   const detourPlat = p => detourDe(p.photo || catParId[p.cat].photo);
-  function detour(cle, { grand = false, alt = '', lazy = true, cls = '' } = {}) {
-    const c = detourDe(cle);
-    return `<img class="${cls}" src="assets/img/cut/${c}-${grand ? 840 : 420}.webp" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
+  function detour(cle, { grand = false, alt = '', lazy = true, cls = '', sizes } = {}) {
+    const c = detourDe(cle), base = `assets/img/cut/${c}`;
+    const taille = sizes || (grand ? '(min-width: 768px) 560px, 90vw' : '(min-width: 768px) 240px, 45vw');
+    return `<img class="${cls}" src="${base}-${grand ? 840 : 420}.webp" srcset="${base}-420.webp 420w, ${base}-840.webp 840w" sizes="${taille}" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
   }
 
   const BADGES = { n1: ['badge-n1', 'N°1 des ventes'], populaire: ['badge-populaire', 'Populaire'], maison: ['badge-maison', 'Signature'], vege: ['badge-vege', 'Végétarien'] };
@@ -418,13 +419,10 @@
     $$('[data-compteur]').forEach(el => {
       if (el.textContent !== String(n)) { el.classList.remove('saut'); void el.offsetWidth; el.classList.add('saut'); }
       el.textContent = n;
+      el.classList.toggle('zero', n === 0);
     });
-    $$('[data-total]').forEach(el => { el.textContent = euros(totalPanier()); });
-    const barre = $('[data-barre-panier]');
-    barre.classList.toggle('visible', n > 0);
-    barre.setAttribute('aria-hidden', n > 0 ? 'false' : 'true');
-    $('button', barre).tabIndex = n > 0 ? 0 : -1;
-    document.body.style.paddingBottom = n > 0 && window.matchMedia('(max-width: 860px)').matches ? '84px' : '';
+    $$('[data-total-nav]').forEach(el => { el.textContent = n > 0 ? euros(totalPanier()) : 'Panier'; });
+    $$('.nav-panier').forEach(b => b.classList.toggle('plein', n > 0));
   }
 
   function detailLigne(l) {
@@ -552,18 +550,20 @@
     minuteurToast = setTimeout(() => t.classList.remove('visible'), 2400);
   }
 
-  /* ---------- Navigation mobile ---------- */
-  const navMobile = $('#nav-mobile');
-  const btnNav = $('[data-ouvrir-nav]');
-  function basculerNav(ouvrir) {
-    navMobile.hidden = !ouvrir;
-    btnNav.setAttribute('aria-expanded', String(ouvrir));
-    document.body.classList.toggle('verrou', ouvrir);
-    if (ouvrir) $('[data-fermer-nav]').focus(); else btnNav.focus({ preventScroll: true });
+  /* ---------- Barre de navigation basse : rubrique active ---------- */
+  function brancherNavBasse() {
+    const liens = $$('[data-nav-basse]');
+    if (!liens.length || !('IntersectionObserver' in window)) return;
+    const cibles = { haut: $('.hero'), carte: $('#carte'), infos: $('.duo') };
+    const visibles = new Map();
+    const obs = new IntersectionObserver(entrees => {
+      entrees.forEach(e => visibles.set(e.target, e.intersectionRatio));
+      let meilleur = 'haut', ratio = 0;
+      Object.entries(cibles).forEach(([cle, el]) => { const r = visibles.get(el) || 0; if (r > ratio) { ratio = r; meilleur = cle; } });
+      liens.forEach(l => l.classList.toggle('actif', l.dataset.navBasse === meilleur));
+    }, { threshold: [0, .15, .3, .5, .7] });
+    Object.values(cibles).forEach(el => el && obs.observe(el));
   }
-  btnNav.addEventListener('click', () => basculerNav(true));
-  navMobile.addEventListener('click', e => { if (e.target.closest('[data-fermer-nav]') || e.target.closest('nav a')) basculerNav(false); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !navMobile.hidden) basculerNav(false); });
 
   /* ---------- Délégation globale ---------- */
   document.addEventListener('click', e => {
@@ -592,6 +592,7 @@
   majCompteurs();
   rendrePanier();
   brancherCarte();
+  brancherNavBasse();
   surDefilement();
   $$('[data-annee]').forEach(el => { el.textContent = new Date().getFullYear(); });
   setInterval(majStatut, 60 * 1000);
