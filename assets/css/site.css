@@ -588,10 +588,10 @@ button { cursor: pointer; }
   .pied-cols > div:last-child { grid-column: auto; }
   .pied-cols h4 { margin-bottom: 12px; }
   .pied-cols ul { gap: 8px; }
-  .pied-cols li > a, .pied-cols li > span { min-height: 0; }
   .pied-filigrane { width: 190px; height: 260px; }
   .pied-copy { margin-top: 36px; font-size: .76rem; }
 }
+@media (min-width: 1024px) and (pointer: fine) { .pied-cols li > a, .pied-cols li > span { min-height: 0; } }
 @media (hover: hover) {
   a.rond-trait:hover { background: var(--blanc); color: var(--rouge); }
   .pied-cols a:hover { color: var(--blanc); text-decoration: underline; }
