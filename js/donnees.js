@@ -46,9 +46,9 @@ window.TOUAREG = {
 
   /* ---------- Catégories (ordre d'affichage) ---------- */
   categories: [
-    { id: 'sandwichs',   nom: 'Sandwichs',     photo: 'sandwich',  accroche: 'Le n° 1 de la maison. Tous existent en menu.', menu: true, note: 'GPT : galette de pomme de terre.' },
-    { id: 'tacos',       nom: 'Tacos',         photo: 'tacos',     accroche: 'Le French tacos, en L ou en XL.', menu: true },
-    { id: 'burgers',     nom: 'Burgers',       photo: 'burger',    accroche: 'Du cheese à 3,90 € au double steak de 180 g.', menu: true },
+    { id: 'sandwichs',   nom: 'Sandwichs',     photo: 'p:kebab',   accroche: 'Le n° 1 de la maison. Tous existent en menu.', menu: true, note: 'GPT : galette de pomme de terre.' },
+    { id: 'tacos',       nom: 'Tacos',         photo: 'p:tacos-l', accroche: 'Le French tacos, en L ou en XL.', menu: true },
+    { id: 'burgers',     nom: 'Burgers',       photo: 'p:big-burger', accroche: 'Du cheese à 3,90 € au double steak de 180 g.', menu: true },
     { id: 'pizzas',      nom: 'Pizzas',        photo: 'pizza',     accroche: 'Taille sénior, base au choix.' },
     { id: 'pizza-turque',nom: 'Pizza turque',  photo: 'pide',      accroche: 'Pâte fine, garniture et épices traditionnelles.', menu: true },
     { id: 'assiettes',   nom: 'Assiettes',     photo: 'assiette',  accroche: 'Pour les grosses faims : jusqu’à 4 viandes au choix.' },
@@ -99,8 +99,8 @@ window.TOUAREG = {
     { id: 'double-cheese',     cat: 'burgers', nom: 'Double Cheeseburger',    desc: '2 steaks et 2 fromages.', prix: 5.20, menu: 8.45, photo: 'cheese' },
     { id: 'chicken-burger',    cat: 'burgers', nom: 'Chicken Burger',         desc: 'Chicken pané et fromage.', prix: 5.20, menu: 7.80, photo: 'burger-2' },
     { id: 'zinger-burger',     cat: 'burgers', nom: 'Zinger Burger',          desc: 'Poulet pané croustillant et fromage.', prix: 5.85, menu: 8.45, avis: [100, 3], photo: 'burger-2' },
-    { id: 'fish-burger',       cat: 'burgers', nom: 'Fish Burger',            desc: 'Poisson pané, salade, oignons et fromage.', prix: 4.55, menu: 7.15 },
-    { id: 'burger-vege',       cat: 'burgers', nom: 'Burger Végétarien',      desc: 'Steak de pommes de terre, œuf et fromage.', prix: 5.20, menu: 7.80, tags: ['vege'] },
+    { id: 'fish-burger',       cat: 'burgers', nom: 'Fish Burger',            desc: 'Poisson pané, salade, oignons et fromage.', prix: 4.55, menu: 7.15, photo: 'burger' },
+    { id: 'burger-vege',       cat: 'burgers', nom: 'Burger Végétarien',      desc: 'Steak de pommes de terre, œuf et fromage.', prix: 5.20, menu: 7.80, tags: ['vege'], photo: 'burger' },
 
     // Pizzas (taille sénior)
     { id: 'pizza-3-viandes', cat: 'pizzas', nom: 'Pizza 3 Viandes',   desc: 'Base au choix, 3 viandes au choix et fromage.', prix: 9.75, base: true, choix: 3, tags: ['populaire'], avis: [100, 10] },

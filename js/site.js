@@ -32,12 +32,16 @@
   /* Plats détourés (fond transparent) : assets/img/cut/<cle>-420.webp et -840.webp */
   const DETOUR = { sandwich: 'kebab', hero: 'kebab', 'burger-dark': 'burger-double', margherita: 'pizza' };
   const detourDe = cle => DETOUR[cle] || cle;
-  const detourPlat = p => detourDe(p.photo || catParId[p.cat].photo);
+  const detourPlat = p => PLATS[p.id] ? 'p:' + p.id : detourDe(p.photo || catParId[p.cat].photo);
   /* Dimensions (version 420 px) de chaque plat détouré, pour réserver la place avant le chargement */
   const DIMS = {"americain":[420,119],"assiette":[420,171],"boisson":[352,420],"bucket":[420,311],"burger-2":[420,233],"burger":[420,347],"burger-double":[320,420],"cheese":[283,235],"croque":[420,287],"dessert":[420,236],"frites":[414,420],"kebab":[420,225],"panini":[420,244],"pide":[420,420],"pizza-2":[345,420],"pizza":[420,252],"salade":[420,388],"tacos":[420,366],"texmex":[420,360]};
+  /* Photos propres à chaque plat (assets/img/plats/<id>-420.webp…) : utilisées en priorité */
+  const PLATS = {"agneau":[420,205],"americain":[420,265],"big-burger":[420,348],"boursin":[420,220],"burger-maison":[420,366],"cheese":[420,306],"chicken-burger":[420,321],"chicken-curry":[420,218],"cordon-bleu":[420,218],"double-big-burger":[420,386],"double-big-plus":[379,420],"double-cheese":[420,350],"double-croc":[420,253],"forma":[420,230],"kebab":[420,223],"kefta":[420,219],"mixte":[420,232],"paprika":[420,202],"shempa":[420,223],"special":[420,232],"tacos-l":[420,213],"tacos-xl":[420,263],"touareg":[420,275],"zinger-burger":[420,268],"zinger-rolo":[420,230]};
   function detour(cle, { alt = '', lazy = true, cls = '', sizes = '(min-width: 768px) 240px, 45vw' } = {}) {
-    const c = detourDe(cle), base = `assets/img/cut/${c}`;
-    const [w, h] = DIMS[c] || [420, 420];
+    const c = detourDe(cle);
+    const plat = c.startsWith('p:') ? c.slice(2) : null;
+    const base = plat ? `assets/img/plats/${plat}` : `assets/img/cut/${c}`;
+    const [w, h] = (plat ? PLATS[plat] : DIMS[c]) || [420, 420];
     return `<img class="${cls}" src="${base}-420.webp" srcset="${base}-160.webp 160w, ${base}-420.webp 420w, ${base}-600.webp 600w, ${base}-840.webp 840w" sizes="${sizes}" width="${w}" height="${h}" alt="${echap(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}>`;
   }
 

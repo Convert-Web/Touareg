@@ -84,3 +84,9 @@ Les moteurs de recherche ne lisent le `robots.txt` qu'à la racine d'un domaine.
 - **Prix comptoir** : les prix de `js/donnees.js` sont ceux d'Uber Eats (prix comptoir × 1,3). Mettre `diviseurPrix: 1.3` affiche les prix comptoir partout, et le panier montre alors « Vous économisez X € par rapport à la livraison Uber Eats ». À activer seulement après accord du gérant sur ses prix comptoir.
 - **Mesure des ventes** (si GoatCounter est activé) : ajout-panier, ouverture-panier, passage-menu, recommander, commande-whatsapp, appel, uber-eats, itineraire, avis-google.
 - **Questions fréquentes** : section visible et données structurées FAQ pour Google (à tenir à jour avec le texte affiché).
+
+## Photos des plats
+
+- `assets/img/plats/<id>-160|420|600|840.webp` : une photo détourée par plat (l'`id` est celui de `js/donnees.js`). Un plat qui a sa photo ici l'utilise automatiquement ; sinon il prend la photo de son rayon (`assets/img/cut/`).
+- Pour ajouter ou remplacer une photo : déposer les 4 tailles avec le même nom, puis ajouter ou mettre à jour ses dimensions (version 420) dans `PLATS`, en haut de `js/site.js`.
+- Les photos actuelles sont générées par IA (photos d'illustration). Les remplacer par de vraies photos du restaurant reste le mieux pour vendre.
