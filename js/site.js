@@ -76,7 +76,7 @@
     const s = statut();
     $$('[data-statut]').forEach(el => { el.textContent = texteStatut(s); el.classList.toggle('ouvert', s.ouvert); el.classList.toggle('ferme', !s.ouvert); });
     const delai = R.delaiPreparation || 20;
-    $$('[data-delai]').forEach(el => { el.textContent = s.ouvert && statutPermetImmediat(s, delai) ? `Prêt en ~${delai} min` : 'Commande à l’avance possible'; });
+    $$('[data-delai]').forEach(el => { el.textContent = s.ouvert && statutPermetImmediat(s, delai) ? `Prêt en ~${delai} min` : 'Précommande'; });
     return s;
   }
 
