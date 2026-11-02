@@ -62,7 +62,8 @@
   "salade-nicoise": "MAHZsVfUHcg",
   "salade-mixte": "MAHZsWKAww8",
   "coca": "MAHZsfBcXXQ",
-  "pepsi": "MAHZsVSkLtQ"
+  "pepsi": "MAHZsVSkLtQ",
+  "lipton": "recoloration de la canette rouge (sans IA)"
  },
  "exportes_hd": [
   "agneau",
@@ -94,6 +95,7 @@
   "jalapenos",
   "kebab",
   "kefta",
+  "lipton",
   "margherita",
   "mixte",
   "nuggets",
@@ -138,9 +140,7 @@
   "cordon-bleu": 8,
   "double-croc": 9
  },
- "restants": [
-  "lipton"
- ],
+ "restants": [],
  "a_refaire": [
   "special"
  ]
